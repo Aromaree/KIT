@@ -2,794 +2,573 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#ffffff">
-<title>VANVION — WHOLESALE CATALOGUE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VANVION</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 @font-face {
-  font-family: 'FuturaPT';
+  font-family: 'Futura PT Book';
   src: url('./futura-pt-book.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --c-bg:#fff;
-  --c-card:#faf8f5;
-  --c-border:#ede8e0;
-  --c-primary:#1a1a18;
-  --c-secondary:#8a8178;
-  --c-muted:#b0a898;
-  --ff:'FuturaPT','Futura','Century Gothic','Trebuchet MS',sans-serif;
+:root {
+  --bg: #fff;
+  --card: #faf8f5;
+  --border: #ede8e0;
+  --text: #1a1a18;
+  --text2: #8a8178;
+  --muted: #b0a898;
+  --font: 'Futura PT Book', 'Futura', 'Century Gothic', sans-serif;
 }
-html{height:100%;background:var(--c-bg)}
-body{
-  font-family:var(--ff);
-  background:var(--c-bg);
-  color:var(--c-primary);
-  text-transform:uppercase;
-  overscroll-behavior:none;
-  min-height:100%;
-  -webkit-font-smoothing:antialiased;
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  text-transform: uppercase;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
 }
-/* HEADER */
-#header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:var(--c-bg);
-  border-bottom:1px solid var(--c-border);
-  padding:18px 16px 0;
+body { font-size: 13px; }
+img { display: block; }
+button { font-family: var(--font); text-transform: uppercase; cursor: pointer; background: none; border: none; color: inherit; }
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
-.header-top{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:4px;
+.header-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 16px 6px;
 }
-.brand{
-  font-family:var(--ff);
-  font-weight:400;
-  font-size:30px;
-  letter-spacing:0.22em;
-  color:var(--c-primary);
-  text-align:center;
+.brand {
+  font-size: 30px;
+  letter-spacing: 0.22em;
+  font-weight: 400;
+  line-height: 1;
 }
-.subtitle{
-  text-align:center;
-  font-size:10px;
-  letter-spacing:0.14em;
-  color:var(--c-secondary);
-  margin-bottom:12px;
-  line-height:1.5;
+.lang-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  padding: 5px 9px;
+  color: var(--text2);
 }
-#lang-btn{
-  position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
-  background:none;
-  border:1px solid var(--c-border);
-  font-family:var(--ff);
-  font-size:11px;
-  letter-spacing:0.12em;
-  color:var(--c-secondary);
-  cursor:pointer;
-  padding:5px 9px;
-  line-height:1;
-  text-transform:uppercase;
+.subtitle {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text2);
+  padding: 0 16px 14px;
 }
-#lang-btn:active{background:var(--c-card)}
-.search-wrap{
-  position:relative;
-  margin-bottom:0;
+.search-wrap {
+  position: relative;
+  border-top: 1px solid var(--border);
 }
-#search{
-  width:100%;
-  border:none;
-  border-top:1px solid var(--c-border);
-  background:var(--c-bg);
-  font-family:var(--ff);
-  font-size:13px;
-  letter-spacing:0.10em;
-  color:var(--c-primary);
-  text-transform:uppercase;
-  padding:12px 36px 12px 16px;
-  outline:none;
-  -webkit-appearance:none;
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: var(--font);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: transparent;
+  padding: 14px 40px 14px 16px;
 }
-#search::placeholder{color:var(--c-muted)}
-.search-clear{
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%);
-  background:none;
-  border:none;
-  font-size:16px;
-  color:var(--c-muted);
-  cursor:pointer;
-  display:none;
-  line-height:1;
-  padding:4px;
+.search-input::placeholder { color: var(--muted); letter-spacing: 0.06em; }
+.search-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--muted);
+  padding: 6px;
+  display: none;
 }
-/* TABS */
-#tabs{
-  display:flex;
-  border-bottom:1px solid var(--c-border);
-  background:var(--c-bg);
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
+.search-clear.show { display: block; }
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  gap: 22px;
+  padding: 0 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-#tabs::-webkit-scrollbar{display:none}
-.tab{
-  flex:0 0 auto;
-  font-family:var(--ff);
-  font-size:13px;
-  letter-spacing:0.12em;
-  color:var(--c-muted);
-  background:none;
-  border:none;
-  border-bottom:2px solid transparent;
-  padding:13px 18px 11px;
-  cursor:pointer;
-  text-transform:uppercase;
-  white-space:nowrap;
-  transition:color 0.15s,border-color 0.15s;
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding: 13px 0;
+  border-bottom: 2px solid transparent;
+  flex: none;
 }
-.tab.active{
-  color:var(--c-primary);
-  border-bottom-color:var(--c-primary);
+.tab.active {
+  color: var(--text);
+  border-bottom-color: var(--text);
 }
-/* COUNT ROW */
-#count-row{
-  padding:9px 16px;
-  font-size:11px;
-  letter-spacing:0.12em;
-  color:var(--c-muted);
-  border-bottom:1px solid var(--c-border);
-  background:var(--c-bg);
+
+.count {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  padding: 12px 16px 8px;
 }
-/* GRID */
-#grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--c-border);
-  padding-bottom:calc(16px + env(safe-area-inset-bottom));
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
 }
-.card{
-  background:var(--c-card);
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
+.card { background: var(--bg); }
+.card-img {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: var(--card);
+  overflow: hidden;
 }
-.card:active .card-img{filter:brightness(0.96)}
-.card-img{
-  position:relative;
-  width:100%;
-  aspect-ratio:3/4;
-  background:var(--c-card);
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+.card-img .ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.card-img svg{opacity:0.13}
-.art-tag{
-  position:absolute;
-  top:8px;
-  left:8px;
-  font-family:var(--ff);
-  font-size:9px;
-  letter-spacing:0.10em;
-  color:var(--c-secondary);
-  background:rgba(250,248,245,0.82);
-  padding:3px 6px;
-  border:1px solid var(--c-border);
-  text-transform:uppercase;
+.card-img .ph svg { width: 46%; height: 46%; opacity: 0.12; }
+.art-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  background: rgba(255,255,255,0.82);
+  color: var(--text);
+  padding: 3px 6px;
 }
-.card-info{
-  padding:10px 12px 12px;
-  border-top:1px solid var(--c-border);
-  background:var(--c-card);
+.card-info {
+  border-top: 1px solid var(--border);
+  padding: 10px 12px 12px;
 }
-.card-title{
-  font-family:var(--ff);
-  font-size:13px;
-  letter-spacing:0.10em;
-  color:var(--c-primary);
-  margin-bottom:8px;
-  line-height:1.35;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.card-name {
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
-.color-dots{
-  display:flex;
-  gap:5px;
-  flex-wrap:wrap;
+.dots { display: flex; gap: 6px; margin-top: 9px; }
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.12);
+  flex: none;
 }
-.color-dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  border:1px solid rgba(0,0,0,0.10);
-  flex:0 0 auto;
+
+.state {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  padding: 80px 24px;
 }
-/* DETAIL OVERLAY */
-#detail{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:var(--c-bg);
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  transform:translateX(100%);
-  transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);
-  -webkit-overflow-scrolling:touch;
+.retry {
+  display: inline-block;
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text);
 }
-#detail.open{transform:translateX(0)}
-.detail-topbar{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:var(--c-bg);
-  border-bottom:1px solid var(--c-border);
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  height:50px;
-  gap:12px;
+
+.detail {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+  -webkit-overflow-scrolling: touch;
 }
-#back-btn{
-  background:none;
-  border:none;
-  font-size:22px;
-  color:var(--c-primary);
-  cursor:pointer;
-  padding:4px 8px 4px 0;
-  line-height:1;
-  flex:0 0 auto;
+.detail.open { transform: translateX(0); }
+.detail-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
-.detail-article{
-  font-family:var(--ff);
-  font-size:12px;
-  letter-spacing:0.14em;
-  color:var(--c-secondary);
+.back-btn { font-size: 20px; line-height: 1; padding: 4px 6px 4px 0; }
+.detail-art { font-size: 11px; letter-spacing: 0.14em; color: var(--text2); }
+.detail-img {
+  position: relative;
+  aspect-ratio: 3/4;
+  width: 100%;
+  background: var(--card);
+  overflow: hidden;
 }
-.detail-img{
-  width:100%;
-  aspect-ratio:3/4;
-  background:var(--c-card);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-bottom:1px solid var(--c-border);
-}
-.detail-img svg{opacity:0.10}
-.detail-body{
-  padding:20px 16px;
-}
-.detail-cat{
-  font-size:11px;
-  letter-spacing:0.14em;
-  color:var(--c-muted);
-  margin-bottom:8px;
-}
-.detail-name{
-  font-family:var(--ff);
-  font-size:20px;
-  letter-spacing:0.08em;
-  color:var(--c-primary);
-  margin-bottom:18px;
-  line-height:1.3;
-}
-.detail-colors-label{
-  font-size:11px;
-  letter-spacing:0.14em;
-  color:var(--c-muted);
-  margin-bottom:10px;
-}
-.detail-colors{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:24px;
-}
-.detail-color{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-.detail-color-dot{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  border:1px solid rgba(0,0,0,0.12);
-  flex:0 0 auto;
-}
-.detail-color-name{
-  font-size:11px;
-  letter-spacing:0.10em;
-  color:var(--c-secondary);
-}
-.specs-table{
-  width:100%;
-  border-top:1px solid var(--c-border);
-  margin-bottom:24px;
-}
-.spec-row{
-  display:flex;
-  border-bottom:1px solid var(--c-border);
-  padding:10px 0;
-}
-.spec-key{
-  flex:0 0 44%;
-  font-size:11px;
-  letter-spacing:0.12em;
-  color:var(--c-muted);
-}
-.spec-val{
-  flex:1;
-  font-family:var(--ff);
-  font-size:13px;
-  letter-spacing:0.06em;
-  color:var(--c-primary);
-}
-#share-btn{
-  display:block;
-  width:100%;
-  background:var(--c-primary);
-  color:var(--c-bg);
-  font-family:var(--ff);
-  font-size:13px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  border:none;
-  padding:16px;
-  cursor:pointer;
-  margin-bottom:calc(16px + env(safe-area-inset-bottom));
-}
-#share-btn:active{background:#333330}
-/* EMPTY STATE */
-#empty{
-  display:none;
-  text-align:center;
-  padding:60px 24px;
-  font-size:12px;
-  letter-spacing:0.14em;
-  color:var(--c-muted);
+.detail-img img { width: 100%; height: 100%; object-fit: cover; }
+.detail-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.detail-img .ph svg { width: 40%; height: 40%; opacity: 0.12; }
+.detail-body { padding: 20px 16px calc(28px + env(safe-area-inset-bottom)); }
+.detail-cat { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); }
+.detail-name { font-size: 20px; letter-spacing: 0.08em; line-height: 1.2; margin-top: 6px; }
+.section-label { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); margin: 22px 0 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 14px; }
+.chip { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.08em; color: var(--text2); }
+.chip .dot { width: 12px; height: 12px; }
+.specs { border-top: 1px solid var(--border); margin-top: 22px; }
+.spec-row { display: flex; border-bottom: 1px solid var(--border); padding: 11px 0; }
+.spec-key { width: 44%; font-size: 11px; letter-spacing: 0.10em; color: var(--muted); }
+.spec-val { width: 56%; font-size: 13px; letter-spacing: 0.06em; color: var(--text); }
+.share-btn {
+  width: 100%;
+  background: var(--text);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  padding: 16px;
+  margin-top: 26px;
 }
 </style>
 </head>
 <body>
-
-<div id="header">
+<div class="header">
   <div class="header-top">
-    <span class="brand">VANVION</span>
-    <button id="lang-btn">EN</button>
+    <div class="brand">VANVION</div>
+    <button class="lang-btn" id="langBtn">EN</button>
   </div>
-  <div class="subtitle" id="subtitle">ОПТОВЫЙ КАТАЛОГ · МУЖСКАЯ КЛАССИКА</div>
+  <div class="subtitle" id="subtitle"></div>
   <div class="search-wrap">
-    <input id="search" type="search" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="ПОИСК ПО АРТИКУЛУ ИЛИ НАЗВАНИЮ">
-    <button class="search-clear" id="search-clear" aria-label="clear">✕</button>
+    <input type="text" class="search-input" id="search" autocomplete="off">
+    <button class="search-clear" id="searchClear">&#10005;</button>
   </div>
 </div>
+<div class="tabs" id="tabs"></div>
+<div class="count" id="count"></div>
+<div id="content"></div>
 
-<div id="tabs">
-  <button class="tab active" data-cat="all">ВСЕ</button>
-  <button class="tab" data-cat="bryuki">БРЮКИ</button>
-  <button class="tab" data-cat="pidzhaki">ПИДЖАКИ</button>
-  <button class="tab" data-cat="palto">ПАЛЬТО</button>
-</div>
-
-<div id="count-row"></div>
-<div id="grid"></div>
-<div id="empty"></div>
-
-<div id="detail">
-  <div class="detail-topbar">
-    <button id="back-btn">←</button>
-    <span class="detail-article" id="detail-article"></span>
+<div class="detail" id="detail">
+  <div class="detail-top">
+    <button class="back-btn" id="backBtn">&#8592;</button>
+    <span class="detail-art" id="detailArt"></span>
   </div>
-  <div class="detail-img">
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="8" width="40" height="48" rx="2" stroke="#1a1a18" stroke-width="1.5"/><path d="M22 8 L22 24 L32 20 L42 24 L42 8" stroke="#1a1a18" stroke-width="1.5"/></svg>
-  </div>
-  <div class="detail-body">
-    <div class="detail-cat" id="detail-cat"></div>
-    <div class="detail-name" id="detail-name"></div>
-    <div class="detail-colors-label" id="detail-colors-label">ЦВЕТА</div>
-    <div class="detail-colors" id="detail-colors"></div>
-    <div class="specs-table" id="specs-table"></div>
-    <button id="share-btn">ПОДЕЛИТЬСЯ</button>
-  </div>
+  <div id="detailContent"></div>
 </div>
 
 <script>
-(function(){
-"use strict";
+const DATA_URL = './data/products.json';
 
-var tg=window.Telegram&&window.Telegram.WebApp;
-if(tg){tg.ready();tg.expand();}
+const PALETTE = {
+  charcoal: { hex: '#4a4a48', ru: 'УГОЛЬНЫЙ', en: 'CHARCOAL' },
+  navy: { hex: '#1c2744', ru: 'ТЁМНО-СИНИЙ', en: 'NAVY' },
+  black: { hex: '#18181a', ru: 'ЧЁРНЫЙ', en: 'BLACK' },
+  camel: { hex: '#c2935a', ru: 'КЭМЕЛ', en: 'CAMEL' },
+  beige: { hex: '#d4c4a8', ru: 'БЕЖЕВЫЙ', en: 'BEIGE' },
+  grey: { hex: '#9a9a98', ru: 'СЕРЫЙ', en: 'GREY' },
+  brown: { hex: '#6b4226', ru: 'КОРИЧНЕВЫЙ', en: 'BROWN' },
+  green: { hex: '#2d3d2e', ru: 'ЗЕЛЁНЫЙ', en: 'GREEN' },
+  lightgrey: { hex: '#c8c6c2', ru: 'СВЕТЛО-СЕРЫЙ', en: 'LIGHT GREY' },
+  burgundy: { hex: '#5c1a2a', ru: 'БОРДОВЫЙ', en: 'BURGUNDY' },
+  sand: { hex: '#e0d4b8', ru: 'ПЕСОЧНЫЙ', en: 'SAND' },
+  slate: { hex: '#5a6472', ru: 'СЛАНЦЕВЫЙ', en: 'SLATE' }
+};
 
-var lang='ru';
-var activeCat='all';
-var query='';
-var currentProduct=null;
-
-var i18n={
-  ru:{
-    subtitle:'ОПТОВЫЙ КАТАЛОГ · МУЖСКАЯ КЛАССИКА',
-    search:'ПОИСК ПО АРТИКУЛУ ИЛИ НАЗВАНИЮ',
-    tabs:['ВСЕ','БРЮКИ','ПИДЖАКИ','ПАЛЬТО'],
-    count:function(n){return n+' '+(n===1?'ПОЗИЦИЯ':n<5?'ПОЗИЦИИ':'ПОЗИЦИЙ');},
-    catLabel:{bryuki:'БРЮКИ',pidzhaki:'ПИДЖАКИ',palto:'ПАЛЬТО'},
-    catBrand:'VANVION',
-    colors:'ЦВЕТА',
-    specKeys:['СОСТАВ','СИЛУЭТ','ПОДКЛАДКА','ПУГОВИЦЫ','СТРАНА','РАЗМЕРНЫЙ РЯД'],
-    share:'ПОДЕЛИТЬСЯ',
-    empty:'НИЧЕГО НЕ НАЙДЕНО',
+const I18N = {
+  ru: {
+    subtitle: 'ОПТОВЫЙ КАТАЛОГ · МУЖСКАЯ КЛАССИКА',
+    search: 'ПОИСК ПО АРТИКУЛУ ИЛИ НАЗВАНИЮ',
+    tabs: { all: 'ВСЕ', bryuki: 'БРЮКИ', pidzhaki: 'ПИДЖАКИ', palto: 'ПАЛЬТО' },
+    count: n => n + ' ' + plural(n, 'ПОЗИЦИЯ', 'ПОЗИЦИИ', 'ПОЗИЦИЙ'),
+    cat: { bryuki: 'БРЮКИ', pidzhaki: 'ПИДЖАКИ', palto: 'ПАЛЬТО' },
+    specs: ['СОСТАВ', 'СИЛУЭТ', 'ПОДКЛАДКА', 'ПУГОВИЦЫ', 'СТРАНА', 'РАЗМЕРНЫЙ РЯД'],
+    colors: 'ЦВЕТА',
+    share: 'ПОДЕЛИТЬСЯ',
+    empty: 'НИЧЕГО НЕ НАЙДЕНО',
+    loading: 'ЗАГРУЗКА...',
+    error: 'ОШИБКА ЗАГРУЗКИ',
+    retry: 'ПОВТОРИТЬ'
   },
-  en:{
-    subtitle:'WHOLESALE CATALOGUE · MENSWEAR',
-    search:'SEARCH BY ARTICLE OR NAME',
-    tabs:['ALL','TROUSERS','JACKETS','COATS'],
-    count:function(n){return n+' '+(n===1?'ITEM':'ITEMS');},
-    catLabel:{bryuki:'TROUSERS',pidzhaki:'JACKETS',palto:'COATS'},
-    catBrand:'VANVION',
-    colors:'COLORS',
-    specKeys:['COMPOSITION','SILHOUETTE','LINING','BUTTONS','COUNTRY','SIZE RANGE'],
-    share:'SHARE',
-    empty:'NOTHING FOUND',
+  en: {
+    subtitle: 'WHOLESALE CATALOGUE · MENSWEAR',
+    search: 'SEARCH BY ARTICLE OR NAME',
+    tabs: { all: 'ALL', bryuki: 'TROUSERS', pidzhaki: 'JACKETS', palto: 'COATS' },
+    count: n => n + ' ' + (n === 1 ? 'ITEM' : 'ITEMS'),
+    cat: { bryuki: 'TROUSERS', pidzhaki: 'JACKETS', palto: 'COATS' },
+    specs: ['COMPOSITION', 'SILHOUETTE', 'LINING', 'BUTTONS', 'COUNTRY', 'SIZE RANGE'],
+    colors: 'COLORS',
+    share: 'SHARE',
+    empty: 'NOTHING FOUND',
+    loading: 'LOADING...',
+    error: 'LOADING ERROR',
+    retry: 'RETRY'
   }
 };
 
-var COLORS={
-  charcoal:{ru:'АНТРАЦИТ',en:'CHARCOAL',hex:'#4a4a48'},
-  navy:{ru:'ТЁМНО-СИНИЙ',en:'NAVY',hex:'#1c2744'},
-  black:{ru:'ЧЁРНЫЙ',en:'BLACK',hex:'#18181a'},
-  camel:{ru:'КЭМЕЛ',en:'CAMEL',hex:'#c2935a'},
-  beige:{ru:'БЕЖЕВЫЙ',en:'BEIGE',hex:'#d4c4a8'},
-  grey:{ru:'СЕРЫЙ',en:'GREY',hex:'#9a9a98'},
-  brown:{ru:'КОРИЧНЕВЫЙ',en:'BROWN',hex:'#6b4226'},
-  green:{ru:'ТЁМНО-ЗЕЛЁНЫЙ',en:'GREEN',hex:'#2d3d2e'},
-  lightgrey:{ru:'СВЕТЛО-СЕРЫЙ',en:'LIGHT GREY',hex:'#c8c6c2'},
-  burgundy:{ru:'БОРДО',en:'BURGUNDY',hex:'#5c1a2a'},
-  sand:{ru:'ПЕСОЧНЫЙ',en:'SAND',hex:'#e0d4b8'},
-  slate:{ru:'СЛАНЦЕВЫЙ',en:'SLATE',hex:'#5a6472'},
-};
+function plural(n, one, few, many) {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+  return many;
+}
 
-var PRODUCTS=[
-  // TROUSERS VN-10xx
-  {id:'VN-1001',cat:'bryuki',
-   name:{ru:'КЛАССИЧЕСКИЕ ПРЯМЫЕ БРЮКИ',en:'CLASSIC STRAIGHT TROUSERS'},
-   colors:['charcoal','navy','black'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРЯМОЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'КРЮЧОК+ПУГОВИЦА',country:'ИТАЛИЯ',sizeRange:'44–58'},
-     en:{composition:'WOOL 100%',silhouette:'STRAIGHT',lining:'UNLINED',buttons:'HOOK+BUTTON',country:'ITALY',sizeRange:'44–58'},
-   }},
-  {id:'VN-1002',cat:'bryuki',
-   name:{ru:'БРЮКИ SLIM FIT В ПОЛОСКУ',en:'SLIM FIT STRIPED TROUSERS'},
-   colors:['charcoal','grey','navy'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 95% ЭЛАСТАН 5%',silhouette:'ЗАУЖЕННЫЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'ПУГОВИЦА СКРЫТАЯ',country:'ПОРТУГАЛИЯ',sizeRange:'44–54'},
-     en:{composition:'WOOL 95% ELASTANE 5%',silhouette:'SLIM',lining:'UNLINED',buttons:'HIDDEN BUTTON',country:'PORTUGAL',sizeRange:'44–54'},
-   }},
-  {id:'VN-1003',cat:'bryuki',
-   name:{ru:'БРЮКИ ИЗ ФЛАНЕЛИ',en:'FLANNEL TROUSERS'},
-   colors:['grey','lightgrey','brown'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 80% ПОЛИЭСТЕР 20%',silhouette:'ПРЯМОЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'ПУГОВИЦА',country:'ПОЛЬША',sizeRange:'44–60'},
-     en:{composition:'WOOL 80% POLYESTER 20%',silhouette:'STRAIGHT',lining:'UNLINED',buttons:'BUTTON',country:'POLAND',sizeRange:'44–60'},
-   }},
-  {id:'VN-1004',cat:'bryuki',
-   name:{ru:'БРЮКИ КАРГО ШИРОКИЕ',en:'WIDE LEG CARGO TROUSERS'},
-   colors:['camel','beige','sand'],
-   spec:{
-     ru:{composition:'ХЛОПОК 100%',silhouette:'ШИРОКИЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'ПУГОВИЦА',country:'ТУРЦИЯ',sizeRange:'44–56'},
-     en:{composition:'COTTON 100%',silhouette:'WIDE LEG',lining:'UNLINED',buttons:'BUTTON',country:'TURKEY',sizeRange:'44–56'},
-   }},
-  {id:'VN-1005',cat:'bryuki',
-   name:{ru:'ШЕРСТЯНЫЕ БРЮКИ ТЁМНО-ЗЕЛЁНЫЕ',en:'DARK GREEN WOOL TROUSERS'},
-   colors:['green','charcoal','black'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 90% КАШЕМИР 10%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'ПУГОВИЦА',country:'ИТАЛИЯ',sizeRange:'46–54'},
-     en:{composition:'WOOL 90% CASHMERE 10%',silhouette:'STRAIGHT',lining:'VISCOSE',buttons:'BUTTON',country:'ITALY',sizeRange:'46–54'},
-   }},
-  {id:'VN-1006',cat:'bryuki',
-   name:{ru:'БРЮКИ КОНИЧЕСКИЙ СИЛУЭТ',en:'TAPERED SILHOUETTE TROUSERS'},
-   colors:['navy','slate','charcoal'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'КОНИЧЕСКИЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'КРЮЧОК',country:'ГЕРМАНИЯ',sizeRange:'44–58'},
-     en:{composition:'WOOL 100%',silhouette:'TAPERED',lining:'UNLINED',buttons:'HOOK',country:'GERMANY',sizeRange:'44–58'},
-   }},
-  {id:'VN-1007',cat:'bryuki',
-   name:{ru:'БРЮКИ С ЗАЩИПАМИ',en:'PLEATED FRONT TROUSERS'},
-   colors:['grey','beige','brown'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 85% ЛЁН 15%',silhouette:'СВОБОДНЫЙ',lining:'БЕЗ ПОДКЛАДКИ',buttons:'ПУГОВИЦА',country:'ЛИТВА',sizeRange:'44–56'},
-     en:{composition:'WOOL 85% LINEN 15%',silhouette:'RELAXED',lining:'UNLINED',buttons:'BUTTON',country:'LITHUANIA',sizeRange:'44–56'},
-   }},
-  {id:'VN-1008',cat:'bryuki',
-   name:{ru:'БРЮКИ БОРДО ВЕЧЕРНИЕ',en:'BURGUNDY EVENING TROUSERS'},
-   colors:['burgundy','black','navy'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРЯМОЙ',lining:'АЦЕТАТ',buttons:'КРЮЧОК+ПУГОВИЦА',country:'ИТАЛИЯ',sizeRange:'46–54'},
-     en:{composition:'WOOL 100%',silhouette:'STRAIGHT',lining:'ACETATE',buttons:'HOOK+BUTTON',country:'ITALY',sizeRange:'46–54'},
-   }},
+const PH_SVG = '<svg viewBox="0 0 64 96" fill="none" stroke="#1a1a18" stroke-width="1.5"><path d="M20 12 L32 8 L44 12 L48 28 L40 30 L40 86 L24 86 L24 30 L16 28 Z"/></svg>';
 
-  // JACKETS PR-20xx
-  {id:'PR-2001',cat:'pidzhaki',
-   name:{ru:'ОДНОБОРТНЫЙ ПИДЖАК КЛАССИКА',en:'SINGLE BREASTED CLASSIC JACKET'},
-   colors:['charcoal','navy','black'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРИТАЛЕННЫЙ',lining:'ВИСКОЗА',buttons:'РОГ 2 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'46–58'},
-     en:{composition:'WOOL 100%',silhouette:'SLIM FIT',lining:'VISCOSE',buttons:'HORN 2 BUTTONS',country:'ITALY',sizeRange:'46–58'},
-   }},
-  {id:'PR-2002',cat:'pidzhaki',
-   name:{ru:'ПИДЖАК В КЛЕТКУ ПРИНЦ УЭЛЬСКИЙ',en:'PRINCE OF WALES CHECK JACKET'},
-   colors:['grey','camel','brown'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 95% КАШЕМИР 5%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'РОГ 2 ПУГОВИЦЫ',country:'ВЕЛИКОБРИТАНИЯ',sizeRange:'46–56'},
-     en:{composition:'WOOL 95% CASHMERE 5%',silhouette:'REGULAR',lining:'VISCOSE',buttons:'HORN 2 BUTTONS',country:'UNITED KINGDOM',sizeRange:'46–56'},
-   }},
-  {id:'PR-2003',cat:'pidzhaki',
-   name:{ru:'ДВУБОРТНЫЙ ПИДЖАК',en:'DOUBLE BREASTED JACKET'},
-   colors:['navy','charcoal','green'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'ПЕРЛАМУТР 6 ПУГОВИЦ',country:'ПОРТУГАЛИЯ',sizeRange:'46–58'},
-     en:{composition:'WOOL 100%',silhouette:'REGULAR',lining:'VISCOSE',buttons:'PEARL 6 BUTTONS',country:'PORTUGAL',sizeRange:'46–58'},
-   }},
-  {id:'PR-2004',cat:'pidzhaki',
-   name:{ru:'ПИДЖАК БАРАШЕК ТВИД',en:'TWEED BOUCLÉ JACKET'},
-   colors:['grey','brown','green'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 80% ЛЁН 20%',silhouette:'ПРЯМОЙ',lining:'ХЛОПОК',buttons:'КОСТЬ 2 ПУГОВИЦЫ',country:'ШОТЛАНДИЯ',sizeRange:'46–56'},
-     en:{composition:'WOOL 80% LINEN 20%',silhouette:'REGULAR',lining:'COTTON',buttons:'HORN 2 BUTTONS',country:'SCOTLAND',sizeRange:'46–56'},
-   }},
-  {id:'PR-2005',cat:'pidzhaki',
-   name:{ru:'ПИДЖАК КЭМЕЛ ПРИТАЛЕННЫЙ',en:'CAMEL SLIM FIT JACKET'},
-   colors:['camel','beige','sand'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 90% НЕЙЛОН 10%',silhouette:'ПРИТАЛЕННЫЙ',lining:'ВИСКОЗА',buttons:'РОГ 2 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'46–54'},
-     en:{composition:'WOOL 90% NYLON 10%',silhouette:'SLIM FIT',lining:'VISCOSE',buttons:'HORN 2 BUTTONS',country:'ITALY',sizeRange:'46–54'},
-   }},
-  {id:'PR-2006',cat:'pidzhaki',
-   name:{ru:'ПИДЖАК ТЁМНО-ЗЕЛЁНЫЙ БАРХАТ',en:'DARK GREEN VELVET JACKET'},
-   colors:['green','burgundy','black'],
-   spec:{
-     ru:{composition:'ХЛОПОК 80% ПОЛИЭСТЕР 20%',silhouette:'ПРИТАЛЕННЫЙ',lining:'ВИСКОЗА',buttons:'МЕТАЛЛ 2 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'46–54'},
-     en:{composition:'COTTON 80% POLYESTER 20%',silhouette:'SLIM FIT',lining:'VISCOSE',buttons:'METAL 2 BUTTONS',country:'ITALY',sizeRange:'46–54'},
-   }},
-  {id:'PR-2007',cat:'pidzhaki',
-   name:{ru:'СЛАНЦЕВЫЙ ПИДЖАК СТРУКТУРНЫЙ',en:'SLATE STRUCTURED JACKET'},
-   colors:['slate','grey','charcoal'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'РОГ 2 ПУГОВИЦЫ',country:'ГЕРМАНИЯ',sizeRange:'46–58'},
-     en:{composition:'WOOL 100%',silhouette:'REGULAR',lining:'VISCOSE',buttons:'HORN 2 BUTTONS',country:'GERMANY',sizeRange:'46–58'},
-   }},
-  {id:'PR-2008',cat:'pidzhaki',
-   name:{ru:'ВЕЧЕРНИЙ ПИДЖАК ШАЛЕВЫЙ ЛАЦКАН',en:'EVENING SHAWL LAPEL JACKET'},
-   colors:['black','burgundy','navy'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРИТАЛЕННЫЙ',lining:'ШЁЛК',buttons:'ШЁЛК 1 ПУГОВИЦА',country:'ИТАЛИЯ',sizeRange:'46–54'},
-     en:{composition:'WOOL 100%',silhouette:'SLIM FIT',lining:'SILK',buttons:'SILK 1 BUTTON',country:'ITALY',sizeRange:'46–54'},
-   }},
+let LANG = 'ru';
+let CAT = 'all';
+let QUERY = '';
+let PRODUCTS = [];
 
-  // COATS AL-30xx
-  {id:'AL-3001',cat:'palto',
-   name:{ru:'ПАЛЬТО ОВЕРСАЙЗ КОКОН',en:'OVERSIZED COCOON COAT'},
-   colors:['camel','beige','grey'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 70% КАШЕМИР 30%',silhouette:'ОВЕРСАЙЗ',lining:'ВИСКОЗА',buttons:'РОГ 3 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'44–54'},
-     en:{composition:'WOOL 70% CASHMERE 30%',silhouette:'OVERSIZED',lining:'VISCOSE',buttons:'HORN 3 BUTTONS',country:'ITALY',sizeRange:'44–54'},
-   }},
-  {id:'AL-3002',cat:'palto',
-   name:{ru:'ДВУБОРТНОЕ ПАЛЬТО КЛАССИКА',en:'DOUBLE BREASTED CLASSIC COAT'},
-   colors:['charcoal','navy','black'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 90% ПОЛИАМИД 10%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'РОГ 6 ПУГОВИЦ',country:'ПОЛЬША',sizeRange:'44–58'},
-     en:{composition:'WOOL 90% POLYAMIDE 10%',silhouette:'STRAIGHT',lining:'VISCOSE',buttons:'HORN 6 BUTTONS',country:'POLAND',sizeRange:'44–58'},
-   }},
-  {id:'AL-3003',cat:'palto',
-   name:{ru:'ТРЕНЧ ИЗ ГАБАРДИНА',en:'GABARDINE TRENCH COAT'},
-   colors:['camel','sand','brown'],
-   spec:{
-     ru:{composition:'ХЛОПОК 100%',silhouette:'ПРЯМОЙ',lining:'ХЛОПОК',buttons:'ПЛАСТИК 10 ПУГОВИЦ',country:'ВЕЛИКОБРИТАНИЯ',sizeRange:'44–56'},
-     en:{composition:'COTTON 100%',silhouette:'STRAIGHT',lining:'COTTON',buttons:'PLASTIC 10 BUTTONS',country:'UNITED KINGDOM',sizeRange:'44–56'},
-   }},
-  {id:'AL-3004',cat:'palto',
-   name:{ru:'ПАЛЬТО ИЗ ДРАПА ТЁМНО-ЗЕЛЁНОЕ',en:'DARK GREEN WOOLLEN COAT'},
-   colors:['green','charcoal','navy'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 80% ЛЁН 20%',silhouette:'СВОБОДНЫЙ',lining:'ВИСКОЗА',buttons:'РОГ 3 ПУГОВИЦЫ',country:'ГЕРМАНИЯ',sizeRange:'44–56'},
-     en:{composition:'WOOL 80% LINEN 20%',silhouette:'RELAXED',lining:'VISCOSE',buttons:'HORN 3 BUTTONS',country:'GERMANY',sizeRange:'44–56'},
-   }},
-  {id:'AL-3005',cat:'palto',
-   name:{ru:'УКОРОЧЕННОЕ ПАЛЬТО БУШЛАТ',en:'SHORT PEACOAT'},
-   colors:['navy','black','charcoal'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 100%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'МЕТАЛЛ 6 ПУГОВИЦ',country:'ПОРТУГАЛИЯ',sizeRange:'44–58'},
-     en:{composition:'WOOL 100%',silhouette:'STRAIGHT',lining:'VISCOSE',buttons:'METAL 6 BUTTONS',country:'PORTUGAL',sizeRange:'44–58'},
-   }},
-  {id:'AL-3006',cat:'palto',
-   name:{ru:'ПАЛЬТО БОРДО ШЕРСТЯНОЕ',en:'BURGUNDY WOOL COAT'},
-   colors:['burgundy','grey','charcoal'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 95% КАШЕМИР 5%',silhouette:'ПРИТАЛЕННЫЙ',lining:'ВИСКОЗА',buttons:'РОГ 4 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'44–54'},
-     en:{composition:'WOOL 95% CASHMERE 5%',silhouette:'SLIM FIT',lining:'VISCOSE',buttons:'HORN 4 BUTTONS',country:'ITALY',sizeRange:'44–54'},
-   }},
-  {id:'AL-3007',cat:'palto',
-   name:{ru:'ПАЛЬТО СЛАНЦЕВОЕ ДЛИННОЕ',en:'LONG SLATE OVERCOAT'},
-   colors:['slate','lightgrey','grey'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 85% НЕЙЛОН 15%',silhouette:'ПРЯМОЙ',lining:'АЦЕТАТ',buttons:'РОГ 3 ПУГОВИЦЫ',country:'ГЕРМАНИЯ',sizeRange:'44–58'},
-     en:{composition:'WOOL 85% NYLON 15%',silhouette:'STRAIGHT',lining:'ACETATE',buttons:'HORN 3 BUTTONS',country:'GERMANY',sizeRange:'44–58'},
-   }},
-  {id:'AL-3008',cat:'palto',
-   name:{ru:'ПАЛЬТО КЭМЕЛ ОДНОБОРТНОЕ',en:'SINGLE BREASTED CAMEL COAT'},
-   colors:['camel','brown','sand'],
-   spec:{
-     ru:{composition:'ШЕРСТЬ 70% КАШЕМИР 30%',silhouette:'ПРЯМОЙ',lining:'ВИСКОЗА',buttons:'РОГ 3 ПУГОВИЦЫ',country:'ИТАЛИЯ',sizeRange:'44–56'},
-     en:{composition:'WOOL 70% CASHMERE 30%',silhouette:'STRAIGHT',lining:'VISCOSE',buttons:'HORN 3 BUTTONS',country:'ITALY',sizeRange:'44–56'},
-   }},
-];
+const tg = window.Telegram && window.Telegram.WebApp;
 
-var cardPlaceholderSVG='<svg width="56" height="72" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="2" width="48" height="68" rx="2" stroke="#1a1a18" stroke-width="1.2"/><path d="M16 2 L16 26 L28 20 L40 26 L40 2" stroke="#1a1a18" stroke-width="1.2"/></svg>';
+const $ = id => document.getElementById(id);
 
-function filtered(){
-  return PRODUCTS.filter(function(p){
-    if(activeCat!=='all'&&p.cat!==activeCat)return false;
-    if(!query)return true;
-    var q=query.toLowerCase();
-    return p.id.toLowerCase().includes(q)||
-           p.name.ru.toLowerCase().includes(q)||
-           p.name.en.toLowerCase().includes(q);
+function t() { return I18N[LANG]; }
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function parseCSV(text) {
+  const lines = text.replace(/\r/g, '').split('\n').filter(l => l.trim() !== '');
+  if (!lines.length) return [];
+  const split = line => {
+    const out = [];
+    let cur = '', q = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') {
+        if (q && line[i + 1] === '"') { cur += '"'; i++; }
+        else q = !q;
+      } else if (c === ',' && !q) { out.push(cur); cur = ''; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out;
+  };
+  const headers = split(lines[0]).map(h => h.trim());
+  return lines.slice(1).map(line => {
+    const cells = split(line);
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = (cells[i] || '').trim(); });
+    return obj;
   });
 }
 
-function renderGrid(){
-  var items=filtered();
-  var grid=document.getElementById('grid');
-  var empty=document.getElementById('empty');
-  var count=document.getElementById('count-row');
-  var t=i18n[lang];
-  count.textContent=t.count(items.length);
-  if(!items.length){
-    grid.innerHTML='';
-    empty.textContent=t.empty;
-    empty.style.display='block';
+async function loadData() {
+  renderState(t().loading);
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('http ' + res.status);
+    const text = await res.text();
+    PRODUCTS = DATA_URL.includes('spreadsheets') ? parseCSV(text) : JSON.parse(text);
+    render();
+  } catch (e) {
+    renderError();
+  }
+}
+
+function colorList(str) {
+  return (str || '').split(',').map(c => c.trim()).filter(c => PALETTE[c]);
+}
+
+function getName(p) { return LANG === 'ru' ? (p.name_ru || p.name_en || '') : (p.name_en || p.name_ru || ''); }
+
+function filtered() {
+  const q = QUERY.trim().toLowerCase();
+  return PRODUCTS.filter(p => {
+    if (CAT !== 'all' && p.cat !== CAT) return false;
+    if (q) {
+      const hay = ((p.id || '') + ' ' + (p.name_ru || '') + ' ' + (p.name_en || '')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function renderState(msg) {
+  $('content').innerHTML = '<div class="state">' + msg + '</div>';
+  $('count').textContent = '';
+}
+
+function renderError() {
+  $('content').innerHTML = '<div class="state">' + t().error +
+    '<br><button class="retry" id="retryBtn">' + t().retry + '</button></div>';
+  $('count').textContent = '';
+  $('retryBtn').onclick = loadData;
+}
+
+function render() {
+  $('subtitle').textContent = t().subtitle;
+  $('search').placeholder = t().search;
+  $('langBtn').textContent = LANG === 'ru' ? 'EN' : 'RU';
+  renderTabs();
+
+  const items = filtered();
+  $('count').textContent = t().count(items.length);
+
+  if (!items.length) {
+    $('content').innerHTML = '<div class="state">' + t().empty + '</div>';
     return;
   }
-  empty.style.display='none';
-  var html='';
-  for(var i=0;i<items.length;i++){
-    var p=items[i];
-    var dots='';
-    for(var j=0;j<p.colors.length;j++){
-      var c=COLORS[p.colors[j]];
-      if(c)dots+='<span class="color-dot" style="background:'+c.hex+'" title="'+(lang==='ru'?c.ru:c.en)+'"></span>';
-    }
-    html+='<div class="card" data-id="'+p.id+'" role="button" tabindex="0">'
-      +'<div class="card-img">'+cardPlaceholderSVG
-      +'<span class="art-tag">'+p.id+'</span></div>'
-      +'<div class="card-info"><div class="card-title">'+p.name[lang]+'</div>'
-      +'<div class="color-dots">'+dots+'</div></div></div>';
-  }
-  grid.innerHTML=html;
-  var cards=grid.querySelectorAll('.card');
-  for(var k=0;k<cards.length;k++){
-    cards[k].addEventListener('click',onCardClick);
-    cards[k].addEventListener('keydown',function(e){if(e.key==='Enter')onCardClick.call(this,e);});
-  }
-}
 
-function onCardClick(e){
-  var id=this.getAttribute('data-id');
-  var p=PRODUCTS.find(function(x){return x.id===id;});
-  if(p)openDetail(p);
-}
-
-function openDetail(p){
-  currentProduct=p;
-  var t=i18n[lang];
-  document.getElementById('detail-article').textContent=p.id;
-  document.getElementById('detail-cat').textContent=t.catLabel[p.cat]+' · '+t.catBrand;
-  document.getElementById('detail-name').textContent=p.name[lang];
-  document.getElementById('detail-colors-label').textContent=t.colors;
-  var colorsEl=document.getElementById('detail-colors');
-  var ch='';
-  for(var i=0;i<p.colors.length;i++){
-    var c=COLORS[p.colors[i]];
-    if(c)ch+='<div class="detail-color"><span class="detail-color-dot" style="background:'+c.hex+'"></span>'
-      +'<span class="detail-color-name">'+(lang==='ru'?c.ru:c.en)+'</span></div>';
-  }
-  colorsEl.innerHTML=ch;
-  var sp=p.spec[lang];
-  var keys=t.specKeys;
-  var vals=[sp.composition,sp.silhouette,sp.lining,sp.buttons,sp.country,sp.sizeRange];
-  var sh='';
-  for(var j=0;j<keys.length;j++){
-    sh+='<div class="spec-row"><span class="spec-key">'+keys[j]+'</span><span class="spec-val">'+vals[j]+'</span></div>';
-  }
-  document.getElementById('specs-table').innerHTML=sh;
-  document.getElementById('share-btn').textContent=t.share;
-  var detail=document.getElementById('detail');
-  detail.classList.add('open');
-  detail.scrollTop=0;
-  if(tg&&tg.BackButton){tg.BackButton.show();}
-}
-
-function closeDetail(){
-  document.getElementById('detail').classList.remove('open');
-  currentProduct=null;
-  if(tg&&tg.BackButton){tg.BackButton.hide();}
-}
-
-document.getElementById('back-btn').addEventListener('click',closeDetail);
-if(tg&&tg.BackButton){
-  tg.BackButton.onClick(closeDetail);
-}
-
-document.getElementById('share-btn').addEventListener('click',function(){
-  if(!currentProduct)return;
-  var text='VANVION — '+currentProduct.name[lang]+' ('+currentProduct.id+')';
-  var url=window.location.href;
-  if(navigator.share){
-    navigator.share({title:'VANVION',text:text,url:url}).catch(function(){});
-  }else if(tg&&tg.openLink){
-    tg.openLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text));
-  }
-});
-
-var tabs=document.querySelectorAll('.tab');
-for(var ti=0;ti<tabs.length;ti++){
-  tabs[ti].addEventListener('click',function(){
-    activeCat=this.getAttribute('data-cat');
-    for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('active');
-    this.classList.add('active');
-    renderGrid();
+  $('content').innerHTML = '<div class="grid">' + items.map(cardHTML).join('') + '</div>';
+  document.querySelectorAll('.card').forEach(el => {
+    el.onclick = () => openDetail(el.getAttribute('data-id'));
   });
 }
 
-var searchEl=document.getElementById('search');
-var clearEl=document.getElementById('search-clear');
-searchEl.addEventListener('input',function(){
-  query=this.value.trim();
-  clearEl.style.display=query?'block':'none';
-  renderGrid();
-});
-clearEl.addEventListener('click',function(){
-  searchEl.value='';
-  query='';
-  clearEl.style.display='none';
-  searchEl.focus();
-  renderGrid();
-});
-
-document.getElementById('lang-btn').addEventListener('click',function(){
-  lang=lang==='ru'?'en':'ru';
-  this.textContent=lang==='ru'?'EN':'RU';
-  updateLang();
-});
-
-function updateLang(){
-  var t=i18n[lang];
-  document.getElementById('subtitle').textContent=t.subtitle;
-  document.getElementById('search').placeholder=t.search;
-  var tbs=document.querySelectorAll('.tab');
-  for(var i=0;i<tbs.length;i++)tbs[i].textContent=t.tabs[i];
-  renderGrid();
-  if(currentProduct)openDetail(currentProduct);
+function renderTabs() {
+  const order = ['all', 'bryuki', 'pidzhaki', 'palto'];
+  $('tabs').innerHTML = order.map(c =>
+    '<button class="tab' + (CAT === c ? ' active' : '') + '" data-cat="' + c + '">' + t().tabs[c] + '</button>'
+  ).join('');
+  document.querySelectorAll('.tab').forEach(el => {
+    el.onclick = () => { CAT = el.getAttribute('data-cat'); render(); };
+  });
 }
 
-// init
-renderGrid();
-})();
+function dotHTML(c) {
+  return '<span class="dot" style="background:' + PALETTE[c].hex + '"></span>';
+}
+
+function imgBlock(p, cls) {
+  const inner = p.image
+    ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">'
+    : '<div class="ph">' + PH_SVG + '</div>';
+  return '<div class="' + cls + '">' + inner;
+}
+
+function cardHTML(p) {
+  const dots = colorList(p.colors).map(dotHTML).join('');
+  return '<div class="card" data-id="' + esc(p.id) + '">' +
+    imgBlock(p, 'card-img') +
+      '<span class="art-tag">' + esc(p.id) + '</span>' +
+    '</div>' +
+    '<div class="card-info">' +
+      '<div class="card-name">' + esc(getName(p)) + '</div>' +
+      '<div class="dots">' + dots + '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+function openDetail(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  const ru = LANG === 'ru';
+  const specs = [
+    ru ? p.comp_ru : p.comp_en,
+    ru ? p.sil_ru : p.sil_en,
+    ru ? p.lin_ru : p.lin_en,
+    ru ? p.btn_ru : p.btn_en,
+    ru ? p.country_ru : p.country_en,
+    p.sizes
+  ];
+  const chips = colorList(p.colors).map(c =>
+    '<span class="chip">' + dotHTML(c) + esc(PALETTE[c][LANG]) + '</span>'
+  ).join('');
+  const rows = t().specs.map((k, i) =>
+    '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>'
+  ).join('');
+
+  $('detailArt').textContent = p.id;
+  $('detailContent').innerHTML =
+    imgBlock(p, 'detail-img') + '</div>' +
+    '<div class="detail-body">' +
+      '<div class="detail-cat">' + (t().cat[p.cat] || esc(p.cat)) + ' · VANVION</div>' +
+      '<div class="detail-name">' + esc(getName(p)) + '</div>' +
+      '<div class="section-label">' + t().colors + '</div>' +
+      '<div class="chips">' + chips + '</div>' +
+      '<div class="specs">' + rows + '</div>' +
+      '<button class="share-btn" id="shareBtn">' + t().share + '</button>' +
+    '</div>';
+
+  $('shareBtn').onclick = () => shareProduct(p);
+
+  $('detailContent').parentElement.scrollTop = 0;
+  $('detail').classList.add('open');
+  if (tg && tg.BackButton) tg.BackButton.show();
+}
+
+function closeDetail() {
+  $('detail').classList.remove('open');
+  if (tg && tg.BackButton) tg.BackButton.hide();
+}
+
+async function shareProduct(p) {
+  const text = 'VANVION · ' + p.id + ' · ' + getName(p);
+  const url = location.href;
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'VANVION', text: text, url: url });
+      return;
+    }
+  } catch (e) { return; }
+  if (tg && tg.openLink) {
+    try {
+      tg.openLink('https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text));
+      return;
+    } catch (e) {}
+  }
+  try { await navigator.clipboard.writeText(text + ' ' + url); } catch (e) {}
+}
+
+$('langBtn').onclick = () => { LANG = LANG === 'ru' ? 'en' : 'ru'; render(); };
+$('search').oninput = e => {
+  QUERY = e.target.value;
+  $('searchClear').classList.toggle('show', QUERY.length > 0);
+  render();
+};
+$('searchClear').onclick = () => {
+  QUERY = '';
+  $('search').value = '';
+  $('searchClear').classList.remove('show');
+  render();
+};
+$('backBtn').onclick = closeDetail;
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (tg) {
+    tg.ready();
+    tg.expand();
+    if (tg.BackButton) tg.BackButton.onClick(closeDetail);
+  }
+  loadData();
+});
 </script>
 </body>
 </html>
