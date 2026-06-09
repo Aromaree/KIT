@@ -29,6 +29,8 @@ html, body {
   text-transform: uppercase;
   overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
 }
 body { font-size: 13px; }
 img { display: block; }
@@ -46,7 +48,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 16px 6px;
+  padding: 12px 16px 4px;
 }
 .brand {
   font-size: 30px;
@@ -70,7 +72,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--text2);
-  padding: 0 16px 14px;
+  padding: 2px 16px 10px;
 }
 .search-wrap {
   position: relative;
@@ -86,7 +88,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   letter-spacing: 0.06em;
   color: var(--text);
   background: transparent;
-  padding: 14px 40px 14px 16px;
+  padding: 11px 40px 11px 16px;
 }
 .search-input::placeholder { color: var(--muted); letter-spacing: 0.06em; }
 .search-clear {
@@ -102,8 +104,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .search-clear.show { display: block; }
 
 .tabs {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 40;
   display: flex;
   gap: 22px;
@@ -120,7 +121,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   font-size: 13px;
   letter-spacing: 0.12em;
   color: var(--muted);
-  padding: 13px 0;
+  padding: 10px 0;
   border-bottom: 2px solid transparent;
   flex: none;
 }
@@ -277,8 +278,8 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
     <input type="text" class="search-input" id="search" autocomplete="off">
     <button class="search-clear" id="searchClear">&#10005;</button>
   </div>
+  <div class="tabs" id="tabs"></div>
 </div>
-<div class="tabs" id="tabs"></div>
 <div class="count" id="count"></div>
 <div id="content"></div>
 
