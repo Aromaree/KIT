@@ -145,8 +145,11 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
-.card { background: var(--bg); }
+.card { background: var(--bg); min-width: 0; overflow: hidden; }
 .card-img {
   position: relative;
   aspect-ratio: 3/4;
@@ -175,6 +178,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .card-info {
   border-top: 1px solid var(--border);
   padding: 10px 12px 12px;
+  min-width: 0;
 }
 .card-name {
   font-size: 13px;
