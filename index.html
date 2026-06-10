@@ -402,7 +402,8 @@ function parseCSV(text) {
 async function loadData() {
   renderState(t().loading);
   try {
-    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    const bust = DATA_URL.includes('?') ? '&' : '?';
+    const res = await fetch(DATA_URL + bust + '_=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('http ' + res.status);
     const text = await res.text();
     PRODUCTS = DATA_URL.includes('spreadsheets') ? parseCSV(text) : JSON.parse(text);
