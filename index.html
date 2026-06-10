@@ -484,7 +484,7 @@ function dotHTML(c) {
 
 function imgBlock(p, cls) {
   const inner = p.image
-    ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">'
+    ? '<img src="' + esc(p.image) + '" alt="" onerror="this.style.display=\'none\'">'
     : '<div class="ph">' + PH_SVG + '</div>';
   return '<div class="' + cls + '">' + inner;
 }
