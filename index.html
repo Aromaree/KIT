@@ -205,6 +205,104 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .tab.active::after { transform: scaleX(1); }
 
+/* ---------- HERO SHOWCASE ---------- */
+.hero {
+  position: relative;
+  height: 62vh;
+  min-height: 380px;
+  overflow: hidden;
+  background: var(--card);
+}
+.hero-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.65s var(--ease);
+  will-change: transform;
+}
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 5s linear;
+}
+.hero-slide.on img { transform: scale(1); }
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.0) 45%);
+}
+.hero-info {
+  position: absolute;
+  left: 18px; right: 18px; bottom: 46px;
+  z-index: 2;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s var(--ease) 0.15s, transform 0.6s var(--ease) 0.15s;
+}
+.hero-slide.on .hero-info { opacity: 1; transform: translateY(0); }
+.hero-kicker {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  opacity: 0.85;
+}
+.hero-title {
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  margin-top: 7px;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+}
+.hero-cta {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 999px;
+  padding: 8px 16px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.12);
+}
+.hero-dots {
+  position: absolute;
+  left: 0; right: 0; bottom: 18px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  transition: width 0.35s var(--ease), background 0.35s;
+}
+.hero-dot.on { width: 22px; background: #fff; }
+.hero-tag {
+  position: absolute;
+  top: 14px; left: 16px;
+  z-index: 2;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.18);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
 /* ---------- COLOR FILTER ---------- */
 .color-bar {
   display: flex;
@@ -608,6 +706,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   </div>
   <div class="tabs" id="tabs"></div>
 </div>
+<div id="hero"></div>
 <div class="color-bar" id="colorBar"></div>
 <div class="count" id="count"></div>
 <div id="content"></div>
@@ -671,6 +770,8 @@ const I18N = {
     specs: ['СОСТАВ', 'СИЛУЭТ', 'ПОДКЛАДКА', 'ПУГОВИЦЫ', 'СТРАНА', 'РАЗМЕРНЫЙ РЯД'],
     colors: 'ЦВЕТА',
     related: 'ПОХОЖИЕ МОДЕЛИ',
+    newin: 'НОВИНКИ',
+    view: 'СМОТРЕТЬ',
     share: 'ПОДЕЛИТЬСЯ',
     reset: 'СБРОС',
     zoom: 'ZOOM',
@@ -688,6 +789,8 @@ const I18N = {
     specs: ['COMPOSITION', 'SILHOUETTE', 'LINING', 'BUTTONS', 'COUNTRY', 'SIZE RANGE'],
     colors: 'COLORS',
     related: 'SIMILAR STYLES',
+    newin: 'NEW IN',
+    view: 'VIEW',
     share: 'SHARE',
     reset: 'RESET',
     zoom: 'ZOOM',
@@ -834,6 +937,7 @@ function render() {
   $('search').placeholder = t().search;
   $('langBtn').textContent = LANG === 'ru' ? 'EN' : 'RU';
   renderTabs();
+  renderHero();
   renderColorBar();
 
   const items = filtered();
@@ -851,6 +955,90 @@ function render() {
   });
   observeCards();
   bindImages($('content'));
+}
+
+/* ---------- hero showcase ---------- */
+let heroTimer = null, heroIdx = 0, heroItems = [];
+
+function renderHero() {
+  const box = $('hero');
+  clearInterval(heroTimer);
+  if (CAT !== 'all' || QUERY.trim() || COLOR) { box.innerHTML = ''; return; }
+  heroItems = PRODUCTS.filter(p => p.image).slice(0, 5);
+  if (heroItems.length < 2) { box.innerHTML = ''; return; }
+  heroIdx = 0;
+
+  box.innerHTML =
+    '<div class="hero">' +
+      '<span class="hero-tag">' + t().newin + '</span>' +
+      '<div class="hero-track" id="heroTrack">' +
+        heroItems.map(p =>
+          '<div class="hero-slide" data-id="' + esc(p.id) + '">' +
+            '<img src="' + esc(p.image) + '" alt="">' +
+            '<div class="hero-info">' +
+              '<div class="hero-kicker">' + esc(p.id) + '</div>' +
+              '<div class="hero-title">' + esc(getName(p)) + '</div>' +
+              '<span class="hero-cta">' + t().view + ' &#8594;</span>' +
+            '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+      '<div class="hero-dots" id="heroDots">' +
+        heroItems.map((_, i) => '<span class="hero-dot" data-i="' + i + '"></span>').join('') +
+      '</div>' +
+    '</div>';
+
+  const track = $('heroTrack');
+  const slides = track.children;
+
+  function show(i) {
+    heroIdx = (i + heroItems.length) % heroItems.length;
+    track.style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
+    Array.from(slides).forEach((s, k) => s.classList.toggle('on', k === heroIdx));
+    document.querySelectorAll('.hero-dot').forEach((d, k) => d.classList.toggle('on', k === heroIdx));
+  }
+
+  function arm() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(() => show(heroIdx + 1), 3800);
+  }
+
+  show(0);
+  arm();
+
+  /* swipe */
+  let hx0 = null, hMoved = false;
+  track.addEventListener('touchstart', e => {
+    hx0 = e.touches[0].clientX;
+    hMoved = false;
+    clearInterval(heroTimer);
+  }, { passive: true });
+  track.addEventListener('touchmove', e => {
+    if (hx0 !== null && Math.abs(e.touches[0].clientX - hx0) > 12) hMoved = true;
+  }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (hx0 === null) return;
+    const dx = e.changedTouches[0].clientX - hx0;
+    if (Math.abs(dx) > 50) { haptic('light'); show(heroIdx + (dx < 0 ? 1 : -1)); }
+    hx0 = null;
+    arm();
+  }, { passive: true });
+
+  Array.from(slides).forEach(s => {
+    s.addEventListener('click', () => {
+      if (hMoved) return;
+      haptic('light');
+      openDetail(s.getAttribute('data-id'));
+    });
+  });
+  document.querySelectorAll('.hero-dot').forEach(d => {
+    d.addEventListener('click', e => {
+      e.stopPropagation();
+      haptic('light');
+      show(parseInt(d.getAttribute('data-i'), 10));
+      arm();
+    });
+  });
 }
 
 /* ---------- card events: tap + long-press quick look ---------- */
