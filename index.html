@@ -20,8 +20,10 @@
   --text2: #8a8178;
   --muted: #b3aa9b;
   --accent: #161614;
+  --accent-fg: #ffffff;
   --font: 'Futura PT Book', 'Futura', 'Century Gothic', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
@@ -37,8 +39,33 @@ html, body {
 body { font-size: 13px; }
 img { display: block; }
 button { font-family: var(--font); text-transform: uppercase; cursor: pointer; background: none; border: none; color: inherit; }
-
 ::selection { background: var(--text); color: #fff; }
+
+/* ---------- PULL TO REFRESH ---------- */
+.ptr {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 49;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.ptr-inner {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  padding: 14px 0;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.ptr-inner.spin { animation: ptrPulse 0.9s infinite ease-in-out; }
+@keyframes ptrPulse {
+  0%, 100% { opacity: 0.35; letter-spacing: 0.3em; }
+  50% { opacity: 1; letter-spacing: 0.42em; }
+}
 
 /* ---------- HEADER ---------- */
 .header {
@@ -49,6 +76,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
+  transition: transform 0.3s var(--ease);
 }
 .header-top {
   position: relative;
@@ -96,14 +124,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 
 /* ---------- SEARCH ---------- */
-.search-wrap {
-  position: relative;
-  border-top: 1px solid var(--border);
-}
+.search-wrap { position: relative; border-top: 1px solid var(--border); }
 .search-icon {
   position: absolute;
-  left: 16px;
-  top: 50%;
+  left: 16px; top: 50%;
   transform: translateY(-50%);
   width: 14px; height: 14px;
   pointer-events: none;
@@ -126,8 +150,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .search-input::placeholder { color: var(--muted); letter-spacing: 0.06em; }
 .search-clear {
   position: absolute;
-  right: 10px;
-  top: 50%;
+  right: 10px; top: 50%;
   transform: translateY(-50%) scale(0.6);
   font-size: 13px;
   color: var(--muted);
@@ -199,7 +222,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-radius: 50%;
   flex: none;
   border: 1px solid rgba(0,0,0,0.10);
-  transition: transform 0.25s var(--ease);
+  transition: transform 0.25s var(--spring);
 }
 .cf::after {
   content: '';
@@ -209,10 +232,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border: 1px solid var(--text);
   opacity: 0;
   transform: scale(0.7);
-  transition: opacity 0.25s, transform 0.25s var(--ease);
+  transition: opacity 0.25s, transform 0.3s var(--spring);
 }
 .cf.active::after { opacity: 1; transform: scale(1); }
-.cf:active { transform: scale(0.88); }
+.cf:active { transform: scale(0.85); }
 .cf-reset {
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -231,7 +254,6 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   letter-spacing: 0.14em;
   color: var(--muted);
   padding: 12px 16px 10px;
-  transition: opacity 0.25s;
 }
 
 /* ---------- GRID ---------- */
@@ -256,8 +278,8 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
 .card.vis { opacity: 1; transform: translateY(0); }
-.card-press { transition: transform 0.2s var(--ease); }
-.card:active .card-press { transform: scale(0.97); }
+.card-press { transition: transform 0.25s var(--spring); }
+.card:active .card-press { transform: scale(0.96); }
 .card-img {
   position: relative;
   aspect-ratio: 3/4;
@@ -273,17 +295,13 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .card-img img.loaded { opacity: 1; transform: scale(1); }
 .card-img .ph {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
 }
 .card-img .ph svg { width: 46%; height: 46%; opacity: 0.12; }
 .art-tag {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 8px; left: 8px;
   font-size: 9px;
   letter-spacing: 0.08em;
   background: rgba(255,255,255,0.85);
@@ -308,8 +326,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .dots { display: flex; gap: 6px; margin-top: 9px; }
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.12);
   flex: none;
@@ -357,6 +374,17 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-radius: 999px;
 }
 
+/* ---------- HERO CLONE ---------- */
+.hero-clone {
+  position: fixed;
+  z-index: 200;
+  object-fit: cover;
+  pointer-events: none;
+  will-change: transform, top, left, width, height, border-radius;
+  transition: top 0.45s var(--ease), left 0.45s var(--ease), width 0.45s var(--ease), height 0.45s var(--ease), border-radius 0.45s var(--ease);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
 /* ---------- DETAIL ---------- */
 .detail {
   position: fixed;
@@ -364,12 +392,14 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   z-index: 100;
   background: var(--bg);
   overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.38s var(--ease);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease), transform 0.4s var(--ease);
   -webkit-overflow-scrolling: touch;
-  visibility: hidden;
+  will-change: transform, opacity;
 }
-.detail.open { transform: translateX(0); visibility: visible; }
+.detail.open { opacity: 1; pointer-events: auto; }
+.detail.dragging { transition: none; }
 .detail-top {
   position: sticky;
   top: 0;
@@ -392,23 +422,48 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .back-btn:active { transform: translateX(-4px); }
 .detail-art { font-size: 11px; letter-spacing: 0.14em; color: var(--text2); }
+.drag-pill {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  width: 36px; height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
 .detail-img {
   position: relative;
   aspect-ratio: 3/4;
   width: 100%;
   background: var(--card);
   overflow: hidden;
+  touch-action: pan-y;
 }
 .detail-img img {
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 0.6s var(--ease), transform 1.2s var(--ease);
+  transition: opacity 0.5s var(--ease);
+  will-change: transform;
 }
-.detail-img img.loaded { opacity: 1; transform: scale(1); }
+.detail-img img.loaded { opacity: 1; }
+.detail-img img.zooming { transition: none; }
+.detail-img img.zoom-reset { transition: transform 0.45s var(--spring), opacity 0.5s var(--ease); }
 .detail-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .detail-img .ph svg { width: 40%; height: 40%; opacity: 0.12; }
+.zoom-hint {
+  position: absolute;
+  right: 10px; bottom: 10px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  background: rgba(255,255,255,0.8);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 4px 8px;
+  border-radius: 999px;
+  opacity: 0.85;
+}
 .detail-body { padding: 22px 16px calc(30px + env(safe-area-inset-bottom)); }
 .d-anim { animation: fadeUp 0.55s var(--ease) both; }
 .d-anim.d1 { animation-delay: 0.05s; }
@@ -417,32 +472,35 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .d-anim.d4 { animation-delay: 0.26s; }
 .detail-cat { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); }
 .detail-name { font-size: 21px; letter-spacing: 0.08em; line-height: 1.25; margin-top: 6px; }
+.accent-line {
+  width: 34px; height: 3px;
+  margin-top: 14px;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: background 0.5s;
+}
 .section-label { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); margin: 24px 0 11px; }
 .chips { display: flex; flex-wrap: wrap; gap: 14px; }
 .chip { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.08em; color: var(--text2); }
 .chip .dot { width: 13px; height: 13px; }
 .specs { border-top: 1px solid var(--border); margin-top: 24px; }
-.spec-row {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-}
+.spec-row { display: flex; border-bottom: 1px solid var(--border); padding: 12px 0; }
 .spec-key { width: 44%; font-size: 11px; letter-spacing: 0.10em; color: var(--muted); }
 .spec-val { width: 56%; font-size: 13px; letter-spacing: 0.06em; color: var(--text); }
 .share-btn {
   width: 100%;
-  background: var(--text);
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-fg);
   font-size: 13px;
   letter-spacing: 0.14em;
   padding: 17px;
   margin-top: 28px;
   border-radius: 999px;
-  transition: transform 0.2s var(--ease), opacity 0.2s;
+  transition: transform 0.25s var(--spring), opacity 0.2s, background 0.5s, color 0.5s;
 }
-.share-btn:active { transform: scale(0.97); opacity: 0.85; }
+.share-btn:active { transform: scale(0.96); opacity: 0.9; }
 
-/* ---------- NAV PILLS (related) ---------- */
+/* ---------- RELATED ---------- */
 .related-row {
   display: flex;
   gap: 10px;
@@ -459,7 +517,9 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border: 1px solid var(--border);
   overflow: hidden;
   border-radius: 6px;
+  transition: transform 0.25s var(--spring);
 }
+.rel-card:active { transform: scale(0.93); }
 .rel-img { aspect-ratio: 3/4; background: var(--card); overflow: hidden; }
 .rel-img img { width: 100%; height: 100%; object-fit: cover; }
 .rel-id {
@@ -468,6 +528,41 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   color: var(--text2);
   text-align: center;
   padding: 5px 4px;
+}
+
+/* ---------- QUICK LOOK ---------- */
+.ql {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.55);
+  -webkit-backdrop-filter: blur(26px);
+  backdrop-filter: blur(26px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease);
+}
+.ql.show { opacity: 1; }
+.ql img {
+  width: 78%;
+  max-width: 360px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  transform: scale(0.85);
+  transition: transform 0.3s var(--spring);
+}
+.ql.show img { transform: scale(1); }
+.ql-id {
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--text);
 }
 
 /* ---------- SCROLL TOP ---------- */
@@ -491,10 +586,16 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   box-shadow: 0 4px 18px rgba(0,0,0,0.07);
 }
 .to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
-<div class="header">
+<div class="ptr"><div class="ptr-inner" id="ptrInner">VANVION</div></div>
+
+<div class="header" id="header">
   <div class="header-top">
     <div class="brand">VANVION</div>
     <button class="lang-btn" id="langBtn">EN</button>
@@ -515,11 +616,14 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 
 <div class="detail" id="detail">
   <div class="detail-top">
+    <div class="drag-pill"></div>
     <button class="back-btn" id="backBtn">&#8592;</button>
     <span class="detail-art" id="detailArt"></span>
   </div>
   <div id="detailContent"></div>
 </div>
+
+<div class="ql" id="ql"></div>
 
 <script>
 const DATA_URL = './data/products.json';
@@ -569,6 +673,7 @@ const I18N = {
     related: 'ПОХОЖИЕ МОДЕЛИ',
     share: 'ПОДЕЛИТЬСЯ',
     reset: 'СБРОС',
+    zoom: 'ZOOM',
     empty: 'НИЧЕГО НЕ НАЙДЕНО',
     loading: 'ЗАГРУЗКА...',
     error: 'ОШИБКА ЗАГРУЗКИ',
@@ -585,6 +690,7 @@ const I18N = {
     related: 'SIMILAR STYLES',
     share: 'SHARE',
     reset: 'RESET',
+    zoom: 'ZOOM',
     empty: 'NOTHING FOUND',
     loading: 'LOADING...',
     error: 'LOADING ERROR',
@@ -608,7 +714,6 @@ let COLOR = '';
 let PRODUCTS = [];
 
 const tg = window.Telegram && window.Telegram.WebApp;
-
 const $ = id => document.getElementById(id);
 
 function t() { return I18N[LANG]; }
@@ -706,7 +811,7 @@ let observer = null;
 function observeCards() {
   if (observer) observer.disconnect();
   observer = new IntersectionObserver(entries => {
-    entries.forEach((en, i) => {
+    entries.forEach(en => {
       if (en.isIntersecting) {
         const el = en.target;
         setTimeout(() => el.classList.add('vis'), (el.dataset.stagger || 0) * 60);
@@ -742,18 +847,67 @@ function render() {
   $('content').innerHTML = '<div class="grid">' + items.map(cardHTML).join('') + '</div>';
   document.querySelectorAll('.card').forEach((el, i) => {
     el.dataset.stagger = i % 6;
-    el.onclick = () => { haptic('light'); openDetail(el.getAttribute('data-id')); };
+    attachCardEvents(el);
   });
   observeCards();
   bindImages($('content'));
 }
 
+/* ---------- card events: tap + long-press quick look ---------- */
+function attachCardEvents(el) {
+  const id = el.getAttribute('data-id');
+  let lpTimer = null, lpFired = false, sx = 0, sy = 0;
+
+  el.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+    lpFired = false;
+    lpTimer = setTimeout(() => {
+      lpFired = true;
+      haptic('medium');
+      openQuickLook(id);
+    }, 420);
+  }, { passive: true });
+
+  el.addEventListener('touchmove', e => {
+    const dx = Math.abs(e.touches[0].clientX - sx);
+    const dy = Math.abs(e.touches[0].clientY - sy);
+    if (dx > 10 || dy > 10) { clearTimeout(lpTimer); }
+  }, { passive: true });
+
+  el.addEventListener('touchend', () => {
+    clearTimeout(lpTimer);
+    if (lpFired) closeQuickLook();
+  }, { passive: true });
+
+  el.addEventListener('touchcancel', () => {
+    clearTimeout(lpTimer);
+    if (lpFired) closeQuickLook();
+  }, { passive: true });
+
+  el.addEventListener('click', e => {
+    if (lpFired) { e.preventDefault(); return; }
+    haptic('light');
+    openDetail(id, el);
+  });
+}
+
+/* ---------- quick look ---------- */
+function openQuickLook(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p || !p.image) return;
+  $('ql').innerHTML = '<img src="' + esc(p.image) + '" alt=""><div class="ql-id">' + esc(p.id) + ' · ' + esc(getName(p)) + '</div>';
+  $('ql').classList.add('show');
+}
+function closeQuickLook() {
+  $('ql').classList.remove('show');
+}
+
 function renderTabs() {
   const order = ['all', 'bryuki', 'pidzhaki', 'palto'];
   $('tabs').innerHTML = order.map(c => {
-    const n = c === 'all'
-      ? PRODUCTS.length
-      : PRODUCTS.filter(p => p.cat === c).length;
+    const n = c === 'all' ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c).length;
     return '<button class="tab' + (CAT === c ? ' active' : '') + '" data-cat="' + c + '">' +
       t().tabs[c] + (n ? '<span class="tab-n">' + n + '</span>' : '') + '</button>';
   }).join('');
@@ -819,7 +973,19 @@ function relatedHTML(p) {
     ).join('') + '</div>';
 }
 
-function openDetail(id) {
+/* ---------- adaptive accent ---------- */
+function setAccent(p) {
+  const list = colorList(p.colors);
+  let hex = '#161614';
+  if (list.length) hex = PALETTE[list[0]].hex;
+  const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  document.documentElement.style.setProperty('--accent', hex);
+  document.documentElement.style.setProperty('--accent-fg', lum > 0.72 ? '#161614' : '#ffffff');
+}
+
+/* ---------- detail + hero transition ---------- */
+function openDetail(id, cardEl) {
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   const ru = LANG === 'ru';
@@ -838,12 +1004,17 @@ function openDetail(id) {
     '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>'
   ).join('');
 
+  setAccent(p);
+
   $('detailArt').textContent = p.id;
   $('detailContent').innerHTML =
-    '<div class="detail-img">' + imgHTML(p) + '</div>' +
+    '<div class="detail-img" id="detailImg">' + imgHTML(p) +
+      (p.image ? '<span class="zoom-hint">' + t().zoom + '</span>' : '') +
+    '</div>' +
     '<div class="detail-body">' +
       '<div class="detail-cat d-anim d1">' + (t().cat[p.cat] || esc(p.cat)) + ' · VANVION</div>' +
       '<div class="detail-name d-anim d1">' + esc(getName(p)) + '</div>' +
+      '<div class="accent-line d-anim d1"></div>' +
       '<div class="section-label d-anim d2">' + t().colors + '</div>' +
       '<div class="chips d-anim d2">' + chips + '</div>' +
       '<div class="specs d-anim d3">' + rows + '</div>' +
@@ -857,15 +1028,245 @@ function openDetail(id) {
   });
 
   bindImages($('detailContent'));
+  setupZoom();
   $('detail').scrollTop = 0;
-  $('detail').classList.add('open');
-  if (tg && tg.BackButton) tg.BackButton.show();
+
+  /* hero transition from card image */
+  const srcImg = cardEl ? cardEl.querySelector('.card-img img') : null;
+  if (srcImg && srcImg.classList.contains('loaded') && p.image) {
+    const rect = srcImg.getBoundingClientRect();
+    const clone = document.createElement('img');
+    clone.className = 'hero-clone';
+    clone.src = p.image;
+    clone.style.top = rect.top + 'px';
+    clone.style.left = rect.left + 'px';
+    clone.style.width = rect.width + 'px';
+    clone.style.height = rect.height + 'px';
+    clone.style.borderRadius = '0px';
+    document.body.appendChild(clone);
+
+    const targetW = window.innerWidth;
+    const targetH = targetW * 4 / 3;
+
+    const detailImgEl = $('detailImg').querySelector('img');
+    if (detailImgEl) detailImgEl.style.visibility = 'hidden';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        clone.style.top = '52px';
+        clone.style.left = '0px';
+        clone.style.width = targetW + 'px';
+        clone.style.height = targetH + 'px';
+      });
+    });
+
+    $('detail').classList.add('open');
+    if (tg && tg.BackButton) tg.BackButton.show();
+
+    setTimeout(() => {
+      if (detailImgEl) detailImgEl.style.visibility = '';
+      clone.remove();
+    }, 480);
+  } else {
+    $('detail').classList.add('open');
+    if (tg && tg.BackButton) tg.BackButton.show();
+  }
 }
 
 function closeDetail() {
   $('detail').classList.remove('open');
+  $('detail').style.transform = '';
   if (tg && tg.BackButton) tg.BackButton.hide();
 }
+
+/* ---------- drag to dismiss (vertical, from top) ---------- */
+(function() {
+  const d = $('detail');
+  let y0 = null, x0 = null, dragging = false, dy = 0;
+
+  d.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    if (d.scrollTop > 2) { y0 = null; return; }
+    y0 = e.touches[0].clientY;
+    x0 = e.touches[0].clientX;
+    dy = 0;
+    dragging = false;
+  }, { passive: true });
+
+  d.addEventListener('touchmove', e => {
+    if (y0 === null) return;
+    const curY = e.touches[0].clientY;
+    const curX = e.touches[0].clientX;
+    dy = curY - y0;
+    const dx = Math.abs(curX - x0);
+    if (!dragging && dy > 14 && dy > dx * 1.4 && d.scrollTop <= 0) {
+      dragging = true;
+      d.classList.add('dragging');
+    }
+    if (dragging) {
+      const damp = Math.max(0, dy) * 0.55;
+      d.style.transform = 'translateY(' + damp + 'px) scale(' + Math.max(0.94, 1 - damp / 2400) + ')';
+      d.style.opacity = Math.max(0.5, 1 - damp / 900);
+    }
+  }, { passive: true });
+
+  function release() {
+    if (y0 === null) return;
+    if (dragging) {
+      d.classList.remove('dragging');
+      if (dy * 0.55 > 110) {
+        haptic('medium');
+        d.style.transform = '';
+        d.style.opacity = '';
+        closeDetail();
+      } else {
+        d.style.transform = '';
+        d.style.opacity = '';
+      }
+    }
+    y0 = null;
+    dragging = false;
+  }
+  d.addEventListener('touchend', release, { passive: true });
+  d.addEventListener('touchcancel', release, { passive: true });
+
+  /* swipe right from left edge still closes */
+  let ex0 = null, ey0 = null;
+  d.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    ex0 = e.touches[0].clientX;
+    ey0 = e.touches[0].clientY;
+  }, { passive: true });
+  d.addEventListener('touchend', e => {
+    if (ex0 === null) return;
+    const dx = e.changedTouches[0].clientX - ex0;
+    const dyAbs = Math.abs(e.changedTouches[0].clientY - ey0);
+    if (ex0 < 40 && dx > 70 && dyAbs < 60) { haptic('light'); closeDetail(); }
+    ex0 = ey0 = null;
+  }, { passive: true });
+})();
+
+/* ---------- pinch zoom on detail image ---------- */
+function setupZoom() {
+  const wrap = $('detailImg');
+  if (!wrap) return;
+  const img = wrap.querySelector('img');
+  if (!img) return;
+  let d0 = 0, scale = 1, ox = 50, oy = 50, zooming = false;
+
+  wrap.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      zooming = true;
+      img.classList.remove('zoom-reset');
+      img.classList.add('zooming');
+      d0 = dist(e.touches);
+      const r = wrap.getBoundingClientRect();
+      ox = ((e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left) / r.width * 100;
+      oy = ((e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top) / r.height * 100;
+      img.style.transformOrigin = ox + '% ' + oy + '%';
+    }
+  }, { passive: false });
+
+  wrap.addEventListener('touchmove', e => {
+    if (zooming && e.touches.length === 2) {
+      e.preventDefault();
+      scale = Math.min(3.2, Math.max(1, dist(e.touches) / d0));
+      img.style.transform = 'scale(' + scale + ')';
+    }
+  }, { passive: false });
+
+  function end() {
+    if (!zooming) return;
+    zooming = false;
+    img.classList.remove('zooming');
+    img.classList.add('zoom-reset');
+    img.style.transform = 'scale(1)';
+    scale = 1;
+  }
+  wrap.addEventListener('touchend', end, { passive: true });
+  wrap.addEventListener('touchcancel', end, { passive: true });
+
+  function dist(t) {
+    const dx = t[0].clientX - t[1].clientX;
+    const dy = t[0].clientY - t[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+}
+
+/* ---------- tilt parallax ---------- */
+(function() {
+  let enabled = false;
+  function handler(e) {
+    if (e.gamma == null || e.beta == null) return;
+    const x = Math.max(-1, Math.min(1, e.gamma / 30));
+    const y = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
+    const img = document.querySelector('.detail-img img');
+    if (img && !img.classList.contains('zooming') && $('detail').classList.contains('open')) {
+      img.style.transform = 'translate3d(' + (x * 8) + 'px,' + (y * 8) + 'px,0) scale(1.06)';
+    }
+  }
+  function enable() {
+    if (enabled) return;
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission().then(s => {
+        if (s === 'granted') { window.addEventListener('deviceorientation', handler, true); enabled = true; }
+      }).catch(() => {});
+    } else {
+      window.addEventListener('deviceorientation', handler, true);
+      enabled = true;
+    }
+  }
+  document.addEventListener('touchstart', enable, { once: true, passive: true });
+})();
+
+/* ---------- pull to refresh ---------- */
+(function() {
+  const inner = $('ptrInner');
+  let y0 = null, pulling = false, pulled = 0, busy = false;
+
+  window.addEventListener('touchstart', e => {
+    if (busy || $('detail').classList.contains('open')) { y0 = null; return; }
+    if (window.scrollY > 0) { y0 = null; return; }
+    y0 = e.touches[0].clientY;
+    pulled = 0;
+    pulling = false;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    if (y0 === null || busy) return;
+    const dy = e.touches[0].clientY - y0;
+    if (dy > 8 && window.scrollY <= 0) {
+      pulling = true;
+      pulled = Math.min(110, dy * 0.45);
+      inner.style.opacity = Math.min(1, pulled / 60);
+      inner.style.transform = 'translateY(' + (pulled - 20) + 'px)';
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', async () => {
+    if (y0 === null) return;
+    if (pulling && pulled > 62) {
+      busy = true;
+      haptic('medium');
+      inner.classList.add('spin');
+      inner.style.opacity = 1;
+      inner.style.transform = 'translateY(46px)';
+      await loadData();
+      setTimeout(() => {
+        inner.classList.remove('spin');
+        inner.style.opacity = 0;
+        inner.style.transform = 'translateY(-20px)';
+        busy = false;
+      }, 350);
+    } else if (pulling) {
+      inner.style.opacity = 0;
+      inner.style.transform = 'translateY(-20px)';
+    }
+    y0 = null;
+    pulling = false;
+  }, { passive: true });
+})();
 
 async function shareProduct(p) {
   const text = 'VANVION · ' + p.id + ' · ' + getName(p);
@@ -909,24 +1310,6 @@ $('toTop').onclick = () => {
   haptic('light');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
-
-/* swipe right to close detail */
-(function() {
-  const d = $('detail');
-  let x0 = null, y0 = null;
-  d.addEventListener('touchstart', e => {
-    if (e.touches.length !== 1) return;
-    x0 = e.touches[0].clientX;
-    y0 = e.touches[0].clientY;
-  }, { passive: true });
-  d.addEventListener('touchend', e => {
-    if (x0 === null) return;
-    const dx = e.changedTouches[0].clientX - x0;
-    const dy = Math.abs(e.changedTouches[0].clientY - y0);
-    if (x0 < 40 && dx > 70 && dy < 60) closeDetail();
-    x0 = y0 = null;
-  }, { passive: true });
-})();
 
 document.addEventListener('DOMContentLoaded', () => {
   if (tg) {
