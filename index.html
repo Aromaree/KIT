@@ -53,37 +53,6 @@ body { font-size: 13px; }
   opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-/* ---------- INTRO SPLASH ---------- */
-.intro-splash {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: #0e0e0e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  pointer-events: none;
-}
-.intro-splash .intro-word {
-  font-size: clamp(52px, 18vw, 96px);
-  letter-spacing: 0.28em;
-  color: #f0ede8;
-  line-height: 1;
-  overflow: hidden;
-}
-.intro-splash .intro-sub {
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  color: rgba(240,237,232,0.45);
-  margin-top: 14px;
-}
-.intro-splash .intro-line {
-  width: 1px;
-  height: 0;
-  background: rgba(240,237,232,0.25);
-  margin-top: 28px;
-}
 body.locked {
   position: fixed;
   left: 0;
@@ -780,11 +749,6 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </head>
 <body>
 <div class="grain"></div>
-<div class="intro-splash" id="introSplash">
-  <div class="intro-word" id="introWord">VANVION</div>
-  <div class="intro-sub">WHOLESALE CATALOGUE</div>
-  <div class="intro-line" id="introLine"></div>
-</div>
 <div class="ptr"><div class="ptr-inner" id="ptrInner">VANVION</div></div>
 
 <div class="header" id="header">
@@ -1084,33 +1048,6 @@ function animateCount(n) {
     v: n, duration: 1.1, ease: 'power3.out',
     onUpdate: () => { numEl.textContent = Math.round(obj.v); }
   });
-}
-
-/* ---------- intro splash ---------- */
-function initSplash() {
-  const splash = $('introSplash');
-  if (!splash) return;
-  if (!HAS_GSAP) { splash.style.display = 'none'; return; }
-  const word = $('introWord');
-  const line = $('introLine');
-  const tl = gsap.timeline({
-    onComplete: () => { splash.style.display = 'none'; }
-  });
-  if (HAS_SPLIT) {
-    const res = Splitting({ target: word, by: 'chars' })[0];
-    if (res && res.chars) {
-      tl.set(res.chars, { opacity: 0, y: '100%' })
-        .to(res.chars, { opacity: 1, y: '0%', duration: 0.5, stagger: 0.04, ease: 'power3.out' })
-        .to(line, { height: 48, duration: 0.5, ease: 'power2.out' }, '-=0.1')
-        .to([res.chars, line, splash.querySelector('.intro-sub')],
-            { opacity: 0, duration: 0.5, ease: 'power2.in', stagger: 0.02, delay: 0.4 })
-        .to(splash, { opacity: 0, duration: 0.3, ease: 'power2.in' }, '-=0.3');
-      return;
-    }
-  }
-  tl.fromTo(word, { opacity: 0, letterSpacing: '0.5em' }, { opacity: 1, letterSpacing: '0.28em', duration: 0.8, ease: 'power3.out' })
-    .to(word, { opacity: 0, duration: 0.4, delay: 0.5, ease: 'power2.in' })
-    .to(splash, { opacity: 0, duration: 0.3 }, '-=0.2');
 }
 
 /* ---------- ambient scroll color ---------- */
@@ -1797,7 +1734,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tg.expand();
     if (tg.BackButton) tg.BackButton.onClick(closeDetail);
   }
-  initSplash();
   initEnhancements();
   loadData();
 });
