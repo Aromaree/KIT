@@ -433,22 +433,6 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .card-img img.loaded { opacity: 1; }
 
-/* ---------- editorial wide card ---------- */
-.card.wide { grid-column: 1 / -1; }
-.card.wide .card-img {
-  aspect-ratio: 16/11;
-}
-.card.wide .card-info {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  border-top: none;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
-  padding: 30px 16px 16px;
-}
-.card.wide .card-press { position: relative; }
-.card.wide .card-name { color: #fff; font-size: 16px; letter-spacing: 0.12em; }
-.card.wide .dot { border-color: rgba(255,255,255,0.4); }
-.card.wide .art-tag { background: rgba(0,0,0,0.4); color: #fff; }
 .card-img .ph {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
@@ -1023,7 +1007,7 @@ function render() {
   }
 
   $('content').innerHTML = '<div class="grid">' +
-    items.map((p, i) => cardHTML(p, i % 7 === 4)).join('') + '</div>';
+    items.map(p => cardHTML(p)).join('') + '</div>';
   document.querySelectorAll('.card').forEach((el, i) => {
     el.dataset.stagger = i % 6;
     attachCardEvents(el);
@@ -1264,9 +1248,9 @@ function imgHTML(p) {
     : '<div class="ph">' + PH_SVG + '</div>';
 }
 
-function cardHTML(p, wide) {
+function cardHTML(p) {
   const dots = colorList(p.colors).map(dotHTML).join('');
-  return '<div class="card' + (wide ? ' wide' : '') + '" data-id="' + esc(p.id) + '">' +
+  return '<div class="card" data-id="' + esc(p.id) + '">' +
     '<div class="card-press">' +
       '<div class="card-img">' + imgHTML(p) +
         '<span class="art-tag">' + esc(p.id) + '</span>' +
