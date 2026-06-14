@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>VANVION</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
 @font-face {
   font-family: 'Futura PT Book';
@@ -912,13 +913,24 @@ function renderError() {
 
 let observer = null;
 
+const HAS_GSAP = typeof gsap !== 'undefined';
+
 function observeCards() {
   if (observer) observer.disconnect();
   observer = new IntersectionObserver(entries => {
     entries.forEach(en => {
       if (en.isIntersecting) {
         const el = en.target;
-        setTimeout(() => el.classList.add('vis'), (el.dataset.stagger || 0) * 60);
+        const delay = (el.dataset.stagger || 0) * 0.06;
+        if (HAS_GSAP) {
+          gsap.fromTo(el,
+            { opacity: 0, y: 26, scale: 0.97 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.7, delay: delay, ease: 'power3.out',
+              onStart: () => { el.style.transition = 'none'; el.style.transform = ''; } }
+          );
+        } else {
+          setTimeout(() => el.classList.add('vis'), (el.dataset.stagger || 0) * 60);
+        }
         observer.unobserve(el);
       }
     });
@@ -1220,6 +1232,15 @@ function openDetail(id, cardEl) {
   setupZoom();
   $('detail').scrollTop = 0;
 
+  if (HAS_GSAP) {
+    const els = $('detailContent').querySelectorAll('.d-anim');
+    els.forEach(el => el.style.animation = 'none');
+    gsap.fromTo(els,
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, delay: 0.12, ease: 'power3.out' }
+    );
+  }
+
   /* hero transition from card image */
   const srcImg = cardEl ? cardEl.querySelector('.card-img img') : null;
   if (srcImg && srcImg.classList.contains('loaded') && p.image) {
@@ -1240,22 +1261,31 @@ function openDetail(id, cardEl) {
     const detailImgEl = $('detailImg').querySelector('img');
     if (detailImgEl) detailImgEl.style.visibility = 'hidden';
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        clone.style.top = '52px';
-        clone.style.left = '0px';
-        clone.style.width = targetW + 'px';
-        clone.style.height = targetH + 'px';
+    const finish = () => {
+      if (detailImgEl) detailImgEl.style.visibility = '';
+      clone.remove();
+    };
+
+    if (HAS_GSAP) {
+      clone.style.transition = 'none';
+      gsap.to(clone, {
+        top: 52, left: 0, width: targetW, height: targetH,
+        duration: 0.6, ease: 'power3.inOut', onComplete: finish
       });
-    });
+    } else {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          clone.style.top = '52px';
+          clone.style.left = '0px';
+          clone.style.width = targetW + 'px';
+          clone.style.height = targetH + 'px';
+        });
+      });
+      setTimeout(finish, 480);
+    }
 
     $('detail').classList.add('open');
     if (tg && tg.BackButton) tg.BackButton.show();
-
-    setTimeout(() => {
-      if (detailImgEl) detailImgEl.style.visibility = '';
-      clone.remove();
-    }, 480);
   } else {
     $('detail').classList.add('open');
     if (tg && tg.BackButton) tg.BackButton.show();
