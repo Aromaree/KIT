@@ -42,6 +42,14 @@ html, body {
   width: 100%;
 }
 body { font-size: 13px; }
+body.locked {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 img { display: block; }
 button { font-family: var(--font); text-transform: uppercase; cursor: pointer; background: none; border: none; color: inherit; }
 ::selection { background: var(--text); color: #fff; }
@@ -1193,6 +1201,7 @@ function setAccent(p) {
 function openDetail(id, cardEl) {
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
+  lockScroll();
   const ru = LANG === 'ru';
   const specs = [
     ru ? p.comp_ru : p.comp_en,
@@ -1302,9 +1311,27 @@ function openDetail(id, cardEl) {
   }
 }
 
+let savedScrollY = 0;
+function lockScroll() {
+  if (document.body.classList.contains('locked')) return;
+  savedScrollY = window.scrollY || window.pageYOffset || 0;
+  if (lenis) lenis.stop();
+  document.body.style.top = -savedScrollY + 'px';
+  document.body.classList.add('locked');
+}
+function unlockScroll() {
+  if (!document.body.classList.contains('locked')) return;
+  document.body.classList.remove('locked');
+  document.body.style.top = '';
+  if (lenis) lenis.start();
+  window.scrollTo(0, savedScrollY);
+}
+
 function closeDetail() {
   $('detail').classList.remove('open');
   $('detail').style.transform = '';
+  $('detail').style.opacity = '';
+  unlockScroll();
   if (tg && tg.BackButton) tg.BackButton.hide();
 }
 
