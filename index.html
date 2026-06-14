@@ -6,6 +6,10 @@
 <title>VANVION</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/splitting/1.0.6/splitting.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splitting/1.0.6/splitting.css">
 <style>
 @font-face {
   font-family: 'Futura PT Book';
@@ -715,7 +719,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 
 <button class="to-top" id="toTop">&#8593;</button>
 
-<div class="detail" id="detail">
+<div class="detail" id="detail" data-lenis-prevent>
   <div class="detail-top">
     <div class="drag-pill"></div>
     <button class="back-btn" id="backBtn">&#8592;</button>
@@ -1233,13 +1237,19 @@ function openDetail(id, cardEl) {
   $('detail').scrollTop = 0;
 
   if (HAS_GSAP) {
-    const els = $('detailContent').querySelectorAll('.d-anim');
-    els.forEach(el => el.style.animation = 'none');
+    const all = $('detailContent').querySelectorAll('.d-anim');
+    all.forEach(el => el.style.animation = 'none');
+    const nameEl = $('detailContent').querySelector('.detail-name');
+    const els = Array.from(all).filter(el => el !== nameEl);
     gsap.fromTo(els,
       { opacity: 0, y: 22 },
       { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, delay: 0.12, ease: 'power3.out' }
     );
+    if (nameEl && !(HAS_SPLIT)) {
+      gsap.fromTo(nameEl, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.12, ease: 'power3.out' });
+    }
   }
+  revealDetailName();
 
   /* hero transition from card image */
   const srcImg = cardEl ? cardEl.querySelector('.card-img img') : null;
@@ -1530,12 +1540,69 @@ $('toTop').onclick = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
+/* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
+const HAS_LENIS = typeof Lenis !== 'undefined';
+const HAS_SPLIT = typeof Splitting !== 'undefined';
+const HAS_ST = HAS_GSAP && typeof ScrollTrigger !== 'undefined';
+let lenis = null;
+
+function initEnhancements() {
+  if (HAS_ST) gsap.registerPlugin(ScrollTrigger);
+
+  /* шёлковый инерционный скролл (как Apple / Zara) */
+  if (HAS_LENIS) {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.4
+    });
+    if (HAS_ST) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    }
+  }
+
+  /* буквенное появление логотипа VANVION (fashion editorial) */
+  if (HAS_SPLIT && HAS_GSAP) {
+    const brand = document.querySelector('.brand');
+    if (brand) {
+      const res = Splitting({ target: brand, by: 'chars' })[0];
+      if (res && res.chars) {
+        gsap.fromTo(res.chars,
+          { opacity: 0, y: '0.5em', rotateX: -90 },
+          { opacity: 1, y: '0em', rotateX: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', delay: 0.2 }
+        );
+      }
+    }
+  }
+}
+
+/* буквенное появление названия товара при открытии карточки */
+function revealDetailName() {
+  if (!(HAS_SPLIT && HAS_GSAP)) return;
+  const el = $('detailContent').querySelector('.detail-name');
+  if (!el) return;
+  const res = Splitting({ target: el, by: 'chars' })[0];
+  if (res && res.chars) {
+    gsap.fromTo(res.chars,
+      { opacity: 0, y: '0.6em' },
+      { opacity: 1, y: '0em', duration: 0.5, stagger: 0.025, ease: 'power3.out', delay: 0.18 }
+    );
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (tg) {
     tg.ready();
     tg.expand();
     if (tg.BackButton) tg.BackButton.onClick(closeDetail);
   }
+  initEnhancements();
   loadData();
 });
 </script>
