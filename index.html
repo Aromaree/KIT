@@ -982,7 +982,8 @@ function renderSkeleton() {
     cards += '<div class="sk-card"><div class="sk-img shimmer"></div><div class="sk-line shimmer"></div><div class="sk-line s2 shimmer"></div></div>';
   }
   $('content').innerHTML = '<div class="sk-grid">' + cards + '</div>';
-  $('count').textContent = '';
+  $('countNum').textContent = '';
+  $('countLabel').textContent = '';
 }
 
 async function loadData() {
@@ -1024,7 +1025,8 @@ function filtered() {
 function renderError() {
   $('content').innerHTML = '<div class="state">' + t().error +
     '<br><button class="retry" id="retryBtn">' + t().retry + '</button></div>';
-  $('count').textContent = '';
+  $('countNum').textContent = '';
+  $('countLabel').textContent = '';
   $('retryBtn').onclick = loadData;
 }
 
