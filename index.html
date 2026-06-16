@@ -13,6 +13,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/splitting/1.0.6/splitting.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splitting/1.0.6/splitting.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
 @font-face {
   font-family: 'Futura PT Book';
@@ -21,9 +23,9 @@
   font-display: swap;
 }
 :root {
-  --bg: #f2efe9;
-  --card: rgba(255,255,255,0.55);
-  --border: rgba(255,255,255,0.45);
+  --bg: #eeeae3;
+  --card: rgba(255,255,255,0.48);
+  --border: rgba(255,255,255,0.42);
   --text: #1a1814;
   --text2: #6b6358;
   --muted: #a09880;
@@ -32,9 +34,9 @@
   --font: 'Futura PT Book', 'Futura', 'Century Gothic', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
-  --glass: rgba(255,255,255,0.52);
-  --glass-border: rgba(255,255,255,0.7);
-  --blur: blur(22px);
+  --glass: rgba(255,255,255,0.48);
+  --glass-border: rgba(255,255,255,0.75);
+  --blur: blur(28px);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
@@ -55,49 +57,13 @@ html, body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
 }
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(72px);
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-  animation: blobDrift 18s ease-in-out infinite alternate;
-  will-change: transform;
-}
-.aurora-blob:nth-child(1) {
-  width: 60vw; height: 60vw;
-  background: radial-gradient(circle, #d4bfa4, #c9a87c);
-  top: -10%; left: -10%;
-  animation-duration: 20s;
-}
-.aurora-blob:nth-child(2) {
-  width: 55vw; height: 55vw;
-  background: radial-gradient(circle, #c4cfc4, #9ab89a);
-  top: 20%; right: -15%;
-  animation-duration: 24s;
-  animation-delay: -6s;
-}
-.aurora-blob:nth-child(3) {
-  width: 50vw; height: 50vw;
-  background: radial-gradient(circle, #d8cfc5, #bfb0a0);
-  bottom: 10%; left: 20%;
-  animation-duration: 22s;
-  animation-delay: -12s;
-}
-.aurora-blob:nth-child(4) {
-  width: 40vw; height: 40vw;
-  background: radial-gradient(circle, #b8c4bc, #8fa89a);
-  bottom: -5%; right: 5%;
-  animation-duration: 26s;
-  animation-delay: -4s;
-}
-@keyframes blobDrift {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(6vw, -8vw) scale(1.08); }
-  66%  { transform: translate(-5vw, 5vw) scale(0.95); }
-  100% { transform: translate(4vw, 3vw) scale(1.05); }
+#auroraCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 body { font-size: 13px; }
 .grain {
@@ -289,101 +255,98 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .tab.active::after { transform: scaleX(1); }
 
-/* ---------- HERO SHOWCASE ---------- */
-.hero {
+/* ---------- HERO SHOWCASE (Swiper) ---------- */
+.hero-wrap {
   position: relative;
-  height: 62vh;
-  min-height: 380px;
+  margin: 12px;
+  border-radius: 28px;
   overflow: hidden;
-  background: var(--card);
+  z-index: 1;
 }
-.hero-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.65s var(--ease);
-  will-change: transform;
-}
-.hero-slide {
-  position: relative;
-  flex: 0 0 100%;
-  height: 100%;
+.hero-swiper {
+  height: 58vh;
+  min-height: 340px;
+  border-radius: 28px;
   overflow: hidden;
 }
-.hero-slide img {
+.hero-swiper .swiper-slide {
+  position: relative;
+  overflow: hidden;
+}
+.hero-swiper .swiper-slide img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transform: scale(1.08);
-  transition: transform 5s linear;
+  transform: scale(1.06);
+  transition: transform 0.8s var(--ease);
 }
-.hero-slide.on img { transform: scale(1); }
-.hero-slide::after {
+.hero-swiper .swiper-slide-active img { transform: scale(1); }
+.hero-swiper .swiper-slide::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.0) 45%);
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.0) 50%);
 }
 .hero-info {
   position: absolute;
-  left: 18px; right: 18px; bottom: 46px;
+  left: 18px; right: 18px; bottom: 52px;
   z-index: 2;
   color: #fff;
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.6s var(--ease) 0.15s, transform 0.6s var(--ease) 0.15s;
+  transition: opacity 0.6s var(--ease) 0.1s, transform 0.6s var(--ease) 0.1s;
 }
-.hero-slide.on .hero-info { opacity: 1; transform: translateY(0); }
+.swiper-slide-active .hero-info { opacity: 1; transform: translateY(0); }
 .hero-kicker {
   font-size: 10px;
   letter-spacing: 0.26em;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 .hero-title {
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: 0.1em;
   line-height: 1.2;
-  margin-top: 7px;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+  margin-top: 6px;
 }
 .hero-cta {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 10px;
   letter-spacing: 0.2em;
   color: #fff;
   border: 1px solid rgba(255,255,255,0.55);
   border-radius: 999px;
-  padding: 8px 16px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  background: rgba(255,255,255,0.12);
+  padding: 8px 18px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.14);
 }
-.hero-dots {
-  position: absolute;
-  left: 0; right: 0; bottom: 18px;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 7px;
+/* Swiper pagination */
+.hero-wrap .swiper-pagination {
+  bottom: 18px;
 }
-.hero-dot {
+.hero-wrap .swiper-pagination-bullet {
   width: 6px; height: 6px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.45);
-  transition: width 0.35s var(--ease), background 0.35s;
+  background: rgba(255,255,255,0.5);
+  opacity: 1;
+  transition: width 0.35s var(--ease), background 0.35s, border-radius 0.35s;
 }
-.hero-dot.on { width: 22px; background: #fff; }
+.hero-wrap .swiper-pagination-bullet-active {
+  width: 22px;
+  border-radius: 999px;
+  background: #fff;
+}
 .hero-tag {
   position: absolute;
   top: 14px; left: 16px;
-  z-index: 2;
+  z-index: 3;
   font-size: 9px;
   letter-spacing: 0.14em;
   color: #fff;
   border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(0,0,0,0.18);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  padding: 5px 10px;
+  background: rgba(255,255,255,0.15);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 5px 12px;
   border-radius: 999px;
 }
 
@@ -803,12 +766,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </style>
 </head>
 <body>
-<div class="aurora">
-  <div class="aurora-blob"></div>
-  <div class="aurora-blob"></div>
-  <div class="aurora-blob"></div>
-  <div class="aurora-blob"></div>
-</div>
+<canvas id="auroraCanvas"></canvas>
 <div class="grain"></div>
 <div class="ptr"><div class="ptr-inner" id="ptrInner">VANVION</div></div>
 
@@ -1148,88 +1106,52 @@ function setupParallax() {
   });
 }
 
-/* ---------- hero showcase ---------- */
-let heroTimer = null, heroIdx = 0, heroItems = [];
+/* ---------- hero showcase (Swiper) ---------- */
+let heroSwiperInst = null;
 
 function renderHero() {
   const box = $('hero');
-  clearInterval(heroTimer);
+  if (heroSwiperInst) { heroSwiperInst.destroy(true, true); heroSwiperInst = null; }
   if (CAT !== 'all' || QUERY.trim() || COLOR) { box.innerHTML = ''; return; }
-  heroItems = PRODUCTS.filter(p => p.image).slice(0, 5);
+  const heroItems = PRODUCTS.filter(p => p.image).slice(0, 5);
   if (heroItems.length < 2) { box.innerHTML = ''; return; }
-  heroIdx = 0;
 
   box.innerHTML =
-    '<div class="hero">' +
+    '<div class="hero-wrap">' +
       '<span class="hero-tag">' + t().newin + '</span>' +
-      '<div class="hero-track" id="heroTrack">' +
-        heroItems.map(p =>
-          '<div class="hero-slide" data-id="' + esc(p.id) + '">' +
-            '<img src="' + esc(p.image) + '" alt="">' +
-            '<div class="hero-info">' +
-              '<div class="hero-kicker">' + esc(p.id) + '</div>' +
-              '<div class="hero-title">' + esc(getName(p)) + '</div>' +
-              '<span class="hero-cta">' + t().view + ' &#8594;</span>' +
-            '</div>' +
-          '</div>'
-        ).join('') +
-      '</div>' +
-      '<div class="hero-dots" id="heroDots">' +
-        heroItems.map((_, i) => '<span class="hero-dot" data-i="' + i + '"></span>').join('') +
+      '<div class="swiper hero-swiper">' +
+        '<div class="swiper-wrapper">' +
+          heroItems.map(p =>
+            '<div class="swiper-slide" data-id="' + esc(p.id) + '">' +
+              '<img src="' + esc(p.image) + '" alt="" onerror="this.style.display=\'none\'">' +
+              '<div class="hero-info">' +
+                '<div class="hero-kicker">' + esc(p.id) + '</div>' +
+                '<div class="hero-title">' + esc(getName(p)) + '</div>' +
+                '<span class="hero-cta">' + t().view + ' &#8594;</span>' +
+              '</div>' +
+            '</div>'
+          ).join('') +
+        '</div>' +
+        '<div class="swiper-pagination"></div>' +
       '</div>' +
     '</div>';
 
-  const track = $('heroTrack');
-  const slides = track.children;
-
-  function show(i) {
-    heroIdx = (i + heroItems.length) % heroItems.length;
-    track.style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
-    Array.from(slides).forEach((s, k) => s.classList.toggle('on', k === heroIdx));
-    document.querySelectorAll('.hero-dot').forEach((d, k) => d.classList.toggle('on', k === heroIdx));
-  }
-
-  function arm() {
-    clearInterval(heroTimer);
-    heroTimer = setInterval(() => show(heroIdx + 1), 3800);
-  }
-
-  show(0);
-  arm();
-
-  /* swipe */
-  let hx0 = null, hMoved = false;
-  track.addEventListener('touchstart', e => {
-    hx0 = e.touches[0].clientX;
-    hMoved = false;
-    clearInterval(heroTimer);
-  }, { passive: true });
-  track.addEventListener('touchmove', e => {
-    if (hx0 !== null && Math.abs(e.touches[0].clientX - hx0) > 12) hMoved = true;
-  }, { passive: true });
-  track.addEventListener('touchend', e => {
-    if (hx0 === null) return;
-    const dx = e.changedTouches[0].clientX - hx0;
-    if (Math.abs(dx) > 50) { haptic('light'); show(heroIdx + (dx < 0 ? 1 : -1)); }
-    hx0 = null;
-    arm();
-  }, { passive: true });
-
-  Array.from(slides).forEach(s => {
-    s.addEventListener('click', () => {
-      if (hMoved) return;
-      haptic('light');
-      openDetail(s.getAttribute('data-id'));
+  if (typeof Swiper !== 'undefined') {
+    heroSwiperInst = new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: { delay: 3800, disableOnInteraction: false },
+      speed: 700,
+      effect: 'slide',
+      pagination: { el: '.hero-swiper .swiper-pagination', clickable: true },
+      on: {
+        click: (sw) => {
+          const slide = sw.slides[sw.activeIndex];
+          const id = slide && slide.getAttribute('data-id');
+          if (id) { haptic('light'); openDetail(id); }
+        }
+      }
     });
-  });
-  document.querySelectorAll('.hero-dot').forEach(d => {
-    d.addEventListener('click', e => {
-      e.stopPropagation();
-      haptic('light');
-      show(parseInt(d.getAttribute('data-i'), 10));
-      arm();
-    });
-  });
+  }
 }
 
 /* ---------- card events: tap + long-press quick look ---------- */
@@ -1739,8 +1661,69 @@ const HAS_SPLIT = typeof Splitting !== 'undefined';
 const HAS_ST = HAS_GSAP && typeof ScrollTrigger !== 'undefined';
 let lenis = null;
 
+/* ---------- canvas aurora mesh ---------- */
+function initAurora() {
+  const canvas = $('auroraCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  /* fashion-appropriate palette: warm sand, sage, dusty rose, cool linen */
+  const blobs = [
+    { x: 0.15, y: 0.12, r: 0.55, h: 38,  s: 55, l: 78 },
+    { x: 0.85, y: 0.35, r: 0.50, h: 140, s: 30, l: 75 },
+    { x: 0.50, y: 0.75, r: 0.48, h: 22,  s: 40, l: 82 },
+    { x: 0.20, y: 0.80, r: 0.42, h: 200, s: 25, l: 80 },
+    { x: 0.78, y: 0.10, r: 0.38, h: 60,  s: 35, l: 84 },
+  ];
+
+  const targets = blobs.map(b => ({ ...b }));
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  function paint() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    targets.forEach(b => {
+      const gx = b.x * W, gy = b.y * H, gr = b.r * Math.max(W, H);
+      const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      g.addColorStop(0,   'hsla(' + b.h + ',' + b.s + '%,' + b.l + '%,0.80)');
+      g.addColorStop(0.5, 'hsla(' + b.h + ',' + b.s + '%,' + (b.l+8) + '%,0.35)');
+      g.addColorStop(1,   'hsla(' + b.h + ',' + b.s + '%,' + (b.l+12) + '%,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    });
+  }
+
+  /* GSAP animates blob positions → repaint */
+  if (HAS_GSAP) {
+    blobs.forEach((b, i) => {
+      const dur = 14 + i * 4;
+      gsap.to(targets[i], {
+        x: '+=0.22', y: '+=0.18',
+        duration: dur, ease: 'sine.inOut',
+        yoyo: true, repeat: -1,
+        delay: -i * 3,
+        modifiers: {
+          x: v => Math.max(0.05, Math.min(0.95, parseFloat(v))),
+          y: v => Math.max(0.05, Math.min(0.95, parseFloat(v))),
+        },
+        onUpdate: paint
+      });
+    });
+    gsap.ticker.add(paint);
+  } else {
+    paint();
+  }
+}
+
 function initEnhancements() {
   if (HAS_ST) gsap.registerPlugin(ScrollTrigger);
+  initAurora();
 
   /* шёлковый инерционный скролл (как Apple / Zara) */
   if (HAS_LENIS) {
