@@ -429,7 +429,13 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   z-index: 1;
 }
 @media (min-width: 900px) {
-  .grid { grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px; }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 16px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
 }
 .card {
   min-width: 0;
@@ -510,7 +516,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   padding: 12px;
 }
 @media (min-width: 900px) {
-  .sk-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px; }
+  .sk-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px; max-width: 1080px; margin: 0 auto; }
 }
 .sk-card {
   background: var(--glass);
