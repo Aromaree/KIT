@@ -783,7 +783,6 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   </div>
   <div class="tabs" id="tabs"></div>
 </div>
-<div id="hero"></div>
 <div class="color-bar" id="colorBar"></div>
 <div class="count-wrap" id="countWrap">
   <div class="count-num" id="countNum">0</div>
@@ -1030,7 +1029,6 @@ function render() {
   $('search').placeholder = t().search;
   $('langBtn').textContent = LANG === 'ru' ? 'EN' : 'RU';
   renderTabs();
-  renderHero();
   renderColorBar();
 
   const items = filtered();
@@ -1724,23 +1722,8 @@ function initEnhancements() {
   if (HAS_ST) gsap.registerPlugin(ScrollTrigger);
   initAurora();
 
-  /* шёлковый инерционный скролл (как Apple / Zara) */
-  if (HAS_LENIS) {
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.4
-    });
-    if (HAS_ST) {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(time => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
-    }
-  }
+  /* Lenis отключён намеренно: нативный скролл работает везде надёжно
+     (колесо мыши над любым элементом, тач на телефоне). */
 
   /* буквенное появление логотипа VANVION (fashion editorial) */
   if (HAS_SPLIT && HAS_GSAP) {
