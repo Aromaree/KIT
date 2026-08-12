@@ -656,6 +656,24 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   opacity: 0.85;
 }
 .detail-body { padding: 22px 16px calc(30px + env(safe-area-inset-bottom)); }
+@media (min-width: 900px) {
+  #detailContent {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 36px 24px calc(48px + env(safe-area-inset-bottom));
+  }
+  .detail-img {
+    width: 46%;
+    flex: none;
+    border-radius: 18px;
+    position: sticky;
+    top: 76px;
+  }
+  .detail-body { flex: 1; min-width: 0; padding: 0; padding-top: 4px; }
+}
 .d-anim { animation: fadeUp 0.55s var(--ease) both; }
 .d-anim.d1 { animation-delay: 0.05s; }
 .d-anim.d2 { animation-delay: 0.12s; }
@@ -1364,9 +1382,9 @@ function openDetail(id, cardEl) {
   }
   revealDetailName();
 
-  /* hero transition from card image */
+  /* hero transition from card image (mobile only — на десктопе фото компактное сбоку) */
   const srcImg = cardEl ? cardEl.querySelector('.card-img img') : null;
-  if (srcImg && srcImg.classList.contains('loaded') && p.image) {
+  if (srcImg && srcImg.classList.contains('loaded') && p.image && window.innerWidth < 900) {
     const rect = srcImg.getBoundingClientRect();
     const clone = document.createElement('img');
     clone.className = 'hero-clone';
