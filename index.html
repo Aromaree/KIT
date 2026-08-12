@@ -1008,10 +1008,12 @@ async function loadData() {
     const text = await res.text();
     PRODUCTS = DATA_URL.includes('spreadsheets') ? parseCSV(text) : JSON.parse(text);
     render();
+    if (!booted) { booted = true; openFromHash(); }
   } catch (e) {
     renderError();
   }
 }
+let booted = false;
 
 function colorList(str) {
   return (str || '').split(',').map(c => c.trim()).filter(c => PALETTE[c]);
@@ -1335,10 +1337,20 @@ function setAccent(p) {
 }
 
 /* ---------- detail + hero transition ---------- */
-function openDetail(id, cardEl) {
+let currentDetailId = null;
+function openDetail(id, cardEl, opts) {
+  opts = opts || {};
+  const noAnim = !!opts.noAnim;
+  const fromHash = !!opts.fromHash;
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
-  lockScroll();
+  const wasOpen = $('detail').classList.contains('open');
+  if (!wasOpen) lockScroll();
+  currentDetailId = id;
+  if (!fromHash) {
+    const target = '#p=' + id;
+    if (location.hash !== target) history.pushState({ p: id }, '', target);
+  }
   const ru = LANG === 'ru';
   const specs = [
     ru ? p.comp_ru : p.comp_en,
@@ -1385,7 +1397,7 @@ function openDetail(id, cardEl) {
   document.querySelectorAll('.cv').forEach(el => {
     el.onclick = () => {
       const gid = el.getAttribute('data-goto');
-      if (gid && gid !== p.id) { haptic('light'); openDetail(gid); }
+      if (gid && gid !== p.id) { haptic('light'); openDetail(gid, null, { noAnim: true }); }
     };
   });
 
@@ -1393,23 +1405,31 @@ function openDetail(id, cardEl) {
   setupZoom();
   $('detail').scrollTop = 0;
 
-  if (HAS_GSAP) {
-    const all = $('detailContent').querySelectorAll('.d-anim');
-    all.forEach(el => el.style.animation = 'none');
-    const nameEl = $('detailContent').querySelector('.detail-name');
-    const els = Array.from(all).filter(el => el !== nameEl);
-    gsap.fromTo(els,
-      { opacity: 0, y: 22 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, delay: 0.12, ease: 'power3.out' }
-    );
-    if (nameEl && !(HAS_SPLIT)) {
-      gsap.fromTo(nameEl, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.12, ease: 'power3.out' });
+  if (noAnim) {
+    $('detailContent').querySelectorAll('.d-anim').forEach(el => {
+      el.style.animation = 'none';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  } else {
+    if (HAS_GSAP) {
+      const all = $('detailContent').querySelectorAll('.d-anim');
+      all.forEach(el => el.style.animation = 'none');
+      const nameEl = $('detailContent').querySelector('.detail-name');
+      const els = Array.from(all).filter(el => el !== nameEl);
+      gsap.fromTo(els,
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, delay: 0.12, ease: 'power3.out' }
+      );
+      if (nameEl && !(HAS_SPLIT)) {
+        gsap.fromTo(nameEl, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.12, ease: 'power3.out' });
+      }
     }
+    revealDetailName();
   }
-  revealDetailName();
 
-  /* hero transition from card image (mobile only — на десктопе фото компактное сбоку) */
-  const srcImg = cardEl ? cardEl.querySelector('.card-img img') : null;
+  /* hero transition from card image (mobile only, и не при смене цвета) */
+  const srcImg = (cardEl && !noAnim) ? cardEl.querySelector('.card-img img') : null;
   if (srcImg && srcImg.classList.contains('loaded') && p.image && window.innerWidth < 900) {
     const rect = srcImg.getBoundingClientRect();
     const clone = document.createElement('img');
@@ -1475,12 +1495,38 @@ function unlockScroll() {
   window.scrollTo(0, savedScrollY);
 }
 
-function closeDetail() {
+function closeDetail(fromPop) {
+  if (!$('detail').classList.contains('open')) return;
   $('detail').classList.remove('open');
   $('detail').style.transform = '';
   $('detail').style.opacity = '';
   unlockScroll();
+  currentDetailId = null;
   if (tg && tg.BackButton) tg.BackButton.hide();
+  if (!fromPop) {
+    if (history.state && history.state.p) history.back();
+    else if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  }
+}
+
+/* ---------- URL routing: keep product open on refresh / back ---------- */
+function hashProductId() {
+  const m = location.hash.match(/^#p=(.+)$/);
+  return m ? decodeURIComponent(m[1]) : null;
+}
+window.addEventListener('popstate', () => {
+  const id = hashProductId();
+  if (id) {
+    if (currentDetailId !== id) openDetail(id, null, { fromHash: true, noAnim: true });
+  } else {
+    closeDetail(true);
+  }
+});
+function openFromHash() {
+  const id = hashProductId();
+  if (id && PRODUCTS.find(x => x.id === id)) {
+    openDetail(id, null, { fromHash: true, noAnim: true });
+  }
 }
 
 /* ---------- drag to dismiss (vertical, from top) ---------- */
