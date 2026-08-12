@@ -692,6 +692,23 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .chips { display: flex; flex-wrap: wrap; gap: 14px; }
 .chip { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.08em; color: var(--text2); }
 .chip .dot { width: 13px; height: 13px; }
+.cv-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cv {
+  position: relative;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  border: 2px solid transparent;
+  transition: transform 0.2s var(--spring), border-color 0.25s;
+}
+.cv .cv-dot {
+  position: absolute; inset: 3px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.14);
+}
+.cv.active { border-color: var(--text); }
+.cv:active { transform: scale(0.85); }
+.cv-current { font-size: 12px; letter-spacing: 0.12em; color: var(--text2); margin-top: 12px; }
 .specs { border-top: 1px solid var(--border); margin-top: 24px; }
 .spec-row { display: flex; border-bottom: 1px solid var(--border); padding: 12px 0; }
 .spec-key { width: 44%; font-size: 11px; letter-spacing: 0.10em; color: var(--muted); }
@@ -1296,16 +1313,14 @@ function cardHTML(p) {
   '</div>';
 }
 
-function relatedHTML(p) {
-  const rel = PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id).slice(0, 8);
-  if (!rel.length) return '';
-  return '<div class="section-label d-anim d4">' + t().related + '</div>' +
-    '<div class="related-row d-anim d4">' + rel.map(x =>
-      '<div class="rel-card" data-rel="' + esc(x.id) + '">' +
-        '<div class="rel-img">' + (x.image ? '<img src="' + esc(x.image) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') + '</div>' +
-        '<div class="rel-id">' + esc(x.id) + '</div>' +
-      '</div>'
-    ).join('') + '</div>';
+/* модель = название без последнего слова (цвета); варианты = тот же товар в других цветах */
+function modelKey(p) {
+  const n = (p.name_en || p.name_ru || '').trim();
+  return n.replace(/\s+\S+$/, '').toLowerCase();
+}
+function modelVariants(p) {
+  const key = modelKey(p);
+  return PRODUCTS.filter(x => modelKey(x) === key);
 }
 
 /* ---------- adaptive accent ---------- */
@@ -1333,9 +1348,17 @@ function openDetail(id, cardEl) {
     ru ? p.country_ru : p.country_en,
     p.sizes
   ];
-  const chips = colorList(p.colors).map(c =>
-    '<span class="chip">' + dotHTML(c) + esc(PALETTE[c][LANG]) + '</span>'
-  ).join('');
+  const variants = modelVariants(p);
+  const swatches = variants.map(x => {
+    const c = colorList(x.colors)[0];
+    const hex = c ? PALETTE[c].hex : '#cccccc';
+    const label = c ? PALETTE[c][LANG] : x.id;
+    return '<button class="cv' + (x.id === p.id ? ' active' : '') + '" data-goto="' + esc(x.id) + '" aria-label="' + esc(label) + '">' +
+             '<span class="cv-dot" style="background:' + hex + '"></span>' +
+           '</button>';
+  }).join('');
+  const curColor = colorList(p.colors)[0];
+  const curLabel = curColor ? PALETTE[curColor][LANG] : '';
   const rows = t().specs.map((k, i) =>
     '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>'
   ).join('');
@@ -1351,16 +1374,19 @@ function openDetail(id, cardEl) {
       '<div class="detail-cat d-anim d1">' + (t().cat[p.cat] || esc(p.cat)) + ' · VANVION</div>' +
       '<div class="detail-name d-anim d1">' + esc(getName(p)) + '</div>' +
       '<div class="accent-line d-anim d1"></div>' +
-      '<div class="section-label d-anim d2">' + t().colors + '</div>' +
-      '<div class="chips d-anim d2">' + chips + '</div>' +
+      '<div class="section-label d-anim d2">' + t().colors + ' · ' + variants.length + '</div>' +
+      '<div class="cv-row d-anim d2">' + swatches + '</div>' +
+      '<div class="cv-current d-anim d2">' + esc(curLabel) + '</div>' +
       '<div class="specs d-anim d3">' + rows + '</div>' +
-      relatedHTML(p) +
       '<button class="share-btn d-anim d4" id="shareBtn">' + t().share + '</button>' +
     '</div>';
 
   $('shareBtn').onclick = () => { haptic('medium'); shareProduct(p); };
-  document.querySelectorAll('.rel-card').forEach(el => {
-    el.onclick = () => { haptic('light'); openDetail(el.getAttribute('data-rel')); };
+  document.querySelectorAll('.cv').forEach(el => {
+    el.onclick = () => {
+      const gid = el.getAttribute('data-goto');
+      if (gid && gid !== p.id) { haptic('light'); openDetail(gid); }
+    };
   });
 
   bindImages($('detailContent'));
