@@ -364,25 +364,33 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .color-bar::-webkit-scrollbar { display: none; }
 .cf {
-  position: relative;
-  width: 26px; height: 26px;
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex: none;
-  border: 1px solid rgba(0,0,0,0.10);
-  transition: transform 0.25s var(--spring);
+  padding: 6px 13px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s var(--spring), border-color 0.25s, background 0.25s;
 }
-.cf::after {
-  content: '';
-  position: absolute;
-  inset: -5px;
+.cf-dot {
+  width: 16px; height: 16px;
   border-radius: 50%;
-  border: 1px solid var(--text);
-  opacity: 0;
-  transform: scale(0.7);
-  transition: opacity 0.25s, transform 0.3s var(--spring);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18), 0 1px 3px rgba(0,0,0,0.12);
+  flex: none;
 }
-.cf.active::after { opacity: 1; transform: scale(1); }
-.cf:active { transform: scale(0.85); }
+.cf-name {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  white-space: nowrap;
+}
+.cf.active { border-color: var(--text); background: rgba(255,255,255,0.9); }
+.cf.active .cf-name { color: var(--text); }
+.cf:active { transform: scale(0.94); }
 .cf-reset {
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -512,6 +520,28 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.1);
   flex: none;
+}
+.card-color {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 9px;
+  min-width: 0;
+}
+.card-swatch {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  flex: none;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.22);
+}
+.card-color-name {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ---------- SKELETON ---------- */
@@ -892,6 +922,31 @@ const PALETTE = {
   beyaz: { hex: '#f0f0f0', ru: 'БЕЛЫЙ', en: 'BEYAZ' }
 };
 
+/* основные цветовые семейства для фильтра каталога */
+const FAMILIES = {
+  black:  { hex: '#18181a', ru: 'ЧЁРНЫЙ',     en: 'BLACK'  },
+  grey:   { hex: '#8a8a88', ru: 'СЕРЫЙ',      en: 'GREY'   },
+  blue:   { hex: '#1f3468', ru: 'СИНИЙ',      en: 'BLUE'   },
+  green:  { hex: '#2d4a34', ru: 'ЗЕЛЁНЫЙ',    en: 'GREEN'  },
+  brown:  { hex: '#6b4226', ru: 'КОРИЧНЕВЫЙ', en: 'BROWN'  },
+  red:    { hex: '#a83a2a', ru: 'КРАСНЫЙ',    en: 'RED'    },
+  purple: { hex: '#4a1f3a', ru: 'ФИОЛЕТОВЫЙ', en: 'PURPLE' },
+  beige:  { hex: '#d3c1a0', ru: 'БЕЖЕВЫЙ',    en: 'BEIGE'  }
+};
+/* к какому основному семейству относится каждый оттенок */
+const FAMILY_OF = {
+  charcoal:'grey', navy:'blue', black:'black', camel:'brown', beige:'beige',
+  grey:'grey', brown:'brown', green:'green', lightgrey:'grey', burgundy:'red',
+  sand:'beige', slate:'grey', taba:'brown', kiremit:'red', kkiremit:'red',
+  kahve:'brown', antrasit:'grey', yesil:'green', murdum:'purple', laci:'blue',
+  klaci:'blue', siyah:'black', haki:'green', alaci:'blue', c295:'grey',
+  c671:'blue', abej:'beige', bej:'beige', ekru:'beige', beyaz:'beige'
+};
+function familyOf(p) {
+  const c = colorList(p.colors)[0];
+  return c ? (FAMILY_OF[c] || null) : null;
+}
+
 const I18N = {
   ru: {
     subtitle: 'ОПТОВЫЙ КАТАЛОГ · МУЖСКАЯ КЛАССИКА',
@@ -1034,7 +1089,7 @@ function byCatAndQuery() {
 }
 
 function filtered() {
-  return byCatAndQuery().filter(p => !COLOR || colorList(p.colors).includes(COLOR));
+  return byCatAndQuery().filter(p => !COLOR || familyOf(p) === COLOR);
 }
 
 function renderError() {
@@ -1272,11 +1327,14 @@ function renderTabs() {
 
 function renderColorBar() {
   const present = new Set();
-  byCatAndQuery().forEach(p => colorList(p.colors).forEach(c => present.add(c)));
-  const list = Object.keys(PALETTE).filter(c => present.has(c));
+  byCatAndQuery().forEach(p => { const f = familyOf(p); if (f) present.add(f); });
+  const list = Object.keys(FAMILIES).filter(f => present.has(f));
   if (list.length < 2) { $('colorBar').innerHTML = ''; return; }
-  $('colorBar').innerHTML = list.map(c =>
-    '<button class="cf' + (COLOR === c ? ' active' : '') + '" data-c="' + c + '" style="background:' + PALETTE[c].hex + '" title="' + esc(PALETTE[c][LANG]) + '"></button>'
+  $('colorBar').innerHTML = list.map(f =>
+    '<button class="cf' + (COLOR === f ? ' active' : '') + '" data-c="' + f + '" title="' + esc(FAMILIES[f][LANG]) + '">' +
+      '<span class="cf-dot" style="background:' + FAMILIES[f].hex + '"></span>' +
+      '<span class="cf-name">' + esc(FAMILIES[f][LANG]) + '</span>' +
+    '</button>'
   ).join('') + '<button class="cf-reset' + (COLOR ? ' show' : '') + '" id="cfReset">' + t().reset + '</button>';
   document.querySelectorAll('.cf').forEach(el => {
     el.onclick = () => {
@@ -1301,7 +1359,9 @@ function imgHTML(p) {
 }
 
 function cardHTML(p) {
-  const dots = colorList(p.colors).map(dotHTML).join('');
+  const c = colorList(p.colors)[0];
+  const colorHex = c ? PALETTE[c].hex : '#cccccc';
+  const colorName = c ? PALETTE[c][LANG] : '';
   return '<div class="card" data-id="' + esc(p.id) + '">' +
     '<div class="card-press">' +
       '<div class="card-img">' + imgHTML(p) +
@@ -1309,7 +1369,10 @@ function cardHTML(p) {
       '</div>' +
       '<div class="card-info">' +
         '<div class="card-name">' + esc(getName(p)) + '</div>' +
-        '<div class="dots">' + dots + '</div>' +
+        '<div class="card-color">' +
+          '<span class="card-swatch" style="background:' + colorHex + '"></span>' +
+          '<span class="card-color-name">' + esc(colorName) + '</span>' +
+        '</div>' +
       '</div>' +
     '</div>' +
   '</div>';
