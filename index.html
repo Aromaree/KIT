@@ -1412,7 +1412,12 @@ function openDetail(id, cardEl, opts) {
   currentDetailId = id;
   if (!fromHash) {
     const target = '#p=' + id;
-    if (location.hash !== target) history.pushState({ p: id }, '', target);
+    if (location.hash !== target) {
+      // при смене цвета внутри модели заменяем запись истории, а не добавляем —
+      // чтобы «назад» вело сразу в каталог, а не по цветам
+      if (opts.replace) history.replaceState({ p: id }, '', target);
+      else history.pushState({ p: id }, '', target);
+    }
   }
   const ru = LANG === 'ru';
   const specs = [
@@ -1460,7 +1465,7 @@ function openDetail(id, cardEl, opts) {
   document.querySelectorAll('.cv').forEach(el => {
     el.onclick = () => {
       const gid = el.getAttribute('data-goto');
-      if (gid && gid !== p.id) { haptic('light'); openDetail(gid, null, { noAnim: true }); }
+      if (gid && gid !== p.id) { haptic('light'); openDetail(gid, null, { noAnim: true, replace: true }); }
     };
   });
 
