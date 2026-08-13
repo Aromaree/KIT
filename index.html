@@ -665,6 +665,11 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .back-btn:hover svg { transform: translateX(-2px); }
 .back-btn:active { transform: scale(0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.14); }
 .back-btn:active svg { transform: translateX(-3px); }
+/* на десктопе выравниваем кнопку и артикул по левому краю фото */
+@media (min-width: 900px) {
+  .detail-top { padding-left: max(16px, calc(50% - 456px)); }
+  .back-btn { margin-left: 0; }
+}
 .detail-art { font-size: 11px; letter-spacing: 0.14em; color: var(--text2); }
 .drag-pill {
   position: absolute;
