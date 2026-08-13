@@ -636,12 +636,25 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-bottom: 1px solid var(--border);
 }
 .back-btn {
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -6px;
+  flex: none;
+  border-radius: 50%;
+  font-size: 22px;
   line-height: 1;
-  padding: 6px 10px 6px 0;
-  transition: transform 0.2s var(--ease);
+  color: var(--text);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 0.18s var(--spring), background 0.2s;
 }
-.back-btn:active { transform: translateX(-4px); }
+.back-btn:hover { background: rgba(0,0,0,0.09); }
+.back-btn:active { transform: scale(0.88); background: rgba(0,0,0,0.12); }
 .detail-art { font-size: 11px; letter-spacing: 0.14em; color: var(--text2); }
 .drag-pill {
   position: absolute;
