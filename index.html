@@ -665,10 +665,21 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .back-btn:hover svg { transform: translateX(-2px); }
 .back-btn:active { transform: scale(0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.14); }
 .back-btn:active svg { transform: translateX(-3px); }
-/* на десктопе выравниваем кнопку и артикул по левому краю фото */
+/* на десктопе выравниваем артикул по левому краю фото,
+   а кнопку делаем «летящей» поверх верхнего-левого угла фото */
 @media (min-width: 900px) {
   .detail-top { padding-left: max(16px, calc(50% - 456px)); }
-  .back-btn { margin-left: 0; }
+  .back-btn {
+    position: fixed;
+    top: 74px;
+    left: max(16px, calc(50% - 480px));
+    z-index: 60;
+    margin-left: 0;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.20), inset 0 1px 1px rgba(255,255,255,0.7);
+  }
+  .back-btn svg { width: 23px; height: 23px; }
 }
 .detail-art { font-size: 11px; letter-spacing: 0.14em; color: var(--text2); }
 .drag-pill {
