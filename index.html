@@ -671,8 +671,8 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   .detail-top { padding-left: max(16px, calc(50% - 456px)); }
   .back-btn {
     position: fixed;
-    top: 18px;
-    left: max(16px, calc(50% - 524px));
+    top: 92px;
+    left: max(16px, calc(50% - 566px));
     z-index: 60;
     margin-left: 0;
     width: 52px;
@@ -860,6 +860,51 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   color: var(--text);
 }
 
+/* ---------- ZOOM LIGHTBOX ---------- */
+.zoombox {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(18,18,18,0.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s var(--ease);
+  cursor: zoom-out;
+  overflow: auto;
+}
+.zoombox.show { opacity: 1; pointer-events: auto; }
+.zoombox img {
+  max-width: 100%;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+  transform: scale(0.94);
+  transition: transform 0.32s var(--spring);
+}
+.zoombox.show img { transform: scale(1); }
+.zoombox-close {
+  position: fixed;
+  top: calc(16px + env(safe-area-inset-top));
+  right: 16px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.detail-img { cursor: zoom-in; }
+
 /* ---------- SCROLL TOP ---------- */
 .to-top {
   position: fixed;
@@ -926,6 +971,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </div>
 
 <div class="ql" id="ql"></div>
+<div class="zoombox" id="zoomBox"></div>
 
 <script>
 const DATA_URL = './data/products.json';
@@ -1705,13 +1751,39 @@ function openFromHash() {
   }, { passive: true });
 })();
 
+/* ---------- fullscreen zoom lightbox (клик/тап по фото) ---------- */
+function openZoom(src) {
+  if (!src) return;
+  const zb = $('zoomBox');
+  zb.innerHTML = '<img src="' + esc(src) + '" alt="">' +
+    '<button class="zoombox-close" id="zoomClose" aria-label="Закрыть">&#10005;</button>';
+  requestAnimationFrame(() => zb.classList.add('show'));
+  zb.onclick = () => closeZoom();
+  haptic('light');
+}
+function closeZoom() {
+  const zb = $('zoomBox');
+  if (!zb.classList.contains('show')) return;
+  zb.classList.remove('show');
+  setTimeout(() => { zb.innerHTML = ''; }, 280);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+
 /* ---------- pinch zoom on detail image ---------- */
 function setupZoom() {
   const wrap = $('detailImg');
   if (!wrap) return;
   const img = wrap.querySelector('img');
   if (!img) return;
-  let d0 = 0, scale = 1, ox = 50, oy = 50, zooming = false;
+  let d0 = 0, scale = 1, ox = 50, oy = 50, zooming = false, moved = false, sx = 0, sy = 0;
+
+  /* клик/тап по фото — открыть полноэкранный зум (если это не свайп/пинч) */
+  wrap.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; moved = false; });
+  wrap.addEventListener('pointermove', e => { if (Math.abs(e.clientX - sx) > 8 || Math.abs(e.clientY - sy) > 8) moved = true; });
+  wrap.addEventListener('click', () => {
+    if (moved || zooming) return;
+    openZoom(img.currentSrc || img.src);
+  });
 
   wrap.addEventListener('touchstart', e => {
     if (e.touches.length === 2) {
