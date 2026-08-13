@@ -1085,7 +1085,7 @@ function plural(n, one, few, many) {
 const PH_SVG = '<svg viewBox="0 0 64 96" fill="none" stroke="#1a1a18" stroke-width="1.5"><path d="M20 12 L32 8 L44 12 L48 28 L40 30 L40 86 L24 86 L24 30 L16 28 Z"/></svg>';
 
 let LANG = 'ru';
-let CAT = 'all';
+let CAT = (function(){ try { return localStorage.getItem('vv-cat') || 'all'; } catch(e){ return 'all'; } })();
 let QUERY = '';
 let COLOR = '';
 let PRODUCTS = [];
@@ -1408,7 +1408,12 @@ function renderTabs() {
       t().tabs[c] + (n ? '<span class="tab-n">' + n + '</span>' : '') + '</button>';
   }).join('');
   document.querySelectorAll('.tab').forEach(el => {
-    el.onclick = () => { haptic('light'); CAT = el.getAttribute('data-cat'); render(); };
+    el.onclick = () => {
+      haptic('light');
+      CAT = el.getAttribute('data-cat');
+      try { localStorage.setItem('vv-cat', CAT); } catch(e){}
+      render();
+    };
   });
 }
 
@@ -1647,7 +1652,10 @@ function unlockScroll() {
   document.body.classList.remove('locked');
   document.body.style.top = '';
   if (lenis) lenis.start();
-  window.scrollTo(0, savedScrollY);
+  const y = savedScrollY;
+  window.scrollTo(0, y);
+  // закрепляем позицию в следующем кадре (на случай, если раскладка/браузер сдвинули её)
+  requestAnimationFrame(() => window.scrollTo(0, y));
 }
 
 function closeDetail(fromPop) {
@@ -1665,6 +1673,9 @@ function closeDetail(fromPop) {
 }
 
 /* ---------- URL routing: keep product open on refresh / back ---------- */
+/* позицией каталога управляем сами — отключаем авто-восстановление браузера,
+   иначе оно перекрывает наш возврат на прежнее место */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 function hashProductId() {
   const m = location.hash.match(/^#p=(.+)$/);
   return m ? decodeURIComponent(m[1]) : null;
