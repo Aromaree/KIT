@@ -457,7 +457,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   opacity: 0;
   transform: translateY(22px) scale(0.97);
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  border-radius: 24px;
+  border-radius: 0;
   background: rgba(255,255,255,0.22);
   -webkit-backdrop-filter: blur(36px) saturate(2);
   backdrop-filter: blur(36px) saturate(2);
@@ -472,7 +472,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   aspect-ratio: 3/4;
   background: rgba(255,255,255,0.3);
   overflow: hidden;
-  border-radius: 18px 18px 0 0;
+  border-radius: 0;
 }
 .card-img img {
   position: absolute;
@@ -559,10 +559,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   -webkit-backdrop-filter: var(--blur);
   backdrop-filter: var(--blur);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
 }
-.sk-img { aspect-ratio: 3/4; border-radius: 18px 18px 0 0; }
+.sk-img { aspect-ratio: 3/4; border-radius: 0; }
 .sk-line { height: 12px; margin: 12px; width: 70%; border-radius: 6px; }
 .sk-line.s2 { width: 40%; margin-top: 0; }
 .shimmer {
@@ -1470,8 +1470,9 @@ function cardHTML(p) {
   '</div>';
 }
 
-/* модель = название без последнего слова (цвета); варианты = тот же товар в других цветах */
+/* модель товара: явное поле model из данных, иначе — название без последнего слова */
 function modelKey(p) {
+  if (p.model) return String(p.model).toLowerCase();
   const n = (p.name_en || p.name_ru || '').trim();
   return n.replace(/\s+\S+$/, '').toLowerCase();
 }
