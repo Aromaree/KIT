@@ -476,11 +476,12 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .card-img img {
   position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: contain;
+  top: -11%; left: 0;
+  width: 100%; height: 122%;
+  object-fit: cover;
   opacity: 0;
   transition: opacity 0.7s var(--ease);
+  will-change: transform;
 }
 .card-img img.loaded { opacity: 1; }
 .card-img .ph {
@@ -1286,8 +1287,18 @@ function setupAmbientScroll() {
 /* ---------- параллакс фото в карточках при скролле ---------- */
 let parallaxTriggers = [];
 function setupParallax() {
-  /* параллакс отключён: фото показываются целиком (object-fit: contain), без обрезки */
-  if (parallaxTriggers.length) { parallaxTriggers.forEach(t => t.kill()); parallaxTriggers = []; }
+  if (!HAS_ST) return;
+  parallaxTriggers.forEach(t => t.kill());
+  parallaxTriggers = [];
+  document.querySelectorAll('.card-img img').forEach(img => {
+    const tw = gsap.fromTo(img,
+      { yPercent: -8 },
+      { yPercent: 8, ease: 'none',
+        scrollTrigger: { trigger: img.closest('.card'), start: 'top bottom', end: 'bottom top', scrub: true }
+      }
+    );
+    if (tw.scrollTrigger) parallaxTriggers.push(tw.scrollTrigger);
+  });
 }
 
 /* ---------- hero showcase (Swiper) ---------- */
