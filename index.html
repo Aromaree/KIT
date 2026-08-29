@@ -1804,21 +1804,40 @@ function openFromHash() {
   d.addEventListener('touchend', release, { passive: true });
   d.addEventListener('touchcancel', release, { passive: true });
 
-  /* swipe right from left edge still closes */
-  let ex0 = null, ey0 = null;
+  /* горизонтальный свайп — предыдущий / следующий товар */
+  let sx = null, sy = null, multi = false;
   d.addEventListener('touchstart', e => {
-    if (e.touches.length !== 1) return;
-    ex0 = e.touches[0].clientX;
-    ey0 = e.touches[0].clientY;
+    multi = e.touches.length > 1;
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
   }, { passive: true });
   d.addEventListener('touchend', e => {
-    if (ex0 === null) return;
-    const dx = e.changedTouches[0].clientX - ex0;
-    const dyAbs = Math.abs(e.changedTouches[0].clientY - ey0);
-    if (ex0 < 40 && dx > 70 && dyAbs < 60) { haptic('light'); closeDetail(); }
-    ex0 = ey0 = null;
+    if (sx === null || multi) { sx = sy = null; return; }
+    const dx = e.changedTouches[0].clientX - sx;
+    const dyAbs = Math.abs(e.changedTouches[0].clientY - sy);
+    if (Math.abs(dx) > 60 && Math.abs(dx) > dyAbs * 1.5) {
+      navigateDetail(dx < 0 ? 1 : -1);   // влево = следующий, вправо = предыдущий
+    }
+    sx = sy = null;
   }, { passive: true });
 })();
+
+/* ---------- переход между товарами (свайп / стрелки) ---------- */
+function navigateDetail(dir) {
+  if (!currentDetailId || !$('detail').classList.contains('open')) return;
+  const list = filtered();
+  const i = list.findIndex(p => p.id === currentDetailId);
+  if (i < 0 || list.length < 2) return;
+  const j = (i + dir + list.length) % list.length;
+  haptic('light');
+  openDetail(list[j].id, null, { noAnim: true, replace: true });
+}
+document.addEventListener('keydown', e => {
+  if (!$('detail').classList.contains('open')) return;
+  if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); navigateDetail(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); navigateDetail(-1); }
+});
 
 /* ---------- fullscreen zoom lightbox (клик/тап по фото) ---------- */
 function openZoom(src) {
