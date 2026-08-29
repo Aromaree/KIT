@@ -363,6 +363,31 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   z-index: 1;
 }
 .color-bar::-webkit-scrollbar { display: none; }
+/* ---------- lining sub-filter ---------- */
+.lining-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 14px 16px 2px;
+  position: relative;
+  z-index: 1;
+}
+.lining-bar:empty { display: none; }
+.ln {
+  flex: none;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--text2);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.ln.active { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.ln:active { transform: scale(0.95); }
 .cf {
   display: flex;
   align-items: center;
@@ -950,6 +975,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   </div>
   <div class="tabs" id="tabs"></div>
 </div>
+<div class="lining-bar" id="liningBar"></div>
 <div class="color-bar" id="colorBar"></div>
 <div class="count-wrap" id="countWrap">
   <div class="count-num" id="countNum">0</div>
@@ -1088,6 +1114,7 @@ let LANG = 'ru';
 let CAT = (function(){ try { return localStorage.getItem('vv-cat') || 'all'; } catch(e){ return 'all'; } })();
 let QUERY = '';
 let COLOR = '';
+let LINING = ''; // '', 'lined', 'nolining' — подклад (только для пиджаков)
 let PRODUCTS = [];
 
 const tg = window.Telegram && window.Telegram.WebApp;
@@ -1176,7 +1203,14 @@ function byCatAndQuery() {
 }
 
 function filtered() {
-  return byCatAndQuery().filter(p => !COLOR || familyOf(p) === COLOR);
+  return byCatAndQuery().filter(p => {
+    if (COLOR && familyOf(p) !== COLOR) return false;
+    if (CAT === 'pidzhaki' && LINING) {
+      if (LINING === 'lined' && p.lined === false) return false;
+      if (LINING === 'nolining' && p.lined !== false) return false;
+    }
+    return true;
+  });
 }
 
 function renderError() {
@@ -1226,6 +1260,7 @@ function render() {
   $('search').placeholder = t().search;
   $('langBtn').textContent = LANG === 'ru' ? 'EN' : 'RU';
   renderTabs();
+  renderLiningBar();
   renderColorBar();
 
   const items = filtered();
@@ -1417,6 +1452,21 @@ function renderTabs() {
   });
 }
 
+function renderLiningBar() {
+  const bar = $('liningBar');
+  if (CAT !== 'pidzhaki') { bar.innerHTML = ''; return; }
+  const L = LANG === 'ru'
+    ? { all: 'ВСЕ', lined: 'С ПОДКЛАДОМ', nolining: 'БЕЗ ПОДКЛАДА' }
+    : { all: 'ALL', lined: 'LINED', nolining: 'UNLINED' };
+  const opts = [['', L.all], ['lined', L.lined], ['nolining', L.nolining]];
+  bar.innerHTML = opts.map(([v, label]) =>
+    '<button class="ln' + (LINING === v ? ' active' : '') + '" data-ln="' + v + '">' + esc(label) + '</button>'
+  ).join('');
+  bar.querySelectorAll('.ln').forEach(el => {
+    el.onclick = () => { haptic('light'); LINING = el.getAttribute('data-ln'); render(); };
+  });
+}
+
 function renderColorBar() {
   const present = new Set();
   byCatAndQuery().forEach(p => { const f = familyOf(p); if (f) present.add(f); });
@@ -1476,9 +1526,16 @@ function modelKey(p) {
   const n = (p.name_en || p.name_ru || '').trim();
   return n.replace(/\s+\S+$/, '').toLowerCase();
 }
+const PALETTE_ORDER = Object.keys(PALETTE);
+function colorRank(p) {
+  const c = colorList(p.colors)[0];
+  const i = c ? PALETTE_ORDER.indexOf(c) : 999;
+  return i < 0 ? 999 : i;
+}
 function modelVariants(p) {
   const key = modelKey(p);
-  return PRODUCTS.filter(x => modelKey(x) === key);
+  return PRODUCTS.filter(x => modelKey(x) === key)
+    .sort((a, b) => colorRank(a) - colorRank(b) || (a.id < b.id ? -1 : 1));
 }
 
 /* ---------- adaptive accent ---------- */
