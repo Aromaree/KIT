@@ -638,6 +638,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   z-index: 100;
   background: var(--bg);
   overflow-y: auto;
+  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s var(--ease), transform 0.4s var(--ease);
@@ -1823,14 +1824,30 @@ function openFromHash() {
 })();
 
 /* ---------- переход между товарами (свайп / стрелки) ---------- */
+let navBusy = false;
 function navigateDetail(dir) {
-  if (!currentDetailId || !$('detail').classList.contains('open')) return;
+  if (navBusy || !currentDetailId || !$('detail').classList.contains('open')) return;
   const list = filtered();
   const i = list.findIndex(p => p.id === currentDetailId);
   if (i < 0 || list.length < 2) return;
   const j = (i + dir + list.length) % list.length;
+  const id = list[j].id;
   haptic('light');
-  openDetail(list[j].id, null, { noAnim: true, replace: true });
+  const content = $('detailContent');
+  if (!HAS_GSAP) { openDetail(id, null, { noAnim: true, replace: true }); return; }
+  navBusy = true;
+  const out = dir > 0 ? -70 : 70;   // следующий уезжает влево, приходит справа
+  gsap.to(content, {
+    x: out, opacity: 0, duration: 0.16, ease: 'power2.in',
+    onComplete: () => {
+      openDetail(id, null, { noAnim: true, replace: true });
+      gsap.fromTo(content,
+        { x: -out, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.28, ease: 'power3.out',
+          onComplete: () => { content.style.transform = ''; navBusy = false; } }
+      );
+    }
+  });
 }
 document.addEventListener('keydown', e => {
   if (!$('detail').classList.contains('open')) return;
