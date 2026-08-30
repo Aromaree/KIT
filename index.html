@@ -1045,7 +1045,8 @@ const FAMILIES = {
   brown:  { hex: '#6b4226', ru: 'КОРИЧНЕВЫЙ', en: 'BROWN'  },
   red:    { hex: '#a83a2a', ru: 'КРАСНЫЙ',    en: 'RED'    },
   purple: { hex: '#4a1f3a', ru: 'ФИОЛЕТОВЫЙ', en: 'PURPLE' },
-  beige:  { hex: '#d3c1a0', ru: 'БЕЖЕВЫЙ',    en: 'BEIGE'  }
+  beige:  { hex: '#d3c1a0', ru: 'БЕЖЕВЫЙ',    en: 'BEIGE'  },
+  white:  { hex: '#f2f2ef', ru: 'БЕЛЫЙ',      en: 'WHITE'  }
 };
 /* к какому основному семейству относится каждый оттенок */
 const FAMILY_OF = {
@@ -1054,7 +1055,7 @@ const FAMILY_OF = {
   sand:'beige', slate:'grey', taba:'brown', kiremit:'red', kkiremit:'red',
   kahve:'brown', antrasit:'grey', yesil:'green', murdum:'purple', laci:'blue',
   klaci:'blue', siyah:'black', haki:'green', alaci:'blue', c295:'grey',
-  c671:'blue', abej:'beige', bej:'beige', ekru:'beige', beyaz:'beige'
+  c671:'blue', abej:'beige', bej:'beige', ekru:'beige', beyaz:'white'
 };
 function familyOf(p) {
   const c = colorList(p.colors)[0];
