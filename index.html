@@ -469,12 +469,51 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
     max-width: 1080px;
     margin: 0 auto;
   }
-  /* центрируем шапку-контент по той же ширине, что и карточки */
-  .search-wrap, .tabs, .color-bar, .count-wrap {
-    max-width: 1080px;
-    margin-left: auto;
-    margin-right: auto;
+  .count-wrap { max-width: 1080px; margin: 0 auto; }
+}
+
+/* ---------- LAYOUT + RIGHT SIDEBAR ---------- */
+.layout { display: flex; flex-direction: column; position: relative; z-index: 1; }
+.main { min-width: 0; }
+.sidebar { order: -1; }   /* на телефоне фильтры сверху */
+
+@media (min-width: 900px) {
+  .layout { display: block; }
+  .header { margin-right: 300px; }
+  .main { margin-right: 300px; }
+  .sidebar {
+    order: 0;
+    position: fixed;
+    top: 0; right: 0;
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 45;
+    padding: 28px 24px calc(40px + env(safe-area-inset-bottom));
+    padding-top: calc(28px + env(safe-area-inset-top));
+    border-left: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.42);
+    -webkit-backdrop-filter: blur(26px) saturate(1.7);
+    backdrop-filter: blur(26px) saturate(1.7);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+  .sidebar::-webkit-scrollbar { display: none; }
+  .sidebar .search-wrap { border-top: none; }
+  /* вертикальные категории */
+  .sidebar .tabs { flex-direction: column; align-items: stretch; gap: 3px; padding: 0; border-bottom: none; overflow: visible; }
+  .sidebar .tab { padding: 11px 13px; border-radius: 12px; font-size: 13px; }
+  .sidebar .tab::after { display: none; }
+  .sidebar .tab.active { background: rgba(0,0,0,0.055); }
+  .sidebar .tab .tab-n { margin-left: 6px; }
+  /* подклад и цвета — переносом в столбик */
+  .sidebar .lining-bar { flex-wrap: wrap; padding: 0; gap: 8px; }
+  .sidebar .color-bar { flex-wrap: wrap; overflow: visible; padding: 0; gap: 8px; }
+  /* кнопка вверх — левее панели */
+  .to-top { right: 316px; }
 }
 .card {
   min-width: 0;
@@ -971,20 +1010,26 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
     <button class="lang-btn" id="langBtn">EN</button>
   </div>
   <div class="subtitle" id="subtitle"></div>
-  <div class="search-wrap" id="searchWrap">
-    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
-    <input type="text" class="search-input" id="search" autocomplete="off">
-    <button class="search-clear" id="searchClear">&#10005;</button>
-  </div>
-  <div class="tabs" id="tabs"></div>
 </div>
-<div class="lining-bar" id="liningBar"></div>
-<div class="color-bar" id="colorBar"></div>
-<div class="count-wrap" id="countWrap">
-  <div class="count-num" id="countNum">0</div>
-  <div class="count-label" id="countLabel"></div>
+<div class="layout">
+  <main class="main">
+    <div class="count-wrap" id="countWrap">
+      <div class="count-num" id="countNum">0</div>
+      <div class="count-label" id="countLabel"></div>
+    </div>
+    <div id="content"></div>
+  </main>
+  <aside class="sidebar" id="sidebar">
+    <div class="search-wrap" id="searchWrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
+      <input type="text" class="search-input" id="search" autocomplete="off">
+      <button class="search-clear" id="searchClear">&#10005;</button>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="lining-bar" id="liningBar"></div>
+    <div class="color-bar" id="colorBar"></div>
+  </aside>
 </div>
-<div id="content"></div>
 
 <button class="to-top" id="toTop">&#8593;</button>
 
