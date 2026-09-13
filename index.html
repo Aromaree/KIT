@@ -1485,51 +1485,55 @@ function renderHero() {
   }
 }
 
-/* ---------- card events: tap + long-press quick look ---------- */
+/* ---------- card events: photo opens detail, dots switch color ---------- */
 function attachCardEvents(el) {
   const cid = () => el.getAttribute('data-id');
+  const imgZone = el.querySelector('.card-img');
   let lpTimer = null, lpFired = false, sx = 0, sy = 0;
 
-  el.addEventListener('touchstart', e => {
-    if (e.touches.length !== 1) return;
-    if (e.target.closest('.mdot')) return;   // тап по кружку — не превью
-    sx = e.touches[0].clientX;
-    sy = e.touches[0].clientY;
-    lpFired = false;
-    lpTimer = setTimeout(() => {
-      lpFired = true;
-      haptic('medium');
-      openQuickLook(cid());
-    }, 420);
-  }, { passive: true });
+  /* --- зона фото: тап открывает карточку, долгий тап — превью --- */
+  if (imgZone) {
+    imgZone.addEventListener('touchstart', e => {
+      if (e.touches.length !== 1) return;
+      sx = e.touches[0].clientX;
+      sy = e.touches[0].clientY;
+      lpFired = false;
+      lpTimer = setTimeout(() => {
+        lpFired = true;
+        haptic('medium');
+        openQuickLook(cid());
+      }, 420);
+    }, { passive: true });
 
-  el.addEventListener('touchmove', e => {
-    const dx = Math.abs(e.touches[0].clientX - sx);
-    const dy = Math.abs(e.touches[0].clientY - sy);
-    if (dx > 10 || dy > 10) { clearTimeout(lpTimer); }
-  }, { passive: true });
+    imgZone.addEventListener('touchmove', e => {
+      const dx = Math.abs(e.touches[0].clientX - sx);
+      const dy = Math.abs(e.touches[0].clientY - sy);
+      if (dx > 10 || dy > 10) { clearTimeout(lpTimer); }
+    }, { passive: true });
 
-  el.addEventListener('touchend', () => {
-    clearTimeout(lpTimer);
-    if (lpFired) closeQuickLook();
-  }, { passive: true });
+    imgZone.addEventListener('touchend', () => {
+      clearTimeout(lpTimer);
+      if (lpFired) closeQuickLook();
+    }, { passive: true });
+    imgZone.addEventListener('touchcancel', () => {
+      clearTimeout(lpTimer);
+      if (lpFired) closeQuickLook();
+    }, { passive: true });
 
-  el.addEventListener('touchcancel', () => {
-    clearTimeout(lpTimer);
-    if (lpFired) closeQuickLook();
-  }, { passive: true });
+    imgZone.addEventListener('click', e => {
+      if (lpFired) { e.preventDefault(); return; }
+      haptic('light');
+      openDetail(cid(), el);
+    });
+  }
 
-  /* один обработчик решает: кружок → смена фото, иначе → открыть карточку */
-  el.addEventListener('click', e => {
-    if (lpFired) { e.preventDefault(); return; }
-    const dot = e.target.closest('.mdot');
-    if (dot) {
+  /* --- кружки: сменить цвет модели прямо в каталоге --- */
+  el.querySelectorAll('.mdot[data-goto]').forEach(dot => {
+    dot.addEventListener('click', e => {
       e.preventDefault();
+      e.stopPropagation();
       selectTileColor(el, dot.getAttribute('data-goto'));
-      return;
-    }
-    haptic('light');
-    openDetail(cid(), el);
+    });
   });
 }
 
