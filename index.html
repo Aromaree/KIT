@@ -613,16 +613,22 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
   margin-top: 10px;
 }
 .mdot {
-  width: 16px; height: 16px;
+  width: 17px; height: 17px;
+  padding: 0;
   border-radius: 50%;
   flex: none;
+  cursor: pointer;
   border: 2px solid #fff;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.18);
+  transition: transform 0.15s var(--spring), box-shadow 0.2s;
 }
+.mdot:hover { transform: scale(1.15); }
+.mdot:active { transform: scale(0.9); }
+.mdot.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text); }
 .mmore {
   font-size: 10px;
   letter-spacing: 0.05em;
@@ -1479,18 +1485,19 @@ function renderHero() {
 
 /* ---------- card events: tap + long-press quick look ---------- */
 function attachCardEvents(el) {
-  const id = el.getAttribute('data-id');
+  const cid = () => el.getAttribute('data-id');
   let lpTimer = null, lpFired = false, sx = 0, sy = 0;
 
   el.addEventListener('touchstart', e => {
     if (e.touches.length !== 1) return;
+    if (e.target.closest('.mdot')) return;   // тап по кружку — не превью
     sx = e.touches[0].clientX;
     sy = e.touches[0].clientY;
     lpFired = false;
     lpTimer = setTimeout(() => {
       lpFired = true;
       haptic('medium');
-      openQuickLook(id);
+      openQuickLook(cid());
     }, 420);
   }, { passive: true });
 
@@ -1510,11 +1517,38 @@ function attachCardEvents(el) {
     if (lpFired) closeQuickLook();
   }, { passive: true });
 
+  /* клик по кружку — сменить цвет модели прямо в каталоге */
+  el.querySelectorAll('.mdot[data-goto]').forEach(dot => {
+    dot.addEventListener('click', e => {
+      e.stopPropagation();
+      selectTileColor(el, dot.getAttribute('data-goto'));
+    });
+  });
+
   el.addEventListener('click', e => {
     if (lpFired) { e.preventDefault(); return; }
+    if (e.target.closest('.mdot')) return;   // кружок обрабатывается отдельно
     haptic('light');
-    openDetail(id, el);
+    openDetail(cid(), el);
   });
+}
+
+/* сменить фото/цвет плитки в каталоге без открытия карточки */
+function selectTileColor(el, gid) {
+  const v = PRODUCTS.find(x => x.id === gid);
+  if (!v) return;
+  if (el.getAttribute('data-id') === gid) return;
+  haptic('light');
+  el.setAttribute('data-id', gid);
+  const img = el.querySelector('.card-img img');
+  if (img && v.image) {
+    img.classList.remove('loaded');
+    img.removeAttribute('data-src');
+    img.onload = () => img.classList.add('loaded');
+    img.src = v.image;
+  }
+  el.querySelectorAll('.mdot').forEach(d =>
+    d.classList.toggle('active', d.getAttribute('data-goto') === gid));
 }
 
 /* ---------- quick look ---------- */
@@ -1633,17 +1667,18 @@ function groupByModel(items) {
   return [...map.values()];
 }
 
-/* карточка-модель: одно фото на модель + кружки всех её цветов */
+/* карточка-модель: одно фото на модель + кликабельные кружки всех её цветов */
 function modelCardHTML(group) {
   const rep = group[0];
   const variants = modelVariants(rep);
   const n = variants.length;
-  const maxDots = 9;
-  const dots = variants.slice(0, maxDots).map(v => {
+  const dots = variants.map(v => {
     const c = colorList(v.colors)[0];
     const hex = c ? PALETTE[c].hex : '#cccccc';
-    return '<span class="mdot" style="background:' + hex + '"></span>';
-  }).join('') + (n > maxDots ? '<span class="mmore">+' + (n - maxDots) + '</span>' : '');
+    const label = c ? PALETTE[c][LANG] : v.id;
+    return '<button class="mdot' + (v.id === rep.id ? ' active' : '') + '" data-goto="' + esc(v.id) +
+           '" style="background:' + hex + '" title="' + esc(label) + '" aria-label="' + esc(label) + '"></button>';
+  }).join('');
   const modelName = (catWordOf(rep.cat) + ' ' + (rep.model || '')).trim();
   const colorsLabel = LANG === 'ru'
     ? (n + ' ' + plural(n, 'ЦВЕТ', 'ЦВЕТА', 'ЦВЕТОВ'))
