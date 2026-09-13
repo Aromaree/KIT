@@ -613,10 +613,11 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 11px;
   margin-top: 10px;
 }
 .mdot {
+  position: relative;
   width: 17px; height: 17px;
   padding: 0;
   border-radius: 50%;
@@ -626,6 +627,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   box-shadow: 0 0 0 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.18);
   transition: transform 0.15s var(--spring), box-shadow 0.2s;
 }
+.mdot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; }
 .mdot:hover { transform: scale(1.15); }
 .mdot:active { transform: scale(0.9); }
 .mdot.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text); }
