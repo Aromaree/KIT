@@ -609,6 +609,26 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.mdots {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+.mdot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  flex: none;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.18);
+}
+.mmore {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--text2);
+  margin-left: 2px;
+}
 
 /* ---------- SKELETON ---------- */
 .sk-grid {
@@ -1335,15 +1355,16 @@ function render() {
   renderColorBar();
 
   const items = filtered();
-  animateCount(items.length);
+  const groups = groupByModel(items);
+  animateCount(groups.length);
 
-  if (!items.length) {
+  if (!groups.length) {
     $('content').innerHTML = '<div class="state">' + t().empty + '</div>';
     return;
   }
 
   $('content').innerHTML = '<div class="grid">' +
-    items.map(p => cardHTML(p)).join('') + '</div>';
+    groups.map(modelCardHTML).join('') + '</div>';
   document.querySelectorAll('.card').forEach((el, i) => {
     el.dataset.stagger = i % 6;
     attachCardEvents(el);
@@ -1360,7 +1381,7 @@ let countTween = null;
 function animateCount(n) {
   const numEl = $('countNum');
   const labelEl = $('countLabel');
-  const labelText = LANG === 'ru' ? plural(n, 'ПОЗИЦИЯ', 'ПОЗИЦИИ', 'ПОЗИЦИЙ') : 'ITEMS';
+  const labelText = LANG === 'ru' ? plural(n, 'МОДЕЛЬ', 'МОДЕЛИ', 'МОДЕЛЕЙ') : 'MODELS';
   if (!HAS_GSAP) { numEl.textContent = n; labelEl.textContent = labelText; return; }
   labelEl.textContent = labelText;
   const obj = { v: parseInt(numEl.textContent) || 0 };
@@ -1598,6 +1619,48 @@ function modelKey(p) {
   const n = (p.name_en || p.name_ru || '').trim();
   return n.replace(/\s+\S+$/, '').toLowerCase();
 }
+const CAT_WORD = { pidzhaki: ['ПИДЖАК', 'JACKET'], bryuki: ['БРЮКИ', 'TROUSERS'], palto: ['ПАЛЬТО', 'COAT'] };
+function catWordOf(cat) { const w = CAT_WORD[cat] || ['', '']; return LANG === 'ru' ? w[0] : w[1]; }
+
+/* группировка отфильтрованных товаров по модели (порядок — первого появления) */
+function groupByModel(items) {
+  const map = new Map();
+  items.forEach(p => {
+    const k = modelKey(p);
+    if (!map.has(k)) map.set(k, []);
+    map.get(k).push(p);
+  });
+  return [...map.values()];
+}
+
+/* карточка-модель: одно фото на модель + кружки всех её цветов */
+function modelCardHTML(group) {
+  const rep = group[0];
+  const variants = modelVariants(rep);
+  const n = variants.length;
+  const maxDots = 9;
+  const dots = variants.slice(0, maxDots).map(v => {
+    const c = colorList(v.colors)[0];
+    const hex = c ? PALETTE[c].hex : '#cccccc';
+    return '<span class="mdot" style="background:' + hex + '"></span>';
+  }).join('') + (n > maxDots ? '<span class="mmore">+' + (n - maxDots) + '</span>' : '');
+  const modelName = (catWordOf(rep.cat) + ' ' + (rep.model || '')).trim();
+  const colorsLabel = LANG === 'ru'
+    ? (n + ' ' + plural(n, 'ЦВЕТ', 'ЦВЕТА', 'ЦВЕТОВ'))
+    : (n + ' COLOR' + (n > 1 ? 'S' : ''));
+  return '<div class="card" data-id="' + esc(rep.id) + '">' +
+    '<div class="card-press">' +
+      '<div class="card-img">' + imgHTML(rep, true) +
+        '<span class="art-tag">' + esc(colorsLabel) + '</span>' +
+      '</div>' +
+      '<div class="card-info">' +
+        '<div class="card-name">' + esc(modelName) + '</div>' +
+        '<div class="mdots">' + dots + '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
 const PALETTE_ORDER = Object.keys(PALETTE);
 function colorRank(p) {
   const c = colorList(p.colors)[0];
