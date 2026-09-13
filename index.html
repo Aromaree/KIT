@@ -1671,10 +1671,16 @@ function groupByModel(items) {
 }
 
 /* карточка-модель: одно фото на модель + кликабельные кружки всех её цветов */
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
 function modelCardHTML(group) {
-  const rep = group[0];
-  const variants = modelVariants(rep);
+  const variants = modelVariants(group[0]);
   const n = variants.length;
+  /* цвет по умолчанию — разный у каждой модели (пёстрый разнобой), но стабильный */
+  const rep = COLOR ? group[0] : variants[hashStr(modelKey(group[0])) % n];
   const dots = variants.map(v => {
     const c = colorList(v.colors)[0];
     const hex = c ? PALETTE[c].hex : '#cccccc';
