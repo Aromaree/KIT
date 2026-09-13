@@ -1519,17 +1519,15 @@ function attachCardEvents(el) {
     if (lpFired) closeQuickLook();
   }, { passive: true });
 
-  /* клик по кружку — сменить цвет модели прямо в каталоге */
-  el.querySelectorAll('.mdot[data-goto]').forEach(dot => {
-    dot.addEventListener('click', e => {
-      e.stopPropagation();
-      selectTileColor(el, dot.getAttribute('data-goto'));
-    });
-  });
-
+  /* один обработчик решает: кружок → смена фото, иначе → открыть карточку */
   el.addEventListener('click', e => {
     if (lpFired) { e.preventDefault(); return; }
-    if (e.target.closest('.mdot')) return;   // кружок обрабатывается отдельно
+    const dot = e.target.closest('.mdot');
+    if (dot) {
+      e.preventDefault();
+      selectTileColor(el, dot.getAttribute('data-goto'));
+      return;
+    }
     haptic('light');
     openDetail(cid(), el);
   });
