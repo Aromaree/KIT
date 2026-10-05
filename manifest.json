@@ -1,0 +1,17 @@
+{
+  "name": "VANVION — оптовый каталог",
+  "short_name": "VANVION",
+  "description": "Оптовый каталог мужской классической одежды VANVION",
+  "start_url": "./?src=homescreen",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f5f3",
+  "theme_color": "#1a1814",
+  "lang": "ru",
+  "icons": [
+    { "src": "apple-touch-icon.png?v=3", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png?v=3", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png?v=3", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
