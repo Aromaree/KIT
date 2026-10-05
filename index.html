@@ -1740,8 +1740,11 @@ function closeQuickLook() {
 
 function renderTabs() {
   const order = ['all', 'bryuki', 'pidzhaki', 'palto'];
+  // Скрываем категорию, если в ней нет товаров (напр. ПАЛЬТО). Вкладка вернётся
+  // автоматически, как только для неё появятся товары — ничего удалять не нужно.
   $('tabs').innerHTML = order.map(c => {
     const n = c === 'all' ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c).length;
+    if (c !== 'all' && n === 0) return '';
     return '<button class="tab' + (CAT === c ? ' active' : '') + '" data-cat="' + c + '">' +
       t().tabs[c] + (n ? '<span class="tab-n">' + n + '</span>' : '') + '</button>';
   }).join('');
