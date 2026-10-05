@@ -834,6 +834,9 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   will-change: transform;
 }
 .detail-img img.loaded { opacity: 1; }
+/* две фотографии рядом (полный вид + крупный план ткани) */
+.detail-img.duo { aspect-ratio: 3 / 2; display: flex; gap: 3px; }
+.detail-img.duo img { width: 50%; }
 .detail-img img.zooming { transition: none; }
 .detail-img img.zoom-reset { transition: transform 0.45s var(--spring), opacity 0.5s var(--ease); }
 .detail-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
@@ -1334,7 +1337,7 @@ const I18N = {
     tabs: { all: 'ВСЕ', bryuki: 'БРЮКИ', pidzhaki: 'ПИДЖАКИ', palto: 'ПАЛЬТО' },
     count: n => n + ' ' + plural(n, 'ПОЗИЦИЯ', 'ПОЗИЦИИ', 'ПОЗИЦИЙ'),
     cat: { bryuki: 'БРЮКИ', pidzhaki: 'ПИДЖАКИ', palto: 'ПАЛЬТО' },
-    specs: ['СОСТАВ', 'СИЛУЭТ', 'ПОДКЛАДКА', 'ПУГОВИЦЫ', 'СТРАНА', 'РАЗМЕРНЫЙ РЯД'],
+    specs: ['СОСТАВ', 'СИЛУЭТ', 'РОСТ', 'ПОДКЛАДКА', 'ПУГОВИЦЫ', 'СТРАНА', 'РАЗМЕРНЫЙ РЯД'],
     colors: 'ЦВЕТА',
     related: 'ПОХОЖИЕ МОДЕЛИ',
     newin: 'НОВИНКИ',
@@ -1353,7 +1356,7 @@ const I18N = {
     tabs: { all: 'ALL', bryuki: 'TROUSERS', pidzhaki: 'JACKETS', palto: 'COATS' },
     count: n => n + ' ' + (n === 1 ? 'ITEM' : 'ITEMS'),
     cat: { bryuki: 'TROUSERS', pidzhaki: 'JACKETS', palto: 'COATS' },
-    specs: ['COMPOSITION', 'SILHOUETTE', 'LINING', 'BUTTONS', 'COUNTRY', 'SIZE RANGE'],
+    specs: ['COMPOSITION', 'SILHOUETTE', 'HEIGHT', 'LINING', 'BUTTONS', 'COUNTRY', 'SIZE RANGE'],
     colors: 'COLORS',
     related: 'SIMILAR STYLES',
     newin: 'NEW IN',
@@ -1952,6 +1955,7 @@ function openDetail(id, cardEl, opts) {
   const specs = [
     ru ? p.comp_ru : p.comp_en,
     ru ? p.sil_ru : p.sil_en,
+    ru ? p.ros_ru : p.ros_en,
     ru ? p.lin_ru : p.lin_en,
     ru ? p.btn_ru : p.btn_en,
     ru ? p.country_ru : p.country_en,
@@ -1968,15 +1972,18 @@ function openDetail(id, cardEl, opts) {
   }).join('');
   const curColor = colorList(p.colors)[0];
   const curLabel = curColor ? PALETTE[curColor][LANG] : '';
-  const rows = t().specs.map((k, i) =>
-    '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>'
-  ).join('');
+  const rows = t().specs.map((k, i) => {
+    /* строку РОСТ показываем только если значение есть (у брюк/оверсайза её нет) */
+    if ((k === 'РОСТ' || k === 'HEIGHT') && !specs[i]) return '';
+    return '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>';
+  }).join('');
 
   setAccent(p);
 
   $('detailArt').textContent = p.id;
   $('detailContent').innerHTML =
-    '<div class="detail-img" id="detailImg">' + imgHTML(p) +
+    '<div class="detail-img' + (p.image2 ? ' duo' : '') + '" id="detailImg">' + imgHTML(p) +
+      (p.image2 ? '<img src="' + esc(p.image2) + '" alt="" data-fade decoding="async" onerror="this.style.display=\'none\'">' : '') +
       (p.image ? '<span class="zoom-hint">' + t().zoom + '</span>' : '') +
     '</div>' +
     '<div class="detail-body">' +
@@ -2264,9 +2271,10 @@ function setupZoom() {
   /* клик/тап по фото — открыть полноэкранный зум (если это не свайп/пинч) */
   wrap.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; moved = false; });
   wrap.addEventListener('pointermove', e => { if (Math.abs(e.clientX - sx) > 8 || Math.abs(e.clientY - sy) > 8) moved = true; });
-  wrap.addEventListener('click', () => {
+  wrap.addEventListener('click', e => {
     if (moved || zooming) return;
-    openZoom(img.currentSrc || img.src);
+    const tgt = (e.target && e.target.tagName === 'IMG') ? e.target : img;
+    openZoom(tgt.currentSrc || tgt.src);
   });
 
   wrap.addEventListener('touchstart', e => {

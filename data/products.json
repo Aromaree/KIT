@@ -8,8 +8,8 @@
   "image": "images/PR-2018.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -18,7 +18,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2017",
@@ -29,8 +31,8 @@
   "image": "images/PR-2017.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -39,7 +41,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2016",
@@ -50,8 +54,8 @@
   "image": "images/PR-2016.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -60,7 +64,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2013",
@@ -71,8 +77,8 @@
   "image": "images/PR-2013.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -81,7 +87,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2015",
@@ -92,8 +100,8 @@
   "image": "images/PR-2015.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -102,7 +110,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2014",
@@ -113,8 +123,8 @@
   "image": "images/PR-2014.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -123,7 +133,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2012",
@@ -134,8 +146,8 @@
   "image": "images/PR-2012.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -144,7 +156,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2011",
@@ -155,8 +169,8 @@
   "image": "images/PR-2011.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -165,7 +179,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2010",
@@ -176,8 +192,8 @@
   "image": "images/PR-2010.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -186,7 +202,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2009",
@@ -197,8 +215,8 @@
   "image": "images/PR-2009.jpg",
   "comp_ru": "ПОЛИЭСТЕР 65% ВИСКОЗА 35%",
   "comp_en": "POLYESTER 65% VISCOSE 35%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "ВИСКОЗА",
   "lin_en": "VISCOSE",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -207,7 +225,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "SONILI",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2019",
@@ -218,8 +238,8 @@
   "image": "images/PR-2019.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -228,7 +248,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2020",
@@ -239,8 +261,8 @@
   "image": "images/PR-2020.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -249,7 +271,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2021",
@@ -260,8 +284,8 @@
   "image": "images/PR-2021.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -270,7 +294,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2022",
@@ -281,8 +307,8 @@
   "image": "images/PR-2022.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -291,7 +317,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2023",
@@ -302,8 +330,8 @@
   "image": "images/PR-2023.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -312,7 +340,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2024",
@@ -323,8 +353,8 @@
   "image": "images/PR-2024.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -333,7 +363,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2025",
@@ -344,8 +376,8 @@
   "image": "images/PR-2025.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -354,7 +386,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2026",
@@ -365,8 +399,8 @@
   "image": "images/PR-2026.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -375,7 +409,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2027",
@@ -386,8 +422,8 @@
   "image": "images/PR-2027.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -396,7 +432,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2028",
@@ -407,8 +445,8 @@
   "image": "images/PR-2028.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -417,7 +455,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2029",
@@ -428,8 +468,8 @@
   "image": "images/PR-2029.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -438,7 +478,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2030",
@@ -449,8 +491,8 @@
   "image": "images/PR-2030.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -459,7 +501,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2031",
@@ -470,8 +514,8 @@
   "image": "images/PR-2031.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -480,7 +524,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-2032",
@@ -491,8 +537,8 @@
   "image": "images/PR-2032.jpg",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -501,7 +547,9 @@
   "country_en": "TURKEY",
   "sizes": "46–56",
   "model": "LINEN",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-3001",
@@ -653,8 +701,8 @@
   "model": "1128 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -662,7 +710,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4076",
@@ -674,8 +724,8 @@
   "model": "1128 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -683,7 +733,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4032",
@@ -695,8 +747,8 @@
   "model": "1554 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -704,7 +756,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4029",
@@ -716,8 +770,8 @@
   "model": "1554 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -725,7 +779,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4071",
@@ -737,8 +793,8 @@
   "model": "ALVES",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -746,7 +802,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4077",
@@ -758,8 +816,8 @@
   "model": "ALVES",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -767,7 +825,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4034",
@@ -779,8 +839,8 @@
   "model": "BAGGY-70",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -788,7 +848,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4045",
@@ -800,8 +862,8 @@
   "model": "BAGGY-70",
   "comp_ru": "ХЛОПОК 97% ПОЛИЭСТЕР 3%",
   "comp_en": "COTTON 97% POLYESTER 3%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -809,7 +871,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4074",
@@ -821,8 +885,8 @@
   "model": "COSMOS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -830,7 +894,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4075",
@@ -842,8 +908,8 @@
   "model": "COSMOS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -851,7 +917,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4001",
@@ -863,8 +931,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -872,7 +940,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4002",
@@ -884,8 +954,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -893,7 +963,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4003",
@@ -905,8 +977,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -914,7 +986,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4005",
@@ -926,8 +1000,8 @@
   "model": "FLORIDA",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -935,7 +1009,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4006",
@@ -947,8 +1023,8 @@
   "model": "FLORIDA",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -956,7 +1032,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4025",
@@ -968,8 +1046,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -977,7 +1055,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4028",
@@ -989,8 +1069,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -998,7 +1078,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4010",
@@ -1010,8 +1092,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1019,7 +1101,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4011",
@@ -1031,8 +1115,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1040,7 +1124,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4012",
@@ -1052,8 +1138,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1061,7 +1147,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4013",
@@ -1073,8 +1161,8 @@
   "model": "GIO 59 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1082,7 +1170,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4014",
@@ -1094,8 +1184,8 @@
   "model": "GIO 70",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1103,7 +1193,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4018",
@@ -1115,8 +1207,8 @@
   "model": "GIO FERRARI",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1124,7 +1216,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4008",
@@ -1136,8 +1230,8 @@
   "model": "GIO FERRARI",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1145,7 +1239,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4019",
@@ -1157,8 +1253,8 @@
   "model": "GIO FERRARI",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1166,7 +1262,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4016",
@@ -1178,8 +1276,8 @@
   "model": "GIO FERRARI",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1187,7 +1285,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4009",
@@ -1199,8 +1299,8 @@
   "model": "GIO FERRARI",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1208,7 +1308,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4015",
@@ -1220,8 +1322,8 @@
   "model": "GIO SMART",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1229,7 +1331,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4024",
@@ -1241,8 +1345,8 @@
   "model": "GIO SMART",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1250,7 +1354,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4021",
@@ -1262,8 +1368,8 @@
   "model": "GIO SMART",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1271,7 +1377,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4020",
@@ -1283,8 +1391,8 @@
   "model": "GIO SMART",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1292,7 +1400,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4017",
@@ -1304,8 +1414,8 @@
   "model": "GIO SMART",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1313,7 +1423,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4067",
@@ -1325,8 +1437,8 @@
   "model": "JOLLY",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1334,7 +1446,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4026",
@@ -1346,8 +1460,8 @@
   "model": "JOLLY",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1355,7 +1469,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4022",
@@ -1367,8 +1483,8 @@
   "model": "JOLLY",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1376,7 +1492,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4027",
@@ -1388,8 +1506,8 @@
   "model": "JOLLY",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1397,7 +1515,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4040",
@@ -1409,8 +1529,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1418,7 +1538,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4049",
@@ -1430,8 +1552,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1439,7 +1561,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4036",
@@ -1451,8 +1575,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1460,7 +1584,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4039",
@@ -1472,8 +1598,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1481,7 +1607,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4035",
@@ -1493,8 +1621,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1502,7 +1630,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4042",
@@ -1514,8 +1644,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1523,7 +1653,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4047",
@@ -1535,8 +1667,8 @@
   "model": "LINEN",
   "comp_ru": "ЛЁН 100%",
   "comp_en": "LINEN 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1544,7 +1676,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4050",
@@ -1556,8 +1690,8 @@
   "model": "MINAR EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1565,7 +1699,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4051",
@@ -1577,8 +1713,8 @@
   "model": "MINAR EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1586,7 +1722,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4052",
@@ -1598,8 +1736,8 @@
   "model": "MINAR EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1607,7 +1745,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4053",
@@ -1619,8 +1759,8 @@
   "model": "MINAR EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1628,7 +1768,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4054",
@@ -1640,8 +1782,8 @@
   "model": "MINAR EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1649,7 +1791,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4055",
@@ -1661,8 +1805,8 @@
   "model": "OSCAR",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1670,7 +1814,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4056",
@@ -1682,8 +1828,8 @@
   "model": "OSCAR",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1691,7 +1837,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4057",
@@ -1703,8 +1851,8 @@
   "model": "OSCAR",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1712,7 +1860,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4058",
@@ -1724,8 +1874,8 @@
   "model": "OSCAR",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1733,7 +1883,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4007",
@@ -1745,8 +1897,8 @@
   "model": "OSCAR",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1754,7 +1906,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4063",
@@ -1766,8 +1920,8 @@
   "model": "ROYAL EKS",
   "comp_ru": "ЛЁН 30% ВИСКОЗА 67% ЭЛАСТАН 3%",
   "comp_en": "LINEN 30% VISCOSE 67% ELASTANE 3%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1775,7 +1929,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4064",
@@ -1787,8 +1943,8 @@
   "model": "ROYAL EKS",
   "comp_ru": "ЛЁН 30% ВИСКОЗА 67% ЭЛАСТАН 3%",
   "comp_en": "LINEN 30% VISCOSE 67% ELASTANE 3%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1796,7 +1952,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4065",
@@ -1808,8 +1966,8 @@
   "model": "ROYAL EKS",
   "comp_ru": "ЛЁН 30% ВИСКОЗА 67% ЭЛАСТАН 3%",
   "comp_en": "LINEN 30% VISCOSE 67% ELASTANE 3%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1817,7 +1975,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4066",
@@ -1829,8 +1989,8 @@
   "model": "ROYAL EKS",
   "comp_ru": "ЛЁН 30% ВИСКОЗА 67% ЭЛАСТАН 3%",
   "comp_en": "LINEN 30% VISCOSE 67% ELASTANE 3%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1838,7 +1998,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4068",
@@ -1850,8 +2012,8 @@
   "model": "STOCKHOLM",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1859,7 +2021,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4069",
@@ -1871,8 +2035,8 @@
   "model": "STOCKHOLM",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1880,7 +2044,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4070",
@@ -1892,8 +2058,8 @@
   "model": "STOCKHOLM",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1901,7 +2067,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4073",
@@ -1913,8 +2081,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1922,7 +2090,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4095",
@@ -1934,8 +2104,8 @@
   "model": "1128 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1943,7 +2113,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4094",
@@ -1955,8 +2127,8 @@
   "model": "1128 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1964,7 +2136,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4112",
@@ -1976,8 +2150,8 @@
   "model": "1128 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -1985,7 +2159,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4083",
@@ -1997,8 +2173,8 @@
   "model": "1445 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2006,7 +2182,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4087",
@@ -2018,8 +2196,8 @@
   "model": "1554 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2027,7 +2205,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4084",
@@ -2039,8 +2219,8 @@
   "model": "1554 JAKAR",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2048,7 +2228,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4088",
@@ -2060,8 +2242,8 @@
   "model": "3133 JAKAR",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2069,7 +2251,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4089",
@@ -2081,8 +2265,8 @@
   "model": "3133 JAKAR",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2090,7 +2274,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4090",
@@ -2102,8 +2288,8 @@
   "model": "3133 JAKAR",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2111,7 +2297,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4091",
@@ -2123,8 +2311,8 @@
   "model": "ADA",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2132,7 +2320,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4092",
@@ -2144,8 +2334,8 @@
   "model": "ADA",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2153,7 +2343,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4093",
@@ -2165,8 +2357,8 @@
   "model": "ADA",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2174,7 +2366,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4096",
@@ -2186,8 +2380,8 @@
   "model": "ALVES EKS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2195,7 +2389,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4097",
@@ -2207,8 +2403,8 @@
   "model": "ALVES EKS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2216,7 +2412,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4098",
@@ -2228,8 +2426,8 @@
   "model": "ALVES EKS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2237,7 +2435,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4099",
@@ -2249,8 +2449,8 @@
   "model": "ALVES EKS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2258,7 +2458,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4100",
@@ -2270,8 +2472,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2279,7 +2481,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4101",
@@ -2291,8 +2495,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2300,7 +2504,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4102",
@@ -2312,8 +2518,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2321,7 +2527,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4103",
@@ -2333,8 +2541,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2342,7 +2550,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4104",
@@ -2354,8 +2564,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2363,7 +2573,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4105",
@@ -2375,8 +2587,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2384,7 +2596,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4106",
@@ -2396,8 +2610,8 @@
   "model": "B.SIRTI",
   "comp_ru": "ХЛОПОК 60% ЛАЙКРА 20% ВИСКОЗА 20%",
   "comp_en": "COTTON 60% SPANDEX 20% VISCOSE 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2405,7 +2619,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4109",
@@ -2417,8 +2633,8 @@
   "model": "CARINA EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2426,7 +2642,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4110",
@@ -2438,8 +2656,8 @@
   "model": "COSMOS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2447,7 +2665,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4113",
@@ -2459,8 +2679,8 @@
   "model": "COSMOS",
   "comp_ru": "ПОЛИЭСТЕР 54% ВИСКОЗА 34% ЛАЙКРА 12%",
   "comp_en": "POLYESTER 54% VISCOSE 34% SPANDEX 12%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2468,7 +2688,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4114",
@@ -2480,8 +2702,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2489,7 +2711,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4115",
@@ -2501,8 +2725,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2510,7 +2734,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4116",
@@ -2522,8 +2748,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2531,7 +2757,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4117",
@@ -2543,8 +2771,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2552,7 +2780,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4118",
@@ -2564,8 +2794,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2573,7 +2803,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4119",
@@ -2585,8 +2817,8 @@
   "model": "COTTON",
   "comp_ru": "ХЛОПОК 100%",
   "comp_en": "COTTON 100%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2594,7 +2826,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4120",
@@ -2606,8 +2840,8 @@
   "model": "DSN 73 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2615,7 +2849,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4121",
@@ -2627,8 +2863,8 @@
   "model": "DSN 73 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2636,7 +2872,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4122",
@@ -2648,8 +2886,8 @@
   "model": "DSN 73 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2657,7 +2895,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4123",
@@ -2669,8 +2909,8 @@
   "model": "DSN 73 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2678,7 +2918,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4124",
@@ -2690,8 +2932,8 @@
   "model": "DSN 73 EKS",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 4",
-  "sil_en": "SLIM FIT DROP 4",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2699,7 +2941,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 4",
+  "ros_en": "DROP 4"
  },
  {
   "id": "PR-4125",
@@ -2711,8 +2955,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2720,7 +2964,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4126",
@@ -2732,8 +2978,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2741,7 +2987,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4127",
@@ -2753,8 +3001,8 @@
   "model": "FLAM SONILI",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2762,7 +3010,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4086",
@@ -2774,8 +3024,8 @@
   "model": "FLORIDA",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2783,7 +3033,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4085",
@@ -2795,8 +3047,8 @@
   "model": "FLORIDA",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "—",
   "lin_en": "—",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2804,7 +3056,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": true
+  "lined": true,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4081",
@@ -2816,8 +3070,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2825,7 +3079,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4111",
@@ -2837,8 +3093,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2846,7 +3102,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4078",
@@ -2858,8 +3116,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2867,7 +3125,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4079",
@@ -2879,8 +3139,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2888,7 +3148,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4082",
@@ -2900,8 +3162,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2909,7 +3171,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4080",
@@ -2921,8 +3185,8 @@
   "model": "TENCEL LINEN",
   "comp_ru": "ЛЁН 70% ТЕНСЕЛ 30%",
   "comp_en": "LINEN 70% TENCEL 30%",
-  "sil_ru": "ПРИТАЛЕННЫЙ DROP 6",
-  "sil_en": "SLIM FIT DROP 6",
+  "sil_ru": "ПРИТАЛЕННЫЙ",
+  "sil_en": "SLIM FIT",
   "lin_ru": "БЕЗ ПОДКЛАДА",
   "lin_en": "UNLINED",
   "btn_ru": "2 ПУГОВИЦЫ",
@@ -2930,7 +3194,9 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "46–56",
-  "lined": false
+  "lined": false,
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4200",
@@ -3015,7 +3281,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_K.LACI_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4301",
@@ -3037,7 +3306,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_SIYAH_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4302",
@@ -3059,7 +3331,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_HAKI_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4303",
@@ -3081,7 +3356,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_LACI_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4304",
@@ -3103,7 +3381,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_VIZON_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4305",
@@ -3125,7 +3406,10 @@
   "sizes": "48–58",
   "model": "MILANO SONILI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_MILANO-SONILI_CAMEL_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4310",
@@ -3147,7 +3431,10 @@
   "sizes": "48–58",
   "model": "VIKING",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_VIKING_SIYAH_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4311",
@@ -3169,7 +3456,10 @@
   "sizes": "48–58",
   "model": "VIKING",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_VIKING_K.LACI_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4312",
@@ -3191,7 +3481,10 @@
   "sizes": "48–58",
   "model": "VIKING",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_VIKING_BEJ_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4313",
@@ -3213,7 +3506,10 @@
   "sizes": "48–58",
   "model": "VIKING",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/Palmiro_Rossi_VIKING_KAHVE_DROP6_detail.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4320",
@@ -3221,7 +3517,7 @@
   "name_ru": "ПИДЖАК KAZ AYAGI K.LACI",
   "name_en": "JACKET KAZ AYAGI K.LACI",
   "colors": "klaci",
-  "image": "images/Palmiro_Rossi_KAZ-AYAGI_K.LACI_DROP6.jpg",
+  "image": "images/vanvion_KAZ-AYAGI_klaci.jpg",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3235,7 +3531,10 @@
   "sizes": "48–58",
   "model": "KAZ AYAGI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_KAZ-AYAGI_klaci_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4321",
@@ -3243,7 +3542,7 @@
   "name_ru": "ПИДЖАК KAZ AYAGI SIYAH",
   "name_en": "JACKET KAZ AYAGI SIYAH",
   "colors": "siyah",
-  "image": "images/Palmiro_Rossi_KAZ-AYAGI_SIYAH_DROP6.jpg",
+  "image": "images/vanvion_KAZ-AYAGI_siyah.jpg",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3257,7 +3556,10 @@
   "sizes": "48–58",
   "model": "KAZ AYAGI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_KAZ-AYAGI_siyah_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4322",
@@ -3265,7 +3567,7 @@
   "name_ru": "ПИДЖАК KAZ AYAGI KAHVE",
   "name_en": "JACKET KAZ AYAGI KAHVE",
   "colors": "kahve",
-  "image": "images/Palmiro_Rossi_KAZ-AYAGI_KAHVE_DROP6.jpg",
+  "image": "images/vanvion_KAZ-AYAGI_kahve.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3279,7 +3581,10 @@
   "sizes": "48–58",
   "model": "KAZ AYAGI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_KAZ-AYAGI_kahve_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4323",
@@ -3287,7 +3592,7 @@
   "name_ru": "ПИДЖАК KAZ AYAGI A.LACI",
   "name_en": "JACKET KAZ AYAGI A.LACI",
   "colors": "alaci",
-  "image": "images/Palmiro_Rossi_KAZ-AYAGI_A.LACI_DROP6.jpg",
+  "image": "images/vanvion_KAZ-AYAGI_alaci.jpg",
   "comp_ru": "ХЛОПОК 60% ВИСКОЗА 20% ЛАЙКРА 20%",
   "comp_en": "COTTON 60% VISCOSE 20% SPANDEX 20%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3301,7 +3606,10 @@
   "sizes": "48–58",
   "model": "KAZ AYAGI",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_KAZ-AYAGI_alaci_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4330",
@@ -3309,7 +3617,7 @@
   "name_ru": "ПИДЖАК SEDEF GRI",
   "name_en": "JACKET SEDEF GRI",
   "colors": "gri",
-  "image": "images/Palmiro_Rossi_SEDEF_GRI_DROP6.jpg",
+  "image": "images/vanvion_SEDEF_gri.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3323,7 +3631,10 @@
   "sizes": "48–58",
   "model": "SEDEF",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_SEDEF_gri_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4331",
@@ -3331,7 +3642,7 @@
   "name_ru": "ПИДЖАК SEDEF BEJ",
   "name_en": "JACKET SEDEF BEJ",
   "colors": "bej",
-  "image": "images/Palmiro_Rossi_SEDEF_BEJ_DROP6.jpg",
+  "image": "images/vanvion_SEDEF_bej.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3345,7 +3656,10 @@
   "sizes": "48–58",
   "model": "SEDEF",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_SEDEF_bej_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4332",
@@ -3353,7 +3667,7 @@
   "name_ru": "ПИДЖАК SEDEF K.LACI",
   "name_en": "JACKET SEDEF K.LACI",
   "colors": "klaci",
-  "image": "images/Palmiro_Rossi_SEDEF_K.LACI_DROP6.jpg",
+  "image": "images/vanvion_SEDEF_klaci.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3367,7 +3681,10 @@
   "sizes": "48–58",
   "model": "SEDEF",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_SEDEF_klaci_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4333",
@@ -3375,7 +3692,7 @@
   "name_ru": "ПИДЖАК SEDEF KAHVE",
   "name_en": "JACKET SEDEF KAHVE",
   "colors": "kahve",
-  "image": "images/Palmiro_Rossi_SEDEF_KAHVE_DROP6.jpg",
+  "image": "images/vanvion_SEDEF_kahve.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3389,7 +3706,10 @@
   "sizes": "48–58",
   "model": "SEDEF",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_SEDEF_kahve_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  },
  {
   "id": "PR-4334",
@@ -3397,7 +3717,7 @@
   "name_ru": "ПИДЖАК SEDEF SIYAH",
   "name_en": "JACKET SEDEF SIYAH",
   "colors": "siyah",
-  "image": "images/Palmiro_Rossi_SEDEF_SIYAH_DROP6.jpg",
+  "image": "images/vanvion_SEDEF_siyah.jpg",
   "comp_ru": "ПОЛИЭСТЕР 64% ВИСКОЗА 34% ЛАЙКРА 2%",
   "comp_en": "POLYESTER 64% VISCOSE 34% SPANDEX 2%",
   "sil_ru": "ОБЫЧНЫЙ",
@@ -3411,6 +3731,9 @@
   "sizes": "48–58",
   "model": "SEDEF",
   "lined": true,
-  "hit": true
+  "hit": true,
+  "image2": "images/vanvion_SEDEF_siyah_2.jpg",
+  "ros_ru": "DROP 6",
+  "ros_en": "DROP 6"
  }
 ]
