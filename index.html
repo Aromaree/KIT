@@ -795,7 +795,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 /* на десктопе выравниваем артикул по левому краю фото,
    а кнопку делаем «летящей» поверх верхнего-левого угла фото */
 @media (min-width: 900px) {
-  .detail-top { padding-left: max(16px, calc(50% - 456px)); }
+  .detail-top { padding-left: max(16px, calc(50% - 596px)); }
   .back-btn {
     position: fixed;
     top: 92px;
@@ -857,20 +857,22 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .detail-body { padding: 22px 16px calc(30px + env(safe-area-inset-bottom)); }
 @media (min-width: 900px) {
   #detailContent {
-    max-width: 960px;
+    max-width: 1240px;
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
-    gap: 40px;
+    gap: 44px;
     padding: 36px 24px calc(48px + env(safe-area-inset-bottom));
   }
   .detail-img {
-    width: 46%;
+    width: 48%;
     flex: none;
     border-radius: 0;
     position: sticky;
     top: 76px;
   }
+  /* две фотографии рядом — отдаём им больше ширины, чтобы были крупными */
+  .detail-img.duo { width: 62%; }
   .detail-body { flex: 1; min-width: 0; padding: 0; padding-top: 4px; }
 }
 .d-anim { animation: fadeUp 0.55s var(--ease) both; }
