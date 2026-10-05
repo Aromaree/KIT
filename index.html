@@ -1956,7 +1956,7 @@ function openDetail(id, cardEl, opts) {
     ru ? p.comp_ru : p.comp_en,
     ru ? p.sil_ru : p.sil_en,
     ru ? p.ros_ru : p.ros_en,
-    ru ? p.lin_ru : p.lin_en,
+    (typeof p.lined === 'boolean') ? (p.lined ? (ru ? 'ДА' : 'YES') : (ru ? 'НЕТ' : 'NO')) : '',
     ru ? p.btn_ru : p.btn_en,
     ru ? p.country_ru : p.country_en,
     p.sizes
@@ -1974,7 +1974,7 @@ function openDetail(id, cardEl, opts) {
   const curLabel = curColor ? PALETTE[curColor][LANG] : '';
   const rows = t().specs.map((k, i) => {
     /* строку РОСТ показываем только если значение есть (у брюк/оверсайза её нет) */
-    if ((k === 'РОСТ' || k === 'HEIGHT') && !specs[i]) return '';
+    if ((k === 'РОСТ' || k === 'HEIGHT' || k === 'ПОДКЛАДКА' || k === 'LINING') && !specs[i]) return '';
     return '<div class="spec-row"><div class="spec-key">' + k + '</div><div class="spec-val">' + esc(specs[i] || '—') + '</div></div>';
   }).join('');
 
