@@ -1254,7 +1254,7 @@ const CONTACTS = {
   phones: ['+7 916 259 1643', '+7 926 136 5535', '+7 903 538 8887'],
   wa: '79162591643',
   tg: '79162591643',
-  max: '79162591643',
+  max: 'https://web.max.ru/4112960',
   email: 'vanvion@yandex.com',
   addresses: [
     'Россия, Москва, ТЦ «Садовод», корпус Б, 1 этаж, линия В, пав. 50–52',
@@ -1266,7 +1266,7 @@ function orderLinks(msg) {
   return {
     wa: 'https://wa.me/' + CONTACTS.wa + '?text=' + t,
     tg: 'https://t.me/+' + CONTACTS.tg,
-    max: 'https://max.ru/+' + CONTACTS.max
+    max: CONTACTS.max
   };
 }
 
