@@ -10,10 +10,11 @@
 <meta name="description" content="VANVION — оптовый каталог мужской классической одежды: пиджаки, брюки. Заказ оптом через WhatsApp, Telegram и MAX. ТЦ «Садовод», Москва.">
 <meta name="theme-color" content="#1a1814">
 
-<!-- Favicon / app icons -->
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon.png?v=1">
-<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=1">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png?v=1">
+<!-- Favicon / app icons (logo mark adapts to the device's light/dark theme) -->
+<link rel="icon" type="image/png" href="./favicon.png?v=2" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="./favicon-dark.png?v=2" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="./favicon.png?v=2">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png?v=2">
 
 <!-- Link preview (Open Graph / Twitter) -->
 <meta property="og:type" content="website">
@@ -21,14 +22,14 @@
 <meta property="og:title" content="VANVION — оптовый каталог мужской одежды">
 <meta property="og:description" content="Оптовый каталог мужской классики: пиджаки, брюки. Заказ через WhatsApp, Telegram и MAX. ТЦ «Садовод», Москва.">
 <meta property="og:url" content="https://aromaree.github.io/KIT/">
-<meta property="og:image" content="https://aromaree.github.io/KIT/og-image.jpg?v=1">
+<meta property="og:image" content="https://aromaree.github.io/KIT/og-image.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="VANVION — оптовый каталог мужской одежды">
 <meta name="twitter:description" content="Оптовый каталог мужской классики: пиджаки, брюки. Заказ через WhatsApp, Telegram и MAX.">
-<meta name="twitter:image" content="https://aromaree.github.io/KIT/og-image.jpg?v=1">
+<meta name="twitter:image" content="https://aromaree.github.io/KIT/og-image.jpg?v=2">
 
 <!-- External enhancement libs load asynchronously so a slow/blocked CDN can never prevent the catalogue from rendering. -->
 <script async src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -150,6 +151,18 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   align-items: center;
   justify-content: center;
   padding: 14px 16px 4px;
+}
+.brand-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  color: var(--text);          /* adapts to theme via currentColor */
+  animation: brandIn 0.9s var(--ease) both;
 }
 .brand {
   font-size: 30px;
@@ -1181,7 +1194,15 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 
 <div class="header" id="header">
   <div class="header-top">
-    <div class="brand">VANVION</div>
+    <div class="brand-wrap">
+      <svg class="brand-mark" viewBox="0 0 636 635" fill="none" aria-hidden="true">
+        <path d="M81.1646 4.47312L78.9307 0L69.9843 4.46773L72.2182 8.94094L76.6914 6.70703L81.1646 4.47312ZM313.653 492.394C314.887 494.864 317.89 495.867 320.36 494.633C322.831 493.399 323.833 490.396 322.599 487.926L318.126 490.16L313.653 492.394ZM76.6914 6.70703L72.2182 8.94094L313.653 492.394L318.126 490.16L322.599 487.926L81.1646 4.47312L76.6914 6.70703Z" fill="currentColor"/>
+        <path d="M555.081 4.47312L557.315 0L566.262 4.46773L564.028 8.94094L559.555 6.70703L555.081 4.47312ZM322.593 492.394C321.359 494.864 318.356 495.867 315.886 494.633C313.416 493.399 312.413 490.396 313.647 487.926L318.12 490.16L322.593 492.394ZM559.555 6.70703L564.028 8.94094L322.593 492.394L318.12 490.16L313.647 487.926L555.081 4.47312L559.555 6.70703Z" fill="currentColor"/>
+        <path d="M11.1802 4.47312L8.94634 0L0 4.46773L2.23382 8.94094L6.70703 6.70703L11.1802 4.47312ZM313.358 631.941C314.592 634.411 317.595 635.414 320.065 634.18C322.536 632.946 323.538 629.944 322.305 627.473L317.831 629.707L313.358 631.941ZM6.70703 6.70703L2.23382 8.94094L313.358 631.941L317.831 629.707L322.305 627.473L11.1802 4.47312L6.70703 6.70703Z" fill="currentColor"/>
+        <path d="M624.484 4.47312L626.718 0L635.664 4.46773L633.43 8.94094L628.957 6.70703L624.484 4.47312ZM322.306 631.941C321.072 634.411 318.069 635.414 315.599 634.18C313.128 632.946 312.126 629.944 313.36 627.473L317.833 629.707L322.306 631.941ZM628.957 6.70703L633.43 8.94094L322.306 631.941L317.833 629.707L313.36 627.473L624.484 4.47312L628.957 6.70703Z" fill="currentColor"/>
+      </svg>
+      <div class="brand">VANVION</div>
+    </div>
     <button class="lang-btn" id="langBtn">EN</button>
   </div>
   <div class="subtitle" id="subtitle"></div>
