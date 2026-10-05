@@ -889,6 +889,134 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .share-btn:active { transform: scale(0.96); opacity: 0.9; }
 
+/* ---------- ORDER / CONTACT BUTTONS ---------- */
+.order-block { margin-top: 28px; }
+.order-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 11px;
+}
+.order-btns { display: flex; gap: 10px; }
+.ob {
+  flex: 1;
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #fff;
+  white-space: nowrap;
+  transition: transform 0.2s var(--spring), filter 0.2s;
+}
+.ob:active { transform: scale(0.95); }
+.ob:hover { filter: brightness(1.07); }
+.ob-wa { background: #25D366; }
+.ob-tg { background: #2AABEE; }
+.ob-mx { background: linear-gradient(135deg, #7c4dff, #4a1fd6); }
+.share-btn { margin-top: 14px; }
+
+/* ---------- CONTACT FAB ---------- */
+.contact-fab {
+  position: fixed;
+  left: 16px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 60;
+  width: 54px; height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-fg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  transition: transform 0.22s var(--spring);
+}
+.contact-fab svg { width: 24px; height: 24px; }
+.contact-fab:hover { transform: scale(1.06); }
+.contact-fab:active { transform: scale(0.9); }
+
+/* ---------- CONTACTS SHEET ---------- */
+.contacts {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(18,18,18,0.5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.26s var(--ease);
+}
+.contacts.show { opacity: 1; pointer-events: auto; }
+.ct-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border-radius: 22px;
+  padding: 30px 26px calc(30px + env(safe-area-inset-bottom));
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.3s var(--spring);
+}
+.contacts.show .ct-sheet { transform: none; }
+.ct-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 15px;
+  color: var(--text2);
+  background: rgba(0,0,0,0.05);
+}
+.ct-title { font-size: 20px; letter-spacing: 0.1em; }
+.ct-sub { font-size: 10px; letter-spacing: 0.18em; color: var(--muted); margin-top: 5px; margin-bottom: 22px; }
+.ct-msgrs { margin-bottom: 24px; }
+.ct-block-label { font-size: 10px; letter-spacing: 0.16em; color: var(--muted); margin: 0 0 10px; }
+.ct-phones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.ct-phone {
+  display: block;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+.ct-phone:active { background: rgba(0,0,0,0.09); }
+.ct-addrs { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.ct-addr {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  line-height: 1.4;
+  text-transform: none;
+}
+.ct-addr-n {
+  flex: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ct-email {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text2);
+  text-transform: none;
+}
+
 /* ---------- RELATED ---------- */
 .related-row {
   display: flex;
@@ -1059,6 +1187,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </div>
 
 <button class="to-top" id="toTop">&#8593;</button>
+<button class="contact-fab" id="contactFab" aria-label="Контакты">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div class="contacts" id="contacts"></div>
 
 <div class="detail" id="detail" data-lenis-prevent>
   <div class="detail-top">
@@ -1076,6 +1208,27 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 
 <script>
 const DATA_URL = './data/products.json';
+
+const CONTACTS = {
+  company: 'VANVION',
+  phones: ['+7 916 259 1643', '+7 926 136 5535', '+7 903 538 8887'],
+  wa: '79162591643',
+  tg: '79162591643',
+  max: '79162591643',
+  email: 'vanvion@yandex.com',
+  addresses: [
+    'ТЦ «Садовод», корпус Б, 1 этаж, линия В, пав. 50–52',
+    'ТЦ «Садовод», 16 линия, пав. 72'
+  ]
+};
+function orderLinks(msg) {
+  const t = encodeURIComponent(msg);
+  return {
+    wa: 'https://wa.me/' + CONTACTS.wa + '?text=' + t,
+    tg: 'https://t.me/+' + CONTACTS.tg,
+    max: 'https://max.ru/+' + CONTACTS.max
+  };
+}
 
 const PALETTE = {
   charcoal: { hex: '#4a4a48', ru: 'УГОЛЬНЫЙ', en: 'CHARCOAL' },
@@ -1790,6 +1943,7 @@ function openDetail(id, cardEl, opts) {
       '<div class="cv-row d-anim d2">' + swatches + '</div>' +
       '<div class="cv-current d-anim d2">' + esc(curLabel) + '</div>' +
       '<div class="specs d-anim d3">' + rows + '</div>' +
+      '<div class="order-block d-anim d4">' + orderHTML(p) + '</div>' +
       '<button class="share-btn d-anim d4" id="shareBtn">' + t().share + '</button>' +
     '</div>';
 
@@ -2185,6 +2339,50 @@ function setupZoom() {
   }, { passive: true });
 })();
 
+/* ---------- кнопки заказа в карточке + окно контактов ---------- */
+function orderHTML(p) {
+  const l = orderLinks('Здравствуйте! Интересует ' + getName(p) + ', арт. ' + p.id);
+  const label = LANG === 'ru' ? 'ЗАКАЗАТЬ · УЗНАТЬ ЦЕНУ' : 'ORDER · GET PRICE';
+  return '<div class="order-label">' + label + '</div>' +
+    '<div class="order-btns">' +
+      '<a class="ob ob-wa" href="' + l.wa + '" target="_blank" rel="noopener">WhatsApp</a>' +
+      '<a class="ob ob-tg" href="' + l.tg + '" target="_blank" rel="noopener">Telegram</a>' +
+      '<a class="ob ob-mx" href="' + l.max + '" target="_blank" rel="noopener">MAX</a>' +
+    '</div>';
+}
+function openContacts() {
+  haptic('light');
+  const l = orderLinks('Здравствуйте! Пишу по каталогу VANVION');
+  const ru = LANG === 'ru';
+  const phones = CONTACTS.phones.map(ph =>
+    '<a class="ct-phone" href="tel:' + ph.replace(/[^+\d]/g, '') + '">' + esc(ph) + '</a>'
+  ).join('');
+  const addrs = CONTACTS.addresses.map((a, i) =>
+    '<div class="ct-addr"><span class="ct-addr-n">' + (i + 1) + '</span>' + esc(a) + '</div>'
+  ).join('');
+  $('contacts').innerHTML =
+    '<div class="ct-sheet">' +
+      '<button class="ct-close" id="ctClose" aria-label="Закрыть">&#10005;</button>' +
+      '<div class="ct-title">' + (ru ? 'КОНТАКТЫ' : 'CONTACTS') + ' · VANVION</div>' +
+      '<div class="ct-sub">' + (ru ? 'ОПТ · МУЖСКАЯ КЛАССИКА' : 'WHOLESALE · MENSWEAR') + '</div>' +
+      '<div class="order-btns ct-msgrs">' +
+        '<a class="ob ob-wa" href="' + l.wa + '" target="_blank" rel="noopener">WhatsApp</a>' +
+        '<a class="ob ob-tg" href="' + l.tg + '" target="_blank" rel="noopener">Telegram</a>' +
+        '<a class="ob ob-mx" href="' + l.max + '" target="_blank" rel="noopener">MAX</a>' +
+      '</div>' +
+      '<div class="ct-block-label">' + (ru ? 'ТЕЛЕФОНЫ' : 'PHONES') + '</div>' +
+      '<div class="ct-phones">' + phones + '</div>' +
+      '<div class="ct-block-label">' + (ru ? 'АДРЕСА · ТЦ САДОВОД' : 'ADDRESSES') + '</div>' +
+      '<div class="ct-addrs">' + addrs + '</div>' +
+      '<a class="ct-email" href="mailto:' + CONTACTS.email + '">' + esc(CONTACTS.email) + '</a>' +
+    '</div>';
+  const box = $('contacts');
+  box.classList.add('show');
+  $('ctClose').onclick = () => closeContacts();
+  box.onclick = e => { if (e.target === box) closeContacts(); };
+}
+function closeContacts() { $('contacts').classList.remove('show'); }
+
 async function shareProduct(p) {
   const text = 'VANVION · ' + p.id + ' · ' + getName(p);
   const url = location.href;
@@ -2227,6 +2425,8 @@ $('toTop').onclick = () => {
   haptic('light');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+$('contactFab').onclick = () => openContacts();
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContacts(); });
 
 /* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
 const HAS_LENIS = typeof Lenis !== 'undefined';
