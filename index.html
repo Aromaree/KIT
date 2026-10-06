@@ -1209,6 +1209,13 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .ct-notify:active { transform: scale(0.98); }
 .ct-notify:disabled { opacity: 0.55; }
 .ct-notify.subscribed { background: #4f7a63; }
+/* лента новостей */
+.news-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.news-item:last-child { border-bottom: none; }
+.news-date { font-size: 10.5px; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 4px; }
+.news-title { font-size: 13.5px; letter-spacing: 0.02em; margin-bottom: 4px; }
+.news-text { font-size: 12.5px; line-height: 1.45; color: var(--text2); }
+.news-empty { text-align: center; color: var(--text2); padding: 26px 0; font-size: 13px; }
 .ct-close {
   position: absolute; top: 16px; right: 16px;
   width: 36px; height: 36px;
@@ -1445,6 +1452,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   <span class="cart-badge" id="cartBadge">0</span>
 </button>
 <div class="contacts" id="cart"></div>
+<div class="contacts" id="news"></div>
 
 <!-- Подсказка «добавить на экран Домой» / установка приложения -->
 <div class="a2hs" id="a2hs" hidden>
@@ -2290,7 +2298,11 @@ function openDetail(id, cardEl, opts) {
     document.body.appendChild(clone);
 
     const targetW = window.innerWidth;
-    const targetH = targetW * 4 / 3;
+    /* высота совпадает с реальным блоком фото: дуо (3:2) или одиночное (3:4) */
+    const targetH = p.image2 ? targetW * 2 / 3 : targetW * 4 / 3;
+    /* верх совпадает с нижней гранью панели (с учётом «чёлки»), чтобы фото не налезало на кнопки */
+    const topBar = document.querySelector('.detail-top');
+    const barH = topBar ? Math.round(topBar.getBoundingClientRect().height) : 52;
 
     const detailImgEl = $('detailImg').querySelector('img');
     if (detailImgEl) detailImgEl.style.visibility = 'hidden';
@@ -2303,13 +2315,13 @@ function openDetail(id, cardEl, opts) {
     if (HAS_GSAP) {
       clone.style.transition = 'none';
       gsap.to(clone, {
-        top: 52, left: 0, width: targetW, height: targetH,
+        top: barH, left: 0, width: targetW, height: targetH,
         duration: 0.6, ease: 'power3.inOut', onComplete: finish
       });
     } else {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          clone.style.top = '52px';
+          clone.style.top = barH + 'px';
           clone.style.left = '0px';
           clone.style.width = targetW + 'px';
           clone.style.height = targetH + 'px';
@@ -2888,25 +2900,35 @@ function requestPush() {
   });
 }
 /* обновить вид кнопки в контактах и плавающего FAB */
-function updateNotifyUI() {
+/* единая настройка любой кнопки подписки (в контактах и в «Новинках») */
+function wireNotifyBtn(btn) {
+  if (!btn) return;
   const ru = LANG === 'ru';
-  const fab = $('notifyFab');
-  if (fab) fab.hidden = !(pushSupported() && !PUSH_SUBSCRIBED);
-  const btn = $('ctNotify');
-  if (btn) {
-    if (iosNeedsInstall()) {
-      btn.classList.remove('subscribed');
-      btn.textContent = ru ? '🔔 Сначала добавьте на экран «Домой»' : '🔔 Add to Home Screen first';
-    } else if (!pushSupported()) {
-      btn.disabled = true;
-      btn.textContent = ru ? '🔔 Уведомления недоступны' : '🔔 Notifications unavailable';
-    } else {
-      btn.classList.toggle('subscribed', PUSH_SUBSCRIBED);
-      btn.textContent = PUSH_SUBSCRIBED
-        ? (ru ? '✓ Вы подписаны на новинки' : '✓ Subscribed')
-        : ('🔔 ' + (ru ? 'Уведомления о новинках' : 'Notify me about new arrivals'));
-    }
+  if (iosNeedsInstall()) {
+    btn.classList.remove('subscribed'); btn.disabled = false;
+    btn.textContent = ru ? '🔔 Сначала добавьте на экран «Домой»' : '🔔 Add to Home Screen first';
+    btn.onclick = () => { openInstallBanner(); closeNews(); closeContacts(); };
+  } else if (!pushSupported()) {
+    btn.disabled = true;
+    btn.textContent = ru ? '🔔 Уведомления недоступны' : '🔔 Notifications unavailable';
+    btn.onclick = null;
+  } else {
+    btn.disabled = false;
+    btn.classList.toggle('subscribed', PUSH_SUBSCRIBED);
+    btn.textContent = PUSH_SUBSCRIBED
+      ? (ru ? '✓ Вы подписаны на уведомления' : '✓ Subscribed')
+      : ('🔔 ' + (ru ? 'Подписаться на уведомления' : 'Subscribe to notifications'));
+    btn.onclick = () => {
+      if (PUSH_SUBSCRIBED) {
+        window.OneSignalDeferred.push(async (OneSignal) => { try { await OneSignal.User.PushSubscription.optOut(); } catch (e) {} });
+      } else { requestPush(); }
+    };
   }
+}
+function updateNotifyUI() {
+  wireNotifyBtn($('ctNotify'));
+  wireNotifyBtn($('newsNotify'));
+  /* FAB «Новинки» видна всегда — это центр новостей и подписки */
 }
 /* следим за статусом подписки один раз */
 function initPush() {
@@ -2923,18 +2945,29 @@ function initPush() {
   });
   updateNotifyUI();
 }
-/* кнопка в окне контактов */
-function setupNotifyButton() {
-  const btn = $('ctNotify');
-  if (!btn) return;
-  updateNotifyUI();
-  btn.onclick = () => {
-    if (!iosNeedsInstall() && pushSupported() && PUSH_SUBSCRIBED) {
-      window.OneSignalDeferred.push(async (OneSignal) => { try { await OneSignal.User.PushSubscription.optOut(); } catch (e) {} });
-    } else {
-      requestPush();
-    }
-  };
+function setupNotifyButton() { wireNotifyBtn($('ctNotify')); }
+
+/* ---------- НОВИНКИ (новости + подписка) ---------- */
+let NEWS = [];
+fetch('news.json?v=' + Date.now()).then(r => r.json()).then(d => { NEWS = Array.isArray(d) ? d : []; }).catch(() => { NEWS = []; });
+function openNews() { haptic('light'); renderNews(); $('news').classList.add('show'); }
+function closeNews() { $('news').classList.remove('show'); }
+function renderNews() {
+  const ru = LANG === 'ru';
+  const list = NEWS.length
+    ? NEWS.map(n => '<div class="news-item"><div class="news-date">' + esc(n.date || '') + '</div><div class="news-title">' + esc(n.title || '') + '</div><div class="news-text">' + esc(n.text || '') + '</div></div>').join('')
+    : '<div class="news-empty">' + (ru ? 'Пока новостей нет.' : 'No news yet.') + '</div>';
+  $('news').innerHTML = '<div class="ct-sheet">' +
+    '<button class="ct-close" id="newsClose" aria-label="Закрыть">&#10005;</button>' +
+    '<div class="ct-title">' + (ru ? 'НОВИНКИ' : 'NEWS') + ' · VANVION</div>' +
+    '<div class="ct-sub">' + (ru ? 'ПОСТУПЛЕНИЯ И НОВОСТИ' : 'NEW ARRIVALS & NEWS') + '</div>' +
+    '<button class="ct-notify" id="newsNotify"></button>' +
+    '<div class="ct-block-label">' + (ru ? 'ПОСЛЕДНИЕ НОВОСТИ' : 'LATEST') + '</div>' +
+    list +
+  '</div>';
+  $('newsClose').onclick = closeNews;
+  $('news').onclick = e => { if (e.target === $('news')) closeNews(); };
+  wireNotifyBtn($('newsNotify'));
 }
 
 async function shareProduct(p) {
@@ -3031,12 +3064,13 @@ $('toTop').onclick = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 $('contactFab').onclick = () => openContacts();
-$('notifyFab').onclick = () => { haptic('light'); requestPush(); };
+$('notifyFab').hidden = false;
+$('notifyFab').onclick = () => openNews();
 $('cartFab').onclick = () => openCart();
 $('detailCart').onclick = () => openCart();
 initPush();
 renderCartFab();
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); closeNews(); } });
 
 /* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
 const HAS_LENIS = typeof Lenis !== 'undefined';
