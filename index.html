@@ -53,6 +53,29 @@
 <meta name="twitter:description" content="Оптовый каталог мужской классики: пиджаки, брюки. Заказ через WhatsApp, Telegram и MAX.">
 <meta name="twitter:image" content="https://vanvion.github.io/og-image.jpg?v=2">
 
+<!-- Структурированные данные для поиска (Яндекс / Google) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "VANVION",
+  "description": "Оптовый каталог мужской классической одежды: пиджаки и брюки.",
+  "url": "https://vanvion.github.io/",
+  "logo": "https://vanvion.github.io/icon-512.png",
+  "image": "https://vanvion.github.io/og-image.jpg",
+  "priceRange": "опт",
+  "telephone": "+7 916 259 1643",
+  "email": "vanvion@yandex.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU",
+    "addressLocality": "Москва",
+    "streetAddress": "ТЦ «Садовод», корпус Б, 1 этаж, линия В, пав. 50–52"
+  },
+  "areaServed": "RU"
+}
+</script>
+
 <!-- External enhancement libs load asynchronously so a slow/blocked CDN can never prevent the catalogue from rendering. -->
 <script async src="https://telegram.org/js/telegram-web-app.js"></script>
 <script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -997,6 +1020,27 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .contact-fab:hover { transform: scale(1.06); }
 .contact-fab:active { transform: scale(0.9); }
 
+/* FAB подписки на уведомления (над кнопкой контактов) */
+.notify-fab {
+  position: fixed;
+  left: 16px;
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  z-index: 60;
+  height: 54px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 18px 0 15px;
+  border-radius: 999px;
+  background: #4f7a63;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  animation: a2hsUp 0.5s var(--ease) both;
+  transition: transform 0.22s var(--spring), filter 0.2s;
+}
+.notify-fab svg { width: 22px; height: 22px; flex: none; }
+.notify-fab-label { font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+.notify-fab:hover { transform: scale(1.04); }
+.notify-fab:active { transform: scale(0.94); }
+
 /* ---------- ADD TO HOME SCREEN (iOS) ---------- */
 .a2hs {
   position: fixed;
@@ -1314,6 +1358,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </div>
 
 <button class="to-top" id="toTop">&#8593;</button>
+<button class="notify-fab" id="notifyFab" aria-label="Уведомления о новинках" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+  <span class="notify-fab-label">Новинки</span>
+</button>
 <button class="contact-fab" id="contactFab" aria-label="Контакты">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
@@ -2545,60 +2593,80 @@ function openContacts() {
 }
 function closeContacts() { $('contacts').classList.remove('show'); }
 
-/* кнопка подписки на уведомления (OneSignal) */
-function setupNotifyButton() {
-  const btn = $('ctNotify');
-  if (!btn) return;
-  const ru = LANG === 'ru';
+/* ---------- push-уведомления о новинках (OneSignal) ---------- */
+let PUSH_SUBSCRIBED = false;
+function pushSupported() {
+  return 'serviceWorker' in navigator && 'PushManager' in window && typeof window.OneSignalDeferred !== 'undefined';
+}
+function iosNeedsInstall() {
   const ua = navigator.userAgent || '';
   const isIOS = /iphone|ipad|ipod/i.test(ua) && !window.MSStream;
-  const isStandalone = ('standalone' in navigator && navigator.standalone) ||
-                       (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-
-  // iPhone в обычном Safari: сначала нужно добавить на экран «Домой»
-  if (isIOS && !isStandalone) {
-    btn.textContent = ru ? '🔔 Сначала добавьте на экран «Домой»' : '🔔 Add to Home Screen first';
-    btn.onclick = () => {
-      const a = $('a2hs');
-      if (a) { a.hidden = false; try { localStorage.removeItem('a2hs_dismissed'); } catch (e) {} }
-      closeContacts();
-    };
-    return;
-  }
-
-  if (typeof window.OneSignalDeferred === 'undefined') {
-    btn.disabled = true;
-    btn.textContent = ru ? '🔔 Уведомления недоступны' : '🔔 Notifications unavailable';
-    return;
-  }
-
-  const setState = (subscribed) => {
-    btn.classList.toggle('subscribed', subscribed);
-    btn.textContent = subscribed
-      ? (ru ? '✓ Вы подписаны на новинки' : '✓ Subscribed to new arrivals')
-      : ('🔔 ' + (ru ? 'Уведомления о новинках' : 'Notify me about new arrivals'));
-  };
-
+  const standalone = ('standalone' in navigator && navigator.standalone) ||
+                     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  return isIOS && !standalone;
+}
+function openInstallBanner() {
+  const a = $('a2hs');
+  if (a) { a.hidden = false; try { localStorage.removeItem('a2hs_dismissed'); } catch (e) {} }
+}
+/* подписаться (или на iPhone-Safari — сначала подсказать установку) */
+function requestPush() {
+  if (iosNeedsInstall()) { openInstallBanner(); closeContacts(); return; }
+  if (!pushSupported()) return;
   window.OneSignalDeferred.push(async (OneSignal) => {
     try {
-      setState(!!OneSignal.User.PushSubscription.optedIn);
+      await OneSignal.Notifications.requestPermission();
+      await OneSignal.User.PushSubscription.optIn();
+    } catch (e) {}
+  });
+}
+/* обновить вид кнопки в контактах и плавающего FAB */
+function updateNotifyUI() {
+  const ru = LANG === 'ru';
+  const fab = $('notifyFab');
+  if (fab) fab.hidden = !(pushSupported() && !PUSH_SUBSCRIBED);
+  const btn = $('ctNotify');
+  if (btn) {
+    if (iosNeedsInstall()) {
+      btn.classList.remove('subscribed');
+      btn.textContent = ru ? '🔔 Сначала добавьте на экран «Домой»' : '🔔 Add to Home Screen first';
+    } else if (!pushSupported()) {
+      btn.disabled = true;
+      btn.textContent = ru ? '🔔 Уведомления недоступны' : '🔔 Notifications unavailable';
+    } else {
+      btn.classList.toggle('subscribed', PUSH_SUBSCRIBED);
+      btn.textContent = PUSH_SUBSCRIBED
+        ? (ru ? '✓ Вы подписаны на новинки' : '✓ Subscribed')
+        : ('🔔 ' + (ru ? 'Уведомления о новинках' : 'Notify me about new arrivals'));
+    }
+  }
+}
+/* следим за статусом подписки один раз */
+function initPush() {
+  if (typeof window.OneSignalDeferred === 'undefined') { updateNotifyUI(); return; }
+  window.OneSignalDeferred.push(async (OneSignal) => {
+    try {
+      PUSH_SUBSCRIBED = !!OneSignal.User.PushSubscription.optedIn;
+      updateNotifyUI();
       OneSignal.User.PushSubscription.addEventListener('change', e => {
-        setState(!!(e && e.current && e.current.optedIn));
+        PUSH_SUBSCRIBED = !!(e && e.current && e.current.optedIn);
+        updateNotifyUI();
       });
     } catch (e) {}
   });
-
+  updateNotifyUI();
+}
+/* кнопка в окне контактов */
+function setupNotifyButton() {
+  const btn = $('ctNotify');
+  if (!btn) return;
+  updateNotifyUI();
   btn.onclick = () => {
-    window.OneSignalDeferred.push(async (OneSignal) => {
-      try {
-        if (OneSignal.User.PushSubscription.optedIn) {
-          await OneSignal.User.PushSubscription.optOut();
-        } else {
-          await OneSignal.Notifications.requestPermission();
-          await OneSignal.User.PushSubscription.optIn();
-        }
-      } catch (e) {}
-    });
+    if (!iosNeedsInstall() && pushSupported() && PUSH_SUBSCRIBED) {
+      window.OneSignalDeferred.push(async (OneSignal) => { try { await OneSignal.User.PushSubscription.optOut(); } catch (e) {} });
+    } else {
+      requestPush();
+    }
   };
 }
 
@@ -2696,6 +2764,8 @@ $('toTop').onclick = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 $('contactFab').onclick = () => openContacts();
+$('notifyFab').onclick = () => { haptic('light'); requestPush(); };
+initPush();
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContacts(); });
 
 /* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
