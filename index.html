@@ -802,11 +802,11 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 52px;
+  height: calc(52px + env(safe-area-inset-top));
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 0 16px;
+  padding: env(safe-area-inset-top) 16px 0;
   background: rgba(255,255,255,0.86);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
@@ -2725,11 +2725,11 @@ function addcartHTML(p) {
   const stepper = (type, start) => '<div class="qty ac-q" data-type="' + type + '"><button data-d="-1">−</button><span>' + start + '</span><button data-d="1">+</button></div>';
   let rows;
   if (tiers.length > 1) {
-    rows = tiers.map((tr, i) =>
-      '<div class="ac-line"><div class="ac-name">' + tr.label + '<small>' + esc(tr.range) + '</small></div>' + stepper(tr.type, i === 0 ? 1 : 0) + '</div>'
+    rows = tiers.map((tr) =>
+      '<div class="ac-line"><div class="ac-name">' + tr.label + '<small>' + esc(tr.range) + '</small></div>' + stepper(tr.type, 0) + '</div>'
     ).join('') + '<button class="addcart-btn" id="acBtn" style="width:100%">' + (ru ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button>';
   } else {
-    rows = '<div class="addcart-row">' + stepper('plain', 1) + '<button class="addcart-btn" id="acBtn">' + (ru ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button></div>';
+    rows = '<div class="addcart-row">' + stepper('plain', 0) + '<button class="addcart-btn" id="acBtn">' + (ru ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button></div>';
   }
   return '<div class="addcart-label">' + (ru ? 'КОЛИЧЕСТВО ПАЧЕК' : 'NUMBER OF PACKS') + '</div>' + rows;
 }
