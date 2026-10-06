@@ -1701,7 +1701,8 @@
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
   "lined": true,
   "ros_ru": "DROP 6",
-  "ros_en": "DROP 6"
+  "ros_en": "DROP 6",
+  "hit": true
  },
  {
   "id": "PR-4051",
@@ -1725,7 +1726,8 @@
   "lined": true,
   "ros_ru": "DROP 6",
   "ros_en": "DROP 6",
-  "image2": "images/Palmiro_Rossi_MINAR-EKS_03_DROP6_detail.jpg"
+  "image2": "images/Palmiro_Rossi_MINAR-EKS_03_DROP6_detail.jpg",
+  "hit": true
  },
  {
   "id": "PR-4052",
@@ -1749,7 +1751,8 @@
   "lined": true,
   "ros_ru": "DROP 6",
   "ros_en": "DROP 6",
-  "image2": "images/Palmiro_Rossi_MINAR-EKS_04_DROP6_detail.jpg"
+  "image2": "images/Palmiro_Rossi_MINAR-EKS_04_DROP6_detail.jpg",
+  "hit": true
  },
  {
   "id": "PR-4053",
@@ -1772,7 +1775,8 @@
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
   "lined": true,
   "ros_ru": "DROP 6",
-  "ros_en": "DROP 6"
+  "ros_en": "DROP 6",
+  "hit": true
  },
  {
   "id": "PR-4054",
@@ -1796,7 +1800,8 @@
   "lined": true,
   "ros_ru": "DROP 6",
   "ros_en": "DROP 6",
-  "image2": "images/Palmiro_Rossi_MINAR-EKS_07_DROP6_detail.jpg"
+  "image2": "images/Palmiro_Rossi_MINAR-EKS_07_DROP6_detail.jpg",
+  "hit": true
  },
  {
   "id": "PR-4055",
@@ -3761,7 +3766,8 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "isnew": true
  },
  {
   "id": "PR-4401",
@@ -3785,7 +3791,8 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "isnew": true
  },
  {
   "id": "PR-4402",
@@ -3809,7 +3816,8 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "isnew": true
  },
  {
   "id": "PR-4403",
@@ -3833,7 +3841,8 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "isnew": true
  },
  {
   "id": "PR-4410",
@@ -3857,7 +3866,8 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "hit": true
  },
  {
   "id": "PR-4411",
@@ -3881,6 +3891,7 @@
   "country_ru": "ТУРЦИЯ",
   "country_en": "TURKEY",
   "sizes": "НОРМА 48–58 · БАТАЛ 56–66",
-  "lined": true
+  "lined": true,
+  "hit": true
  }
 ]

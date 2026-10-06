@@ -636,7 +636,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.8);
 }
-.hit-tag {
+.hit-tag, .new-tag {
   position: absolute;
   top: 8px; right: 8px;
   font-size: 9px;
@@ -649,6 +649,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   z-index: 2;
 }
+.new-tag { background: #4f7a63; color: #fff; }
 .card-info {
   padding: 10px 12px 13px;
   min-width: 0;
@@ -1795,7 +1796,8 @@ function render() {
   const items = filtered();
   const groups = groupByModel(items);
   /* хиты каталога — вверх (порядок внутри сохраняется, т.к. сортировка стабильная) */
-  groups.sort((a, b) => (b.some(v => v.hit) ? 1 : 0) - (a.some(v => v.hit) ? 1 : 0));
+  const grank = g => g.some(v => v.hit) ? 2 : g.some(v => v.isnew) ? 1 : 0;
+  groups.sort((a, b) => grank(b) - grank(a));
   animateCount(groups.length);
 
   if (!groups.length) {
@@ -2132,7 +2134,8 @@ function modelCardHTML(group) {
     '<div class="card-press">' +
       '<div class="card-img">' + imgHTML(rep, true) +
         '<span class="art-tag">' + esc(colorsLabel) + '</span>' +
-        (group.some(v => v.hit) ? '<span class="hit-tag">' + (LANG === 'ru' ? 'ХИТ' : 'TOP') + '</span>' : '') +
+        (group.some(v => v.hit) ? '<span class="hit-tag">' + (LANG === 'ru' ? 'ХИТ' : 'TOP') + '</span>'
+          : group.some(v => v.isnew) ? '<span class="new-tag">' + (LANG === 'ru' ? 'НОВИНКА' : 'NEW') + '</span>' : '') +
       '</div>' +
       '<div class="card-info">' +
         '<div class="card-name">' + esc(modelName) + '</div>' +
