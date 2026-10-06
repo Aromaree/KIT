@@ -1079,6 +1079,15 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .addcart-label { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 11px; }
 .addcart-row { display: flex; gap: 12px; align-items: stretch; }
 .addcart .qty { margin-top: 0; }
+/* строки раздельных пачек НОРМА / БАТАЛ */
+.ac-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 11px; }
+.ac-name { font-size: 12.5px; letter-spacing: 0.04em; }
+.ac-name small { display: block; color: var(--text2); font-size: 10.5px; letter-spacing: 0.06em; margin-top: 1px; }
+.ac-line .qty { margin-top: 0; }
+/* кнопка корзины в шапке карточки */
+.detail-cart { margin-left: auto; position: relative; width: 42px; height: 42px; flex: none; display: flex; align-items: center; justify-content: center; color: var(--text); }
+.detail-cart svg { width: 23px; height: 23px; }
+.detail-cart .cart-badge { top: 2px; right: 0; }
 .addcart-btn { flex: 1; padding: 14px; border-radius: 999px; background: var(--accent); color: var(--accent-fg); font-size: 12px; letter-spacing: 0.06em; transition: transform 0.2s var(--spring), background 0.25s; }
 .addcart-btn:active { transform: scale(0.97); }
 .addcart-btn.added { background: #4f7a63; }
@@ -1451,6 +1460,10 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
     </button>
     <span class="detail-art" id="detailArt"></span>
+    <button class="detail-cart" id="detailCart" aria-label="Корзина">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.3 12.2a1.6 1.6 0 0 0 1.6 1.3h8.9a1.6 1.6 0 0 0 1.6-1.3L21.5 7H5.3"/></svg>
+      <span class="cart-badge" id="detailCartBadge">0</span>
+    </button>
   </div>
   <div id="detailContent"></div>
 </div>
@@ -2208,30 +2221,13 @@ function openDetail(id, cardEl, opts) {
       '<div class="cv-row d-anim d2">' + swatches + '</div>' +
       '<div class="cv-current d-anim d2">' + esc(curLabel) + '</div>' +
       '<div class="specs d-anim d3">' + rows + '</div>' +
-      '<div class="addcart d-anim d4">' +
-        '<div class="addcart-label">' + (LANG === 'ru' ? 'КОЛИЧЕСТВО ПАЧЕК' : 'NUMBER OF PACKS') + '</div>' +
-        '<div class="addcart-row">' +
-          '<div class="qty" id="acQty"><button data-d="-1">−</button><span id="acN">1</span><button data-d="1">+</button></div>' +
-          '<button class="addcart-btn" id="acBtn">' + (LANG === 'ru' ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button>' +
-        '</div>' +
-      '</div>' +
+      '<div class="addcart d-anim d4">' + addcartHTML(p) + '</div>' +
       '<div class="order-block d-anim d4">' + orderHTML(p) + '</div>' +
       '<button class="share-btn d-anim d4" id="shareBtn">' + t().share + '</button>' +
     '</div>';
 
   $('shareBtn').onclick = () => { haptic('medium'); shareProduct(p); };
-  (function() {
-    const nEl = $('acN'), btn = $('acBtn'); let n = 1;
-    $('acQty').querySelectorAll('button').forEach(b =>
-      b.onclick = () => { n = Math.max(1, n + (+b.getAttribute('data-d'))); nEl.textContent = n; });
-    btn.onclick = () => {
-      haptic('light'); cartAdd(p.id, n);
-      btn.classList.add('added');
-      btn.textContent = LANG === 'ru' ? '✓ ДОБАВЛЕНО' : '✓ ADDED';
-      toast(LANG === 'ru' ? ('Добавлено в корзину: ' + n + ' ' + plural(n, 'пачка', 'пачки', 'пачек')) : ('Added: ' + n + ' packs'));
-      setTimeout(() => { btn.classList.remove('added'); btn.textContent = LANG === 'ru' ? 'В КОРЗИНУ' : 'ADD TO CART'; }, 1600);
-    };
-  })();
+  setupAddCart(p);
   document.querySelectorAll('.cv').forEach(el => {
     el.onclick = () => {
       const gid = el.getAttribute('data-goto');
@@ -2674,28 +2670,77 @@ function closeContacts() { $('contacts').classList.remove('show'); }
 /* ---------- КОРЗИНА ---------- */
 let CART = [];
 try { CART = JSON.parse(localStorage.getItem('vanvion_cart') || '[]') || []; } catch (e) { CART = []; }
+CART.forEach(i => { if (!i.type) i.type = 'plain'; });  // миграция старых записей
 function saveCart() { try { localStorage.setItem('vanvion_cart', JSON.stringify(CART)); } catch (e) {} }
 function prodById(id) { return PRODUCTS.find(p => p.id === id); }
 function cartPacks() { return CART.reduce((s, i) => s + i.qty, 0); }
-function cartAdd(id, qty) {
+function typeLabel(t) { return t === 'norma' ? 'НОРМА' : t === 'batal' ? 'БАТАЛ' : ''; }
+/* тарифы размеров модели: НОРМА/БАТАЛ или одна «пачка» */
+function sizeTiers(p) {
+  const s = p.sizes || '';
+  if (s.indexOf('НОРМА') >= 0 && s.indexOf('БАТАЛ') >= 0) {
+    const parts = s.split('·').map(x => x.trim());
+    const get = kw => { const pt = parts.find(x => x.indexOf(kw) === 0) || ''; return pt.replace(kw, '').trim(); };
+    return [{ type: 'norma', label: 'НОРМА', range: get('НОРМА') }, { type: 'batal', label: 'БАТАЛ', range: get('БАТАЛ') }];
+  }
+  return [{ type: 'plain', label: '', range: s }];
+}
+function cartAdd(id, type, qty) {
   qty = Math.max(1, qty | 0);
-  const e = CART.find(i => i.id === id);
-  if (e) e.qty += qty; else CART.push({ id: id, qty: qty });
+  const e = CART.find(i => i.id === id && i.type === type);
+  if (e) e.qty += qty; else CART.push({ id: id, type: type, qty: qty });
   saveCart(); renderCartFab();
 }
-function cartSet(id, qty) {
-  const idx = CART.findIndex(i => i.id === id); if (idx < 0) return;
+function cartSet(id, type, qty) {
+  const idx = CART.findIndex(i => i.id === id && i.type === type); if (idx < 0) return;
   qty = qty | 0;
   if (qty <= 0) CART.splice(idx, 1); else CART[idx].qty = qty;
   saveCart(); renderCartFab(); renderCart();
 }
-function cartRemove(id) { CART = CART.filter(i => i.id !== id); saveCart(); renderCartFab(); renderCart(); }
+function cartRemove(id, type) { CART = CART.filter(i => !(i.id === id && i.type === type)); saveCart(); renderCartFab(); renderCart(); }
 function cartClear() { CART = []; saveCart(); renderCartFab(); renderCart(); }
 function renderCartFab() {
-  const fab = $('cartFab'); if (!fab) return;
   const n = cartPacks();
-  fab.hidden = n === 0;
-  const badge = $('cartBadge'); if (badge) badge.textContent = n;
+  const fab = $('cartFab');
+  if (fab) { fab.hidden = n === 0; const b = $('cartBadge'); if (b) b.textContent = n; }
+  const db = $('detailCartBadge'); if (db) { db.textContent = n; db.style.display = n ? 'flex' : 'none'; }
+}
+/* блок «в корзину» в карточке — отдельные пачки НОРМА/БАТАЛ */
+function addcartHTML(p) {
+  const ru = LANG === 'ru';
+  const tiers = sizeTiers(p);
+  const stepper = (type, start) => '<div class="qty ac-q" data-type="' + type + '"><button data-d="-1">−</button><span>' + start + '</span><button data-d="1">+</button></div>';
+  let rows;
+  if (tiers.length > 1) {
+    rows = tiers.map((tr, i) =>
+      '<div class="ac-line"><div class="ac-name">' + tr.label + '<small>' + esc(tr.range) + '</small></div>' + stepper(tr.type, i === 0 ? 1 : 0) + '</div>'
+    ).join('') + '<button class="addcart-btn" id="acBtn" style="width:100%">' + (ru ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button>';
+  } else {
+    rows = '<div class="addcart-row">' + stepper('plain', 1) + '<button class="addcart-btn" id="acBtn">' + (ru ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button></div>';
+  }
+  return '<div class="addcart-label">' + (ru ? 'КОЛИЧЕСТВО ПАЧЕК' : 'NUMBER OF PACKS') + '</div>' + rows;
+}
+function setupAddCart(p) {
+  const ru = LANG === 'ru';
+  const btn = $('acBtn'); if (!btn) return;
+  document.querySelectorAll('.ac-q').forEach(q => {
+    const span = q.querySelector('span');
+    q.querySelectorAll('button').forEach(b => b.onclick = () => {
+      span.textContent = Math.max(0, (parseInt(span.textContent, 10) || 0) + (+b.getAttribute('data-d')));
+    });
+  });
+  btn.onclick = () => {
+    let added = 0;
+    document.querySelectorAll('.ac-q').forEach(q => {
+      const v = parseInt(q.querySelector('span').textContent, 10) || 0;
+      if (v > 0) { cartAdd(p.id, q.getAttribute('data-type'), v); added += v; }
+    });
+    if (!added) { toast(ru ? 'Укажите количество пачек' : 'Set quantity'); return; }
+    haptic('light');
+    btn.classList.add('added'); btn.textContent = ru ? '✓ ДОБАВЛЕНО' : '✓ ADDED';
+    toast(ru ? ('Добавлено: ' + added + ' ' + plural(added, 'пачка', 'пачки', 'пачек')) : ('Added: ' + added + ' packs'));
+    setTimeout(() => { btn.classList.remove('added'); btn.textContent = ru ? 'В КОРЗИНУ' : 'ADD TO CART'; }, 1600);
+  };
 }
 function openCart() { haptic('light'); renderCart(); $('cart').classList.add('show'); }
 function closeCart() { $('cart').classList.remove('show'); }
@@ -2710,14 +2755,16 @@ function renderCart() {
       const p = prodById(ci.id); if (!p) return '';
       const c = colorList(p.colors)[0];
       const col = c && PALETTE[c] ? PALETTE[c][LANG] : '';
+      const tl = typeLabel(ci.type);
+      const sub = esc(col) + ' · ' + esc(p.id) + (tl ? ' · <b>' + tl + '</b>' : '');
       return '<div class="cart-item">' +
         '<img src="' + esc(p.image) + '" alt="" loading="lazy">' +
         '<div class="cart-item-info">' +
           '<div class="cart-item-name">' + esc(getName(p)) + '</div>' +
-          '<div class="cart-item-sub">' + esc(col) + ' · ' + esc(p.id) + '</div>' +
-          '<div class="qty" data-id="' + esc(p.id) + '"><button data-d="-1">−</button><span>' + ci.qty + '</span><button data-d="1">+</button></div>' +
+          '<div class="cart-item-sub">' + sub + '</div>' +
+          '<div class="qty" data-id="' + esc(p.id) + '" data-type="' + esc(ci.type) + '"><button data-d="-1">−</button><span>' + ci.qty + '</span><button data-d="1">+</button></div>' +
         '</div>' +
-        '<button class="cart-item-rm" data-rm="' + esc(p.id) + '" aria-label="Удалить">&#10005;</button>' +
+        '<button class="cart-item-rm" data-rm="' + esc(p.id) + '" data-rmt="' + esc(ci.type) + '" aria-label="Удалить">&#10005;</button>' +
       '</div>';
     }).join('');
     body = items +
@@ -2741,12 +2788,12 @@ function renderCart() {
   $('cartClose').onclick = closeCart;
   box.onclick = e => { if (e.target === box) closeCart(); };
   box.querySelectorAll('.qty').forEach(q => {
-    const id = q.getAttribute('data-id');
+    const id = q.getAttribute('data-id'), type = q.getAttribute('data-type');
     q.querySelectorAll('button').forEach(b => b.onclick = () => {
-      const cur = CART.find(i => i.id === id); if (cur) cartSet(id, cur.qty + (+b.getAttribute('data-d')));
+      const cur = CART.find(i => i.id === id && i.type === type); if (cur) cartSet(id, type, cur.qty + (+b.getAttribute('data-d')));
     });
   });
-  box.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { haptic('light'); cartRemove(b.getAttribute('data-rm')); });
+  box.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { haptic('light'); cartRemove(b.getAttribute('data-rm'), b.getAttribute('data-rmt')); });
   const clr = $('cartClear'); if (clr) clr.onclick = () => cartClear();
   const wa = $('cartWa'), tg = $('cartTg'), mx = $('cartMx');
   if (wa) wa.onclick = () => sendCart('wa');
@@ -2760,8 +2807,9 @@ function cartMessage() {
     const p = prodById(ci.id); if (!p) return;
     const c = colorList(p.colors)[0];
     const col = c && PALETTE[c] ? PALETTE[c].ru : '';
+    const tl = typeLabel(ci.type);
     const packs = ru ? (ci.qty + ' ' + plural(ci.qty, 'пачка', 'пачки', 'пачек')) : (ci.qty + ' packs');
-    lines.push((i + 1) + '. ' + getName(p) + ' (' + col + ', арт. ' + p.id + ') — ' + packs);
+    lines.push((i + 1) + '. ' + getName(p) + ' (' + col + ', арт. ' + p.id + ')' + (tl ? ' — ' + tl : ' —') + ' ' + packs);
   });
   lines.push('');
   lines.push((ru
@@ -2972,6 +3020,7 @@ $('toTop').onclick = () => {
 $('contactFab').onclick = () => openContacts();
 $('notifyFab').onclick = () => { haptic('light'); requestPush(); };
 $('cartFab').onclick = () => openCart();
+$('detailCart').onclick = () => openCart();
 initPush();
 renderCartFab();
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); } });
