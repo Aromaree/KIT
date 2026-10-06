@@ -1037,11 +1037,16 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   background: #4f7a63;
   color: #fff;
   box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  white-space: nowrap;
+  overflow: hidden;
   animation: a2hsUp 0.5s var(--ease) both;
-  transition: transform 0.22s var(--spring), filter 0.2s;
+  transition: width 0.4s var(--ease), padding 0.4s var(--ease), gap 0.4s var(--ease), transform 0.22s var(--spring), filter 0.2s;
 }
 .notify-fab svg { width: 22px; height: 22px; flex: none; }
-.notify-fab-label { font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+.notify-fab-label { font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; transition: opacity 0.25s, max-width 0.4s var(--ease); max-width: 160px; }
+/* свёрнутое состояние — кружок-колокольчик */
+.notify-fab.mini { width: 54px !important; padding: 0; gap: 0; justify-content: center; }
+.notify-fab.mini .notify-fab-label { opacity: 0; max-width: 0; }
 .notify-fab:hover { transform: scale(1.04); }
 .notify-fab:active { transform: scale(0.94); }
 
@@ -3064,8 +3069,14 @@ $('toTop').onclick = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 $('contactFab').onclick = () => openContacts();
-$('notifyFab').hidden = false;
-$('notifyFab').onclick = () => openNews();
+(function() {
+  const fab = $('notifyFab');
+  fab.hidden = false;
+  fab.onclick = () => openNews();
+  /* показать развёрнутой ~2 сек, затем свернуть в кружок-колокольчик */
+  requestAnimationFrame(() => { fab.style.width = fab.scrollWidth + 'px'; });
+  setTimeout(() => fab.classList.add('mini'), 2200);
+})();
 $('cartFab').onclick = () => openCart();
 $('detailCart').onclick = () => openCart();
 initPush();
