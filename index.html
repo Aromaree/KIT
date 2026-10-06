@@ -1090,6 +1090,14 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .detail-cart { margin-left: auto; position: relative; width: 42px; height: 42px; flex: none; display: flex; align-items: center; justify-content: center; color: var(--text); }
 .detail-cart svg { width: 23px; height: 23px; }
 .detail-cart .cart-badge { top: 2px; right: 0; }
+/* на телефоне уплотняем карточку, чтобы кнопки были ближе */
+@media (max-width: 899px) {
+  .detail-body { padding-top: 16px; }
+  .addcart { margin-top: 18px; }
+  .order-block { margin-top: 18px; }
+  .specs { margin-top: 20px; }
+  .spec-row { padding: 10px 0; }
+}
 .addcart-btn { flex: 1; padding: 14px; border-radius: 999px; background: var(--accent); color: var(--accent-fg); font-size: 12px; letter-spacing: 0.06em; transition: transform 0.2s var(--spring), background 0.25s; }
 .addcart-btn:active { transform: scale(0.97); }
 .addcart-btn.added { background: #4f7a63; }
@@ -2222,9 +2230,9 @@ function openDetail(id, cardEl, opts) {
       '<div class="section-label d-anim d2">' + t().colors + ' · ' + variants.length + '</div>' +
       '<div class="cv-row d-anim d2">' + swatches + '</div>' +
       '<div class="cv-current d-anim d2">' + esc(curLabel) + '</div>' +
-      '<div class="specs d-anim d3">' + rows + '</div>' +
-      '<div class="addcart d-anim d4">' + addcartHTML(p) + '</div>' +
-      '<div class="order-block d-anim d4">' + orderHTML(p) + '</div>' +
+      '<div class="addcart d-anim d3">' + addcartHTML(p) + '</div>' +
+      '<div class="order-block d-anim d3">' + orderHTML(p) + '</div>' +
+      '<div class="specs d-anim d4">' + rows + '</div>' +
       '<button class="share-btn d-anim d4" id="shareBtn">' + t().share + '</button>' +
     '</div>';
 
