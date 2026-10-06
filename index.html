@@ -578,8 +578,9 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   /* подклад и цвета — переносом в столбик */
   .sidebar .lining-bar { flex-wrap: wrap; padding: 0; gap: 8px; }
   .sidebar .color-bar { flex-wrap: wrap; overflow: visible; padding: 0; gap: 8px; }
-  /* кнопка вверх — левее панели */
+  /* кнопки — левее правой панели */
   .to-top { right: 316px; }
+  .cart-fab { right: 316px; }
 }
 .card {
   min-width: 0;
@@ -1041,6 +1042,58 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .notify-fab:hover { transform: scale(1.04); }
 .notify-fab:active { transform: scale(0.94); }
 
+/* ---------- CART (корзина) ---------- */
+.cart-fab {
+  position: fixed; right: 14px; bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 61; width: 54px; height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent); color: var(--accent-fg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.24);
+  transition: transform 0.22s var(--spring);
+}
+.cart-fab svg { width: 24px; height: 24px; }
+.cart-fab:active { transform: scale(0.9); }
+.cart-badge {
+  position: absolute; top: -3px; right: -3px;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  border-radius: 999px; background: #c0392b; color: #fff;
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--bg);
+}
+.cart-item { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+.cart-item > img { width: 56px; height: 75px; object-fit: cover; border-radius: 7px; flex: none; background: var(--card); }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 12.5px; letter-spacing: 0.03em; line-height: 1.3; }
+.cart-item-sub { font-size: 11px; color: var(--text2); margin-top: 3px; }
+.cart-item-rm { color: var(--text2); font-size: 15px; align-self: flex-start; padding: 2px 4px; }
+.qty { display: inline-flex; align-items: center; margin-top: 9px; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+.qty button { width: 32px; height: 30px; font-size: 17px; color: var(--text); background: var(--card); }
+.qty span { min-width: 38px; text-align: center; font-size: 13px; }
+.cart-empty { text-align: center; color: var(--text2); padding: 34px 0; font-size: 13px; }
+.cart-total { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12px; letter-spacing: 0.05em; color: var(--text2); margin: 16px 0 14px; }
+.cart-total b { color: var(--text); font-size: 13px; }
+.cart-clear { display: block; margin: 12px auto 0; color: var(--text2); font-size: 12px; text-decoration: underline; }
+/* блок «в корзину» в карточке товара */
+.addcart { margin-top: 24px; }
+.addcart-label { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 11px; }
+.addcart-row { display: flex; gap: 12px; align-items: stretch; }
+.addcart .qty { margin-top: 0; }
+.addcart-btn { flex: 1; padding: 14px; border-radius: 999px; background: var(--accent); color: var(--accent-fg); font-size: 12px; letter-spacing: 0.06em; transition: transform 0.2s var(--spring), background 0.25s; }
+.addcart-btn:active { transform: scale(0.97); }
+.addcart-btn.added { background: #4f7a63; }
+/* тост */
+.toast {
+  position: fixed; left: 50%; bottom: calc(92px + env(safe-area-inset-bottom));
+  transform: translateX(-50%) translateY(10px); z-index: 95;
+  background: var(--accent); color: var(--accent-fg);
+  padding: 11px 18px; border-radius: 999px; font-size: 12.5px;
+  max-width: 88%; text-align: center; line-height: 1.35;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.26);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s var(--ease);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
 /* ---------- ADD TO HOME SCREEN (iOS) ---------- */
 .a2hs {
   position: fixed;
@@ -1302,7 +1355,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .to-top {
   position: fixed;
   right: 14px;
-  bottom: calc(18px + env(safe-area-inset-bottom));
+  bottom: calc(82px + env(safe-area-inset-bottom));
   z-index: 60;
   width: 42px; height: 42px;
   border-radius: 50%;
@@ -1366,6 +1419,12 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
 <div class="contacts" id="contacts"></div>
+
+<button class="cart-fab" id="cartFab" aria-label="Корзина" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.3 12.2a1.6 1.6 0 0 0 1.6 1.3h8.9a1.6 1.6 0 0 0 1.6-1.3L21.5 7H5.3"/></svg>
+  <span class="cart-badge" id="cartBadge">0</span>
+</button>
+<div class="contacts" id="cart"></div>
 
 <!-- Подсказка «добавить на экран Домой» / установка приложения -->
 <div class="a2hs" id="a2hs" hidden>
@@ -2149,11 +2208,30 @@ function openDetail(id, cardEl, opts) {
       '<div class="cv-row d-anim d2">' + swatches + '</div>' +
       '<div class="cv-current d-anim d2">' + esc(curLabel) + '</div>' +
       '<div class="specs d-anim d3">' + rows + '</div>' +
+      '<div class="addcart d-anim d4">' +
+        '<div class="addcart-label">' + (LANG === 'ru' ? 'КОЛИЧЕСТВО ПАЧЕК' : 'NUMBER OF PACKS') + '</div>' +
+        '<div class="addcart-row">' +
+          '<div class="qty" id="acQty"><button data-d="-1">−</button><span id="acN">1</span><button data-d="1">+</button></div>' +
+          '<button class="addcart-btn" id="acBtn">' + (LANG === 'ru' ? 'В КОРЗИНУ' : 'ADD TO CART') + '</button>' +
+        '</div>' +
+      '</div>' +
       '<div class="order-block d-anim d4">' + orderHTML(p) + '</div>' +
       '<button class="share-btn d-anim d4" id="shareBtn">' + t().share + '</button>' +
     '</div>';
 
   $('shareBtn').onclick = () => { haptic('medium'); shareProduct(p); };
+  (function() {
+    const nEl = $('acN'), btn = $('acBtn'); let n = 1;
+    $('acQty').querySelectorAll('button').forEach(b =>
+      b.onclick = () => { n = Math.max(1, n + (+b.getAttribute('data-d'))); nEl.textContent = n; });
+    btn.onclick = () => {
+      haptic('light'); cartAdd(p.id, n);
+      btn.classList.add('added');
+      btn.textContent = LANG === 'ru' ? '✓ ДОБАВЛЕНО' : '✓ ADDED';
+      toast(LANG === 'ru' ? ('Добавлено в корзину: ' + n + ' ' + plural(n, 'пачка', 'пачки', 'пачек')) : ('Added: ' + n + ' packs'));
+      setTimeout(() => { btn.classList.remove('added'); btn.textContent = LANG === 'ru' ? 'В КОРЗИНУ' : 'ADD TO CART'; }, 1600);
+    };
+  })();
   document.querySelectorAll('.cv').forEach(el => {
     el.onclick = () => {
       const gid = el.getAttribute('data-goto');
@@ -2593,6 +2671,134 @@ function openContacts() {
 }
 function closeContacts() { $('contacts').classList.remove('show'); }
 
+/* ---------- КОРЗИНА ---------- */
+let CART = [];
+try { CART = JSON.parse(localStorage.getItem('vanvion_cart') || '[]') || []; } catch (e) { CART = []; }
+function saveCart() { try { localStorage.setItem('vanvion_cart', JSON.stringify(CART)); } catch (e) {} }
+function prodById(id) { return PRODUCTS.find(p => p.id === id); }
+function cartPacks() { return CART.reduce((s, i) => s + i.qty, 0); }
+function cartAdd(id, qty) {
+  qty = Math.max(1, qty | 0);
+  const e = CART.find(i => i.id === id);
+  if (e) e.qty += qty; else CART.push({ id: id, qty: qty });
+  saveCart(); renderCartFab();
+}
+function cartSet(id, qty) {
+  const idx = CART.findIndex(i => i.id === id); if (idx < 0) return;
+  qty = qty | 0;
+  if (qty <= 0) CART.splice(idx, 1); else CART[idx].qty = qty;
+  saveCart(); renderCartFab(); renderCart();
+}
+function cartRemove(id) { CART = CART.filter(i => i.id !== id); saveCart(); renderCartFab(); renderCart(); }
+function cartClear() { CART = []; saveCart(); renderCartFab(); renderCart(); }
+function renderCartFab() {
+  const fab = $('cartFab'); if (!fab) return;
+  const n = cartPacks();
+  fab.hidden = n === 0;
+  const badge = $('cartBadge'); if (badge) badge.textContent = n;
+}
+function openCart() { haptic('light'); renderCart(); $('cart').classList.add('show'); }
+function closeCart() { $('cart').classList.remove('show'); }
+function renderCart() {
+  const box = $('cart'); if (!box) return;
+  const ru = LANG === 'ru';
+  let body;
+  if (!CART.length) {
+    body = '<div class="cart-empty">' + (ru ? 'Корзина пуста.<br>Добавьте модели из каталога.' : 'Your cart is empty.') + '</div>';
+  } else {
+    const items = CART.map(ci => {
+      const p = prodById(ci.id); if (!p) return '';
+      const c = colorList(p.colors)[0];
+      const col = c && PALETTE[c] ? PALETTE[c][LANG] : '';
+      return '<div class="cart-item">' +
+        '<img src="' + esc(p.image) + '" alt="" loading="lazy">' +
+        '<div class="cart-item-info">' +
+          '<div class="cart-item-name">' + esc(getName(p)) + '</div>' +
+          '<div class="cart-item-sub">' + esc(col) + ' · ' + esc(p.id) + '</div>' +
+          '<div class="qty" data-id="' + esc(p.id) + '"><button data-d="-1">−</button><span>' + ci.qty + '</span><button data-d="1">+</button></div>' +
+        '</div>' +
+        '<button class="cart-item-rm" data-rm="' + esc(p.id) + '" aria-label="Удалить">&#10005;</button>' +
+      '</div>';
+    }).join('');
+    body = items +
+      '<div class="cart-total"><span>' + (ru ? 'ИТОГО' : 'TOTAL') + '</span><b>' +
+        (ru ? (CART.length + ' поз. · ' + cartPacks() + ' ' + plural(cartPacks(), 'пачка', 'пачки', 'пачек')) : (CART.length + ' items · ' + cartPacks() + ' packs')) +
+      '</b></div>' +
+      '<div class="addcart-label">' + (ru ? 'ОТПРАВИТЬ ЗАКАЗ НА РАСЧЁТ' : 'SEND ORDER FOR A QUOTE') + '</div>' +
+      '<div class="order-btns ct-msgrs">' +
+        '<button class="ob ob-wa" id="cartWa">WhatsApp</button>' +
+        '<button class="ob ob-tg" id="cartTg">Telegram</button>' +
+        '<button class="ob ob-mx" id="cartMx">MAX</button>' +
+      '</div>' +
+      '<button class="cart-clear" id="cartClear">' + (ru ? 'Очистить корзину' : 'Clear cart') + '</button>';
+  }
+  box.innerHTML = '<div class="ct-sheet">' +
+    '<button class="ct-close" id="cartClose" aria-label="Закрыть">&#10005;</button>' +
+    '<div class="ct-title">' + (ru ? 'КОРЗИНА' : 'CART') + ' · VANVION</div>' +
+    '<div class="ct-sub">' + (ru ? 'РАСЧЁТ ОПТОВОГО ЗАКАЗА' : 'WHOLESALE ORDER') + '</div>' +
+    body +
+  '</div>';
+  $('cartClose').onclick = closeCart;
+  box.onclick = e => { if (e.target === box) closeCart(); };
+  box.querySelectorAll('.qty').forEach(q => {
+    const id = q.getAttribute('data-id');
+    q.querySelectorAll('button').forEach(b => b.onclick = () => {
+      const cur = CART.find(i => i.id === id); if (cur) cartSet(id, cur.qty + (+b.getAttribute('data-d')));
+    });
+  });
+  box.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { haptic('light'); cartRemove(b.getAttribute('data-rm')); });
+  const clr = $('cartClear'); if (clr) clr.onclick = () => cartClear();
+  const wa = $('cartWa'), tg = $('cartTg'), mx = $('cartMx');
+  if (wa) wa.onclick = () => sendCart('wa');
+  if (tg) tg.onclick = () => sendCart('tg');
+  if (mx) mx.onclick = () => sendCart('mx');
+}
+function cartMessage() {
+  const ru = LANG === 'ru';
+  const lines = [ru ? 'Здравствуйте! Прошу рассчитать заказ VANVION:' : 'Hello! Please quote this VANVION order:', ''];
+  CART.forEach((ci, i) => {
+    const p = prodById(ci.id); if (!p) return;
+    const c = colorList(p.colors)[0];
+    const col = c && PALETTE[c] ? PALETTE[c].ru : '';
+    const packs = ru ? (ci.qty + ' ' + plural(ci.qty, 'пачка', 'пачки', 'пачек')) : (ci.qty + ' packs');
+    lines.push((i + 1) + '. ' + getName(p) + ' (' + col + ', арт. ' + p.id + ') — ' + packs);
+  });
+  lines.push('');
+  lines.push((ru
+    ? ('Итого: ' + CART.length + ' ' + plural(CART.length, 'позиция', 'позиции', 'позиций') + ', ' + cartPacks() + ' ' + plural(cartPacks(), 'пачка', 'пачки', 'пачек'))
+    : ('Total: ' + CART.length + ' items, ' + cartPacks() + ' packs')));
+  return lines.join('\n');
+}
+function copyText(txt) {
+  try { if (navigator.clipboard) { navigator.clipboard.writeText(txt); return; } } catch (e) {}
+  try {
+    const ta = document.createElement('textarea'); ta.value = txt;
+    ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); ta.remove();
+  } catch (e) {}
+}
+function sendCart(channel) {
+  if (!CART.length) return;
+  haptic('medium');
+  const msg = cartMessage();
+  copyText(msg);
+  if (channel === 'wa') {
+    window.open('https://wa.me/' + CONTACTS.wa + '?text=' + encodeURIComponent(msg), '_blank');
+    return;
+  }
+  // Telegram и MAX не поддерживают предзаполнение текста — копируем и открываем чат
+  toast(LANG === 'ru' ? 'Заказ скопирован — вставьте в чат' : 'Order copied — paste it in the chat');
+  const url = channel === 'tg' ? ('https://t.me/+' + CONTACTS.tg) : CONTACTS.max;
+  setTimeout(() => window.open(url, '_blank'), 800);
+}
+let TOAST_T;
+function toast(msg) {
+  let el = $('toast');
+  if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); }
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(TOAST_T); TOAST_T = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
 /* ---------- push-уведомления о новинках (OneSignal) ---------- */
 let PUSH_SUBSCRIBED = false;
 function pushSupported() {
@@ -2765,8 +2971,10 @@ $('toTop').onclick = () => {
 };
 $('contactFab').onclick = () => openContacts();
 $('notifyFab').onclick = () => { haptic('light'); requestPush(); };
+$('cartFab').onclick = () => openCart();
 initPush();
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContacts(); });
+renderCartFab();
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); } });
 
 /* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
 const HAS_LENIS = typeof Lenis !== 'undefined';
