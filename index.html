@@ -22,6 +22,22 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="./manifest.json?v=1">
 
+<!-- OneSignal Web Push (уведомления о новинках) -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async function(OneSignal) {
+    try {
+      await OneSignal.init({
+        appId: "27f0d856-c109-4904-ba79-2491fcebdc06",
+        serviceWorkerPath: "push/onesignal/OneSignalSDKWorker.js",
+        serviceWorkerParam: { scope: "/push/onesignal/" },
+        allowLocalhostAsSecureOrigin: true
+      });
+    } catch (e) { /* push не критичен для работы каталога */ }
+  });
+</script>
+
 <!-- Link preview (Open Graph / Twitter) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VANVION">
@@ -1062,6 +1078,20 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
   transition: transform 0.3s var(--spring);
 }
 .contacts.show .ct-sheet { transform: none; }
+.ct-notify {
+  width: 100%;
+  margin: 4px 0 20px;
+  padding: 13px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  transition: transform 0.2s var(--spring), filter 0.2s, opacity 0.2s;
+}
+.ct-notify:active { transform: scale(0.98); }
+.ct-notify:disabled { opacity: 0.55; }
+.ct-notify.subscribed { background: #4f7a63; }
 .ct-close {
   position: absolute; top: 16px; right: 16px;
   width: 36px; height: 36px;
@@ -2494,6 +2524,7 @@ function openContacts() {
       '<button class="ct-close" id="ctClose" aria-label="Закрыть">&#10005;</button>' +
       '<div class="ct-title">' + (ru ? 'КОНТАКТЫ' : 'CONTACTS') + ' · VANVION</div>' +
       '<div class="ct-sub">' + (ru ? 'ОПТ · МУЖСКАЯ КЛАССИКА' : 'WHOLESALE · MENSWEAR') + '</div>' +
+      '<button class="ct-notify" id="ctNotify">🔔 ' + (ru ? 'Уведомления о новинках' : 'Notify me about new arrivals') + '</button>' +
       '<div class="order-btns ct-msgrs">' +
         '<a class="ob ob-wa" href="' + l.wa + '" target="_blank" rel="noopener">WhatsApp</a>' +
         '<a class="ob ob-tg" href="' + l.tg + '" target="_blank" rel="noopener">Telegram</a>' +
@@ -2510,8 +2541,66 @@ function openContacts() {
   box.classList.add('show');
   $('ctClose').onclick = () => closeContacts();
   box.onclick = e => { if (e.target === box) closeContacts(); };
+  setupNotifyButton();
 }
 function closeContacts() { $('contacts').classList.remove('show'); }
+
+/* кнопка подписки на уведомления (OneSignal) */
+function setupNotifyButton() {
+  const btn = $('ctNotify');
+  if (!btn) return;
+  const ru = LANG === 'ru';
+  const ua = navigator.userAgent || '';
+  const isIOS = /iphone|ipad|ipod/i.test(ua) && !window.MSStream;
+  const isStandalone = ('standalone' in navigator && navigator.standalone) ||
+                       (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+
+  // iPhone в обычном Safari: сначала нужно добавить на экран «Домой»
+  if (isIOS && !isStandalone) {
+    btn.textContent = ru ? '🔔 Сначала добавьте на экран «Домой»' : '🔔 Add to Home Screen first';
+    btn.onclick = () => {
+      const a = $('a2hs');
+      if (a) { a.hidden = false; try { localStorage.removeItem('a2hs_dismissed'); } catch (e) {} }
+      closeContacts();
+    };
+    return;
+  }
+
+  if (typeof window.OneSignalDeferred === 'undefined') {
+    btn.disabled = true;
+    btn.textContent = ru ? '🔔 Уведомления недоступны' : '🔔 Notifications unavailable';
+    return;
+  }
+
+  const setState = (subscribed) => {
+    btn.classList.toggle('subscribed', subscribed);
+    btn.textContent = subscribed
+      ? (ru ? '✓ Вы подписаны на новинки' : '✓ Subscribed to new arrivals')
+      : ('🔔 ' + (ru ? 'Уведомления о новинках' : 'Notify me about new arrivals'));
+  };
+
+  window.OneSignalDeferred.push(async (OneSignal) => {
+    try {
+      setState(!!OneSignal.User.PushSubscription.optedIn);
+      OneSignal.User.PushSubscription.addEventListener('change', e => {
+        setState(!!(e && e.current && e.current.optedIn));
+      });
+    } catch (e) {}
+  });
+
+  btn.onclick = () => {
+    window.OneSignalDeferred.push(async (OneSignal) => {
+      try {
+        if (OneSignal.User.PushSubscription.optedIn) {
+          await OneSignal.User.PushSubscription.optOut();
+        } else {
+          await OneSignal.Notifications.requestPermission();
+          await OneSignal.User.PushSubscription.optIn();
+        }
+      } catch (e) {}
+    });
+  };
+}
 
 async function shareProduct(p) {
   const text = 'VANVION · ' + p.id + ' · ' + getName(p);
