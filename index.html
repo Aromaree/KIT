@@ -1082,6 +1082,15 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 .cart-total { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12px; letter-spacing: 0.05em; color: var(--text2); margin: 16px 0 14px; }
 .cart-total b { color: var(--text); font-size: 13px; }
 .cart-clear { display: block; margin: 12px auto 0; color: var(--text2); font-size: 12px; text-decoration: underline; }
+.cart-note {
+  width: 100%; box-sizing: border-box; resize: none;
+  margin-bottom: 18px; padding: 11px 13px;
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--card); color: var(--text);
+  font: inherit; font-size: 13px; line-height: 1.4;
+}
+.cart-note:focus { outline: none; border-color: var(--text2); }
+.cart-note::placeholder { color: var(--muted); }
 /* блок «в корзину» в карточке товара */
 .addcart { margin-top: 24px; }
 .addcart-label { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 11px; }
@@ -2701,6 +2710,7 @@ function closeContacts() { $('contacts').classList.remove('show'); }
 let CART = [];
 try { CART = JSON.parse(localStorage.getItem('vanvion_cart') || '[]') || []; } catch (e) { CART = []; }
 CART.forEach(i => { if (!i.type) i.type = 'plain'; });  // миграция старых записей
+let CART_COMMENT = '';
 function saveCart() { try { localStorage.setItem('vanvion_cart', JSON.stringify(CART)); } catch (e) {} }
 function prodById(id) { return PRODUCTS.find(p => p.id === id); }
 function cartPacks() { return CART.reduce((s, i) => s + i.qty, 0); }
@@ -2728,7 +2738,7 @@ function cartSet(id, type, qty) {
   saveCart(); renderCartFab(); renderCart();
 }
 function cartRemove(id, type) { CART = CART.filter(i => !(i.id === id && i.type === type)); saveCart(); renderCartFab(); renderCart(); }
-function cartClear() { CART = []; saveCart(); renderCartFab(); renderCart(); }
+function cartClear() { CART = []; CART_COMMENT = ''; saveCart(); renderCartFab(); renderCart(); }
 function renderCartFab() {
   const n = cartPacks();
   const fab = $('cartFab');
@@ -2801,6 +2811,8 @@ function renderCart() {
       '<div class="cart-total"><span>' + (ru ? 'ИТОГО' : 'TOTAL') + '</span><b>' +
         (ru ? (CART.length + ' поз. · ' + cartPacks() + ' ' + plural(cartPacks(), 'пачка', 'пачки', 'пачек')) : (CART.length + ' items · ' + cartPacks() + ' packs')) +
       '</b></div>' +
+      '<div class="addcart-label">' + (ru ? 'КОММЕНТАРИЙ К ЗАКАЗУ' : 'ORDER COMMENT') + '</div>' +
+      '<textarea class="cart-note" id="cartNote" rows="2" placeholder="' + (ru ? 'Пожелания, сроки, город доставки…' : 'Notes, timing, delivery city…') + '">' + esc(CART_COMMENT) + '</textarea>' +
       '<div class="addcart-label">' + (ru ? 'ОТПРАВИТЬ ЗАКАЗ НА РАСЧЁТ' : 'SEND ORDER FOR A QUOTE') + '</div>' +
       '<div class="order-btns ct-msgrs">' +
         '<button class="ob ob-wa" id="cartWa">WhatsApp</button>' +
@@ -2825,6 +2837,7 @@ function renderCart() {
   });
   box.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { haptic('light'); cartRemove(b.getAttribute('data-rm'), b.getAttribute('data-rmt')); });
   const clr = $('cartClear'); if (clr) clr.onclick = () => cartClear();
+  const note = $('cartNote'); if (note) note.oninput = e => { CART_COMMENT = e.target.value; };
   const wa = $('cartWa'), tg = $('cartTg'), mx = $('cartMx');
   if (wa) wa.onclick = () => sendCart('wa');
   if (tg) tg.onclick = () => sendCart('tg');
@@ -2845,6 +2858,10 @@ function cartMessage() {
   lines.push((ru
     ? ('Итого: ' + CART.length + ' ' + plural(CART.length, 'позиция', 'позиции', 'позиций') + ', ' + cartPacks() + ' ' + plural(cartPacks(), 'пачка', 'пачки', 'пачек'))
     : ('Total: ' + CART.length + ' items, ' + cartPacks() + ' packs')));
+  if (CART_COMMENT.trim()) {
+    lines.push('');
+    lines.push((ru ? 'Комментарий: ' : 'Comment: ') + CART_COMMENT.trim());
+  }
   return lines.join('\n');
 }
 function copyText(txt) {
