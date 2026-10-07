@@ -1945,15 +1945,26 @@ function renderHero() {
 function attachCardEvents(el) {
   const cid = () => el.getAttribute('data-id');
   const imgZone = el.querySelector('.card-img');
-  let lpTimer = null, lpFired = false, sx = 0, sy = 0;
+  let lpTimer = null, lpFired = false, sx = 0, sy = 0, lastDx = 0, lastDy = 0, swiped = false;
 
-  /* --- зона фото: тап открывает карточку, долгий тап — превью --- */
+  /* листать варианты модели (цвета) свайпом по фото */
+  const gids = () => Array.from(el.querySelectorAll('.mdot[data-goto]')).map(d => d.getAttribute('data-goto'));
+  const cycleVariant = dir => {
+    const list = gids();
+    if (list.length < 2) return;
+    let i = list.indexOf(cid());
+    if (i < 0) i = 0;
+    const next = list[(i + dir + list.length) % list.length];
+    selectTileColor(el, next);
+  };
+
+  /* --- зона фото: тап открывает карточку, долгий тап — превью, свайп — цвета --- */
   if (imgZone) {
     imgZone.addEventListener('touchstart', e => {
       if (e.touches.length !== 1) return;
       sx = e.touches[0].clientX;
       sy = e.touches[0].clientY;
-      lpFired = false;
+      lastDx = 0; lastDy = 0; swiped = false; lpFired = false;
       lpTimer = setTimeout(() => {
         lpFired = true;
         haptic('medium');
@@ -1962,14 +1973,18 @@ function attachCardEvents(el) {
     }, { passive: true });
 
     imgZone.addEventListener('touchmove', e => {
-      const dx = Math.abs(e.touches[0].clientX - sx);
-      const dy = Math.abs(e.touches[0].clientY - sy);
-      if (dx > 10 || dy > 10) { clearTimeout(lpTimer); }
+      lastDx = e.touches[0].clientX - sx;
+      lastDy = e.touches[0].clientY - sy;
+      if (Math.abs(lastDx) > 10 || Math.abs(lastDy) > 10) clearTimeout(lpTimer);
+      if (Math.abs(lastDx) > 28 && Math.abs(lastDx) > Math.abs(lastDy)) swiped = true;
     }, { passive: true });
 
     imgZone.addEventListener('touchend', () => {
       clearTimeout(lpTimer);
-      if (lpFired) closeQuickLook();
+      if (lpFired) { closeQuickLook(); return; }
+      if (swiped && Math.abs(lastDx) > 40 && Math.abs(lastDx) > Math.abs(lastDy)) {
+        cycleVariant(lastDx < 0 ? 1 : -1);
+      }
     }, { passive: true });
     imgZone.addEventListener('touchcancel', () => {
       clearTimeout(lpTimer);
@@ -1977,7 +1992,7 @@ function attachCardEvents(el) {
     }, { passive: true });
 
     imgZone.addEventListener('click', e => {
-      if (lpFired) { e.preventDefault(); return; }
+      if (lpFired || swiped) { swiped = false; e.preventDefault(); return; }
       haptic('light');
       openDetail(cid(), el);
     });
