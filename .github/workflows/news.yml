@@ -1,0 +1,59 @@
+name: Add news to catalogue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  add-news:
+    # обрабатываем только issue с меткой "news" (её ставит шаблон новости)
+    if: contains(join(github.event.issue.labels.*.name, ','), 'news')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Append news item
+        env:
+          NEWS_TITLE: ${{ github.event.issue.title }}
+          NEWS_BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime
+          title = (os.environ.get('NEWS_TITLE') or '').strip()
+          body = os.environ.get('NEWS_BODY') or ''
+          # убираем служебные заголовки формы (строки, начинающиеся с ###)
+          lines = [l for l in body.splitlines() if not l.strip().startswith('###')]
+          text = ' '.join(l.strip() for l in lines if l.strip())
+          try:
+              news = json.load(open('news.json'))
+              if not isinstance(news, list):
+                  news = []
+          except Exception:
+              news = []
+          news.insert(0, {
+              "date": datetime.date.today().isoformat(),
+              "title": title,
+              "text": text
+          })
+          news = news[:30]
+          with open('news.json', 'w') as f:
+              json.dump(news, f, ensure_ascii=False, indent=2)
+          print("Added:", title)
+          PY
+
+      - name: Commit and push
+        run: |
+          git config user.name "VANVION"
+          git config user.email "vanvion@yandex.com"
+          git add news.json
+          git commit -m "News: ${{ github.event.issue.title }}" || { echo "nothing to commit"; exit 0; }
+          git push
+
+      - name: Close issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close ${{ github.event.issue.number }} --comment "✅ Добавлено в ленту «Новинки» на сайте. Появится через ~1 минуту."

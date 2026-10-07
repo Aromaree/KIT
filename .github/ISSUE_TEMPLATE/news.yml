@@ -1,0 +1,15 @@
+name: Новость в каталог
+description: Добавить новость в ленту «Новинки» на сайте
+title: Заголовок новости (замените этот текст)
+labels: ["news"]
+body:
+  - type: markdown
+    attributes:
+      value: "Заголовок впишите в поле темы (Title) выше. Ниже — сам текст новости."
+  - type: textarea
+    id: text
+    attributes:
+      label: Текст новости
+      placeholder: "Например: Приехала новая партия пиджаков GLADYO, размеры 48–58."
+    validations:
+      required: true
