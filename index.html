@@ -2755,7 +2755,7 @@ function openContacts() {
 function closeContacts() { $('contacts').classList.remove('show'); }
 
 /* ---------- ЧАТ-ПОМОЩНИК (FAQ сейчас, ИИ — после подключения воркера) ---------- */
-const CHAT_WORKER_URL = '';   /* сюда вставим адрес ИИ-воркера, тогда ответы станут «живыми» */
+const CHAT_WORKER_URL = 'https://vanvion-ai.barbarozeee.workers.dev';   /* ИИ-воркер (YandexGPT) */
 let CHAT_MSGS = [];
 let CHAT_BUSY = false;
 function openChat() {
