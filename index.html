@@ -2865,15 +2865,17 @@ function sendChatText(text) {
     CHAT_MSGS.push({ role: 'bot', text: pm.text, models: pm.models });
     CHAT_BUSY = false;
     renderChat();
-  }).catch(() => {
-    CHAT_MSGS.push({ role: 'bot', text: 'Извините, не получилось ответить. Напишите менеджеру в WhatsApp/Telegram/MAX — кнопки в контактах.' });
+  }).catch(err => {
+    const diag = err && err.message ? ' [' + err.message + ']' : '';
+    CHAT_MSGS.push({ role: 'bot', text: 'Извините, не получилось ответить. Напишите менеджеру в WhatsApp/Telegram/MAX — кнопки в контактах.' + diag });
     CHAT_BUSY = false; renderChat();
   });
 }
 async function getChatAnswer(text) {
   if (CHAT_WORKER_URL) {
     const history = CHAT_MSGS.slice(-10).map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }));
-    const r = await fetch(CHAT_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history }) });
+    /* text/plain — «простой» запрос без CORS-preflight (важно для iOS Safari); воркер всё равно читает тело как JSON */
+    const r = await fetch(CHAT_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify({ messages: history }) });
     const d = await r.json();
     return (d && d.reply) ? d.reply : faqAnswer(text);
   }
