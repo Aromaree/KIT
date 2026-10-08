@@ -1,5 +1,5 @@
 /* VANVION service worker — установка как приложение + задел под push-уведомления */
-const CACHE = 'vanvion-v1';
+const CACHE = 'vanvion-v2';
 
 self.addEventListener('install', e => { self.skipWaiting(); });
 

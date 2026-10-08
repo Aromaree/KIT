@@ -64,7 +64,7 @@ export default {
 };
 
 function json(obj, cors) {
-  return new Response(JSON.stringify(obj), { headers: { 'Content-Type': 'application/json', ...cors } });
+  return new Response(JSON.stringify(obj), { headers: { 'Content-Type': 'application/json; charset=utf-8', ...cors } });
 }
 
 async function getCatalogSummary() {
