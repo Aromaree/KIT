@@ -1128,6 +1128,38 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ---------- ЧАТ-ПОМОЩНИК ---------- */
+.chat-sheet {
+  position: relative; width: 100%; max-width: 440px;
+  height: min(82vh, 740px); display: flex; flex-direction: column;
+  background: var(--bg); border-radius: 22px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  transform: translateY(16px) scale(0.97); transition: transform 0.3s var(--spring);
+}
+.contacts.show .chat-sheet { transform: none; }
+.chat-head { flex: none; padding: 18px 54px 14px 22px; border-bottom: 1px solid var(--border); }
+.chat-head .c-t { font-size: 17px; letter-spacing: 0.08em; }
+.chat-head .c-s { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; }
+.chat-msgs { flex: 1; overflow-y: auto; padding: 16px 16px 4px; display: flex; flex-direction: column; gap: 9px; -webkit-overflow-scrolling: touch; text-transform: none; }
+.chat-msgs .msg, .chat-input input, .chat-chip { text-transform: none; }
+.msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 13.5px; line-height: 1.45; white-space: pre-wrap; word-wrap: break-word; }
+.msg.bot { align-self: flex-start; background: var(--card); color: var(--text); border-bottom-left-radius: 5px; }
+.msg.user { align-self: flex-end; background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 5px; }
+.msg a { color: inherit; text-decoration: underline; }
+.chat-typing { align-self: flex-start; color: var(--text2); font-size: 20px; letter-spacing: 2px; padding: 2px 10px; }
+.chat-typing span { animation: blink 1.2s infinite both; }
+.chat-typing span:nth-child(2){animation-delay:.2s} .chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
+.chat-chips { flex: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 14px 4px; }
+.chat-chip { font-size: 12px; letter-spacing: 0.02em; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--text); background: var(--card); }
+.chat-chip:active { transform: scale(0.96); }
+.chat-input { flex: none; display: flex; gap: 10px; align-items: center; padding: 12px 14px calc(14px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); }
+.chat-input input { flex: 1; border: 1px solid var(--border); border-radius: 999px; padding: 12px 16px; font: inherit; font-size: 14px; background: var(--card); color: var(--text); }
+.chat-input input:focus { outline: none; border-color: var(--text2); }
+.chat-send { width: 46px; height: 46px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; flex: none; }
+.chat-send svg { width: 20px; height: 20px; }
+.chat-send:active { transform: scale(0.92); }
+
 /* ---------- ADD TO HOME SCREEN (iOS) ---------- */
 .a2hs {
   position: fixed;
@@ -1467,6 +1499,7 @@ button { font-family: var(--font); text-transform: uppercase; cursor: pointer; b
 </button>
 <div class="contacts" id="cart"></div>
 <div class="contacts" id="news"></div>
+<div class="contacts" id="chat"></div>
 
 <!-- Подсказка «добавить на экран Домой» / установка приложения -->
 <div class="a2hs" id="a2hs" hidden>
@@ -2721,6 +2754,111 @@ function openContacts() {
 }
 function closeContacts() { $('contacts').classList.remove('show'); }
 
+/* ---------- ЧАТ-ПОМОЩНИК (FAQ сейчас, ИИ — после подключения воркера) ---------- */
+const CHAT_WORKER_URL = '';   /* сюда вставим адрес ИИ-воркера, тогда ответы станут «живыми» */
+let CHAT_MSGS = [];
+let CHAT_BUSY = false;
+function openChat() {
+  haptic('light');
+  if (!CHAT_MSGS.length) {
+    CHAT_MSGS.push({ role: 'bot', text: 'Здравствуйте! Я помощник VANVION 🤍\nПодскажу по моделям, размерам и как оформить оптовый заказ. Что вас интересует?' });
+  }
+  renderChat();
+  $('chat').classList.add('show');
+}
+function closeChat() { $('chat').classList.remove('show'); }
+function chatChips() {
+  return ['Как заказать', 'Размеры и ростовки', 'Контакты и адрес', 'Про уведомления'];
+}
+function renderChat(typing) {
+  const ru = LANG === 'ru';
+  const msgs = CHAT_MSGS.map(m => '<div class="msg ' + (m.role === 'user' ? 'user' : 'bot') + '">' + linkify(esc(m.text)) + '</div>').join('')
+    + (typing ? '<div class="chat-typing"><span>•</span><span>•</span><span>•</span></div>' : '');
+  const chips = chatChips().map(c => '<button class="chat-chip">' + esc(c) + '</button>').join('');
+  $('chat').innerHTML =
+    '<div class="chat-sheet">' +
+      '<button class="ct-close" id="chatClose" aria-label="Закрыть">&#10005;</button>' +
+      '<div class="chat-head"><div class="c-t">' + (ru ? 'ПОМОЩНИК' : 'ASSISTANT') + ' · VANVION</div>' +
+        '<div class="c-s">' + (ru ? 'ОПТ · ОТВЕЧУ НА ВОПРОСЫ' : 'WHOLESALE · ASK ME') + '</div></div>' +
+      '<div class="chat-msgs" id="chatMsgs">' + msgs + '</div>' +
+      '<div class="chat-chips" id="chatChips">' + chips + '</div>' +
+      '<form class="chat-input" id="chatForm" autocomplete="off">' +
+        '<input id="chatInput" type="text" placeholder="' + (ru ? 'Напишите вопрос…' : 'Type your question…') + '">' +
+        '<button class="chat-send" type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>' +
+      '</form>' +
+    '</div>';
+  $('chatClose').onclick = closeChat;
+  $('chat').onclick = e => { if (e.target === $('chat')) closeChat(); };
+  const mz = $('chatMsgs'); mz.scrollTop = mz.scrollHeight;
+  $('chatForm').onsubmit = e => { e.preventDefault(); const v = $('chatInput').value.trim(); if (v) sendChatText(v); };
+  $('chatChips').querySelectorAll('.chat-chip').forEach(b => b.onclick = () => {
+    if (b.textContent.indexOf('Контакт') >= 0) { closeChat(); openContacts(); }
+    else sendChatText(b.textContent);
+  });
+}
+function sendChatText(text) {
+  if (CHAT_BUSY) return;
+  CHAT_MSGS.push({ role: 'user', text: text });
+  renderChat(true);
+  CHAT_BUSY = true;
+  getChatAnswer(text).then(ans => {
+    CHAT_MSGS.push({ role: 'bot', text: ans });
+    CHAT_BUSY = false;
+    renderChat();
+  }).catch(() => {
+    CHAT_MSGS.push({ role: 'bot', text: 'Извините, не получилось ответить. Напишите менеджеру в WhatsApp/Telegram/MAX — кнопки в контактах.' });
+    CHAT_BUSY = false; renderChat();
+  });
+}
+async function getChatAnswer(text) {
+  if (CHAT_WORKER_URL) {
+    const history = CHAT_MSGS.slice(-10).map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }));
+    const r = await fetch(CHAT_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history }) });
+    const d = await r.json();
+    return (d && d.reply) ? d.reply : faqAnswer(text);
+  }
+  await new Promise(r => setTimeout(r, 500 + Math.random() * 500)); // имитация «печатает»
+  return faqAnswer(text);
+}
+/* простые ответы на частые вопросы + поиск модели по названию */
+function faqAnswer(q) {
+  const s = q.toLowerCase();
+  const has = (...k) => k.some(x => s.includes(x));
+  // поиск модели по названию
+  const models = [...new Set(PRODUCTS.map(p => p.model).filter(Boolean))];
+  let model = null;
+  for (const m of models) {
+    const key = m.toLowerCase(), tok = key.split(' ')[0];
+    if (s.includes(key) || (tok.length >= 4 && s.includes(tok))) { model = m; break; }
+  }
+  if (model) {
+    const vs = PRODUCTS.filter(p => p.model === model);
+    const p0 = vs[0];
+    return 'ПИДЖАК ' + model + ' — ' + vs.length + ' ' + plural(vs.length, 'цвет', 'цвета', 'цветов') +
+      '.\nСостав: ' + (p0.comp_ru || '—') +
+      '.\nРазмеры: ' + (p0.sizes || '—') +
+      '.\nСилуэт: ' + (p0.sil_ru || '—') +
+      '.\nНайдите модель в каталоге, выберите цвет и количество пачек → «В корзину» → отправьте на расчёт.';
+  }
+  if (has('как заказ', 'оформ', 'сделать заказ', 'заказать')) return 'Оформить заказ просто:\n1. Выберите модель и цвет.\n2. Укажите количество пачек (НОРМА и/или БАТАЛ).\n3. Нажмите «В КОРЗИНУ».\n4. В корзине 🛒 — «Отправить заказ на расчёт» в WhatsApp, Telegram или MAX.\nМенеджер посчитает стоимость и подтвердит. Можно добавить комментарий к заказу.';
+  if (has('размер', 'ростовк', 'пачк', 'норма', 'батал', 'сетк')) return 'Товар отгружается пачками (ростовками):\n• НОРМА — размеры 48–58\n• БАТАЛ — размеры 56–66\nВ каждой модели можно взять отдельно пачки НОРМА и БАТАЛ.';
+  if (has('контакт', 'адрес', 'телефон', 'где вы', 'садовод', 'как связат', 'позвонит')) return 'Телефоны: +7 916 259 1643, +7 926 136 5535, +7 903 538 8887.\nАдреса: Москва, ТЦ «Садовод» — корпус Б, 1 этаж, линия В, пав. 50–52; и 16 линия, пав. 72.\nНапишите нам в WhatsApp / Telegram / MAX — кнопки в разделе контактов и в карточке товара.';
+  if (has('уведомл', 'новинк', 'подписа', 'рассылк')) return 'Нажмите кнопку «Новинки» (🔔 слева) → «Подписаться на уведомления».\nНа iPhone сначала добавьте каталог на экран «Домой» (кнопка «Поделиться» → «На экран „Домой"») — так требует Apple.';
+  if (has('приложени', 'на экран', 'домой', 'установ', 'ярлык')) return 'Чтобы открывать каталог как приложение:\n• iPhone (Safari): «Поделиться» → «На экран „Домой"».\n• Android (Chrome): всплывёт кнопка «Установить приложение».';
+  if (has('налич', 'есть ли', 'склад', 'в наличии', 'остат')) return 'Наличие конкретной модели и сроки лучше уточнить у менеджера — напишите в WhatsApp / Telegram / MAX (кнопки «Заказать» в карточке или в контактах).';
+  if (has('цен', 'стоит', 'прайс', 'почём', 'сколько')) return 'Цены предоставляем по запросу. Соберите интересующие модели в корзину 🛒 и отправьте на расчёт — менеджер пришлёт стоимость.';
+  if (has('минимал', 'мин. заказ', 'опт от', 'минимум')) return 'Условия опта и минимальную партию уточните у менеджера в WhatsApp / Telegram / MAX.';
+  if (has('доставк', 'отправ', 'привоз', 'сдэк', 'транспорт')) return 'По доставке и отправке в регионы вас проконсультирует менеджер — напишите в WhatsApp / Telegram / MAX.';
+  if (has('оплат', 'оплач', 'карт', 'нал', 'перевод')) return 'Способы оплаты уточните у менеджера при оформлении — напишите в WhatsApp / Telegram / MAX.';
+  if (has('привет', 'здравств', 'добрый', 'hello', 'хай')) return 'Здравствуйте! Чем помочь? Спросите про заказ, размеры, конкретную модель или контакты 🤍';
+  if (has('спасиб', 'благодар')) return 'Пожалуйста! Будут вопросы — пишите. Удачных закупок с VANVION 🤍';
+  return 'Пока отвечаю на частые вопросы: как заказать, размеры и ростовки, конкретные модели, контакты, уведомления.\nПо остальному напишите менеджеру в WhatsApp / Telegram / MAX — кнопки в контактах. Скоро здесь заработает умный ИИ-ассистент 🤖';
+}
+/* превратить ссылки/телефоны в кликабельные (после esc) */
+function linkify(t) {
+  return t.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
 /* ---------- КОРЗИНА ---------- */
 let CART = [];
 try { CART = JSON.parse(localStorage.getItem('vanvion_cart') || '[]') || []; } catch (e) { CART = []; }
@@ -3100,7 +3238,7 @@ $('toTop').onclick = () => {
   haptic('light');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
-$('contactFab').onclick = () => openContacts();
+$('contactFab').onclick = () => openChat();
 (function() {
   const fab = $('notifyFab');
   fab.hidden = false;
@@ -3113,7 +3251,7 @@ $('cartFab').onclick = () => openCart();
 $('detailCart').onclick = () => openCart();
 initPush();
 renderCartFab();
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); closeNews(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContacts(); closeCart(); closeNews(); closeChat(); } });
 
 /* ---------- premium libs: Lenis + Splitting + ScrollTrigger ---------- */
 const HAS_LENIS = typeof Lenis !== 'undefined';
